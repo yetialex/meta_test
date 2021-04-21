@@ -1,0 +1,3 @@
+[submodule "swagger-test"]
+	path = swagger-test
+	url = https://github.com/e11it/swagger-test
