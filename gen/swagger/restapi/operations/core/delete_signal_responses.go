@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // DeleteSignalOKCode is the HTTP code returned for type DeleteSignalOK
@@ -47,7 +49,7 @@ type DeleteSignalBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *DeleteSignalBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewDeleteSignalBadRequest creates DeleteSignalBadRequest with default headers values
@@ -57,13 +59,13 @@ func NewDeleteSignalBadRequest() *DeleteSignalBadRequest {
 }
 
 // WithPayload adds the payload to the delete signal bad request response
-func (o *DeleteSignalBadRequest) WithPayload(payload *DeleteSignalBadRequestBody) *DeleteSignalBadRequest {
+func (o *DeleteSignalBadRequest) WithPayload(payload *models.ErrorResponse) *DeleteSignalBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete signal bad request response
-func (o *DeleteSignalBadRequest) SetPayload(payload *DeleteSignalBadRequestBody) {
+func (o *DeleteSignalBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -91,7 +93,7 @@ type DeleteSignalUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *DeleteSignalUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewDeleteSignalUnauthorized creates DeleteSignalUnauthorized with default headers values
@@ -101,13 +103,13 @@ func NewDeleteSignalUnauthorized() *DeleteSignalUnauthorized {
 }
 
 // WithPayload adds the payload to the delete signal unauthorized response
-func (o *DeleteSignalUnauthorized) WithPayload(payload *DeleteSignalUnauthorizedBody) *DeleteSignalUnauthorized {
+func (o *DeleteSignalUnauthorized) WithPayload(payload *models.ErrorResponse) *DeleteSignalUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete signal unauthorized response
-func (o *DeleteSignalUnauthorized) SetPayload(payload *DeleteSignalUnauthorizedBody) {
+func (o *DeleteSignalUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -135,7 +137,7 @@ type DeleteSignalNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *DeleteSignalNotFoundBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewDeleteSignalNotFound creates DeleteSignalNotFound with default headers values
@@ -145,13 +147,13 @@ func NewDeleteSignalNotFound() *DeleteSignalNotFound {
 }
 
 // WithPayload adds the payload to the delete signal not found response
-func (o *DeleteSignalNotFound) WithPayload(payload *DeleteSignalNotFoundBody) *DeleteSignalNotFound {
+func (o *DeleteSignalNotFound) WithPayload(payload *models.ErrorResponse) *DeleteSignalNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete signal not found response
-func (o *DeleteSignalNotFound) SetPayload(payload *DeleteSignalNotFoundBody) {
+func (o *DeleteSignalNotFound) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -179,7 +181,7 @@ type DeleteSignalInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *DeleteSignalInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewDeleteSignalInternalServerError creates DeleteSignalInternalServerError with default headers values
@@ -189,13 +191,13 @@ func NewDeleteSignalInternalServerError() *DeleteSignalInternalServerError {
 }
 
 // WithPayload adds the payload to the delete signal internal server error response
-func (o *DeleteSignalInternalServerError) WithPayload(payload *DeleteSignalInternalServerErrorBody) *DeleteSignalInternalServerError {
+func (o *DeleteSignalInternalServerError) WithPayload(payload *models.ErrorResponse) *DeleteSignalInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete signal internal server error response
-func (o *DeleteSignalInternalServerError) SetPayload(payload *DeleteSignalInternalServerErrorBody) {
+func (o *DeleteSignalInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

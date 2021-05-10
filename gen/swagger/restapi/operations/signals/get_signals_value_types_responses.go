@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // GetSignalsValueTypesOKCode is the HTTP code returned for type GetSignalsValueTypesOK
@@ -70,7 +72,7 @@ type GetSignalsValueTypesBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetSignalsValueTypesBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetSignalsValueTypesBadRequest creates GetSignalsValueTypesBadRequest with default headers values
@@ -80,13 +82,13 @@ func NewGetSignalsValueTypesBadRequest() *GetSignalsValueTypesBadRequest {
 }
 
 // WithPayload adds the payload to the get signals value types bad request response
-func (o *GetSignalsValueTypesBadRequest) WithPayload(payload *GetSignalsValueTypesBadRequestBody) *GetSignalsValueTypesBadRequest {
+func (o *GetSignalsValueTypesBadRequest) WithPayload(payload *models.ErrorResponse) *GetSignalsValueTypesBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get signals value types bad request response
-func (o *GetSignalsValueTypesBadRequest) SetPayload(payload *GetSignalsValueTypesBadRequestBody) {
+func (o *GetSignalsValueTypesBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -114,7 +116,7 @@ type GetSignalsValueTypesUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetSignalsValueTypesUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetSignalsValueTypesUnauthorized creates GetSignalsValueTypesUnauthorized with default headers values
@@ -124,13 +126,13 @@ func NewGetSignalsValueTypesUnauthorized() *GetSignalsValueTypesUnauthorized {
 }
 
 // WithPayload adds the payload to the get signals value types unauthorized response
-func (o *GetSignalsValueTypesUnauthorized) WithPayload(payload *GetSignalsValueTypesUnauthorizedBody) *GetSignalsValueTypesUnauthorized {
+func (o *GetSignalsValueTypesUnauthorized) WithPayload(payload *models.ErrorResponse) *GetSignalsValueTypesUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get signals value types unauthorized response
-func (o *GetSignalsValueTypesUnauthorized) SetPayload(payload *GetSignalsValueTypesUnauthorizedBody) {
+func (o *GetSignalsValueTypesUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -158,7 +160,7 @@ type GetSignalsValueTypesInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetSignalsValueTypesInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetSignalsValueTypesInternalServerError creates GetSignalsValueTypesInternalServerError with default headers values
@@ -168,13 +170,13 @@ func NewGetSignalsValueTypesInternalServerError() *GetSignalsValueTypesInternalS
 }
 
 // WithPayload adds the payload to the get signals value types internal server error response
-func (o *GetSignalsValueTypesInternalServerError) WithPayload(payload *GetSignalsValueTypesInternalServerErrorBody) *GetSignalsValueTypesInternalServerError {
+func (o *GetSignalsValueTypesInternalServerError) WithPayload(payload *models.ErrorResponse) *GetSignalsValueTypesInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get signals value types internal server error response
-func (o *GetSignalsValueTypesInternalServerError) SetPayload(payload *GetSignalsValueTypesInternalServerErrorBody) {
+func (o *GetSignalsValueTypesInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

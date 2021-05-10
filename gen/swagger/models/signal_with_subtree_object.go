@@ -38,7 +38,7 @@ type SignalWithSubtreeObject struct {
 
 	// external id
 	// Example: 1
-	ExternalID *int64 `json:"external_id,omitempty"`
+	ExternalID *string `json:"external_id,omitempty"`
 
 	// id
 	// Example: 1
@@ -58,7 +58,7 @@ type SignalWithSubtreeObject struct {
 	// Value data type
 	// Example: real
 	// Required: true
-	// Enum: [undefined integer real boolean]
+	// Enum: [undefined integer real double boolean]
 	ValueType *string `json:"value_type"`
 }
 
@@ -199,7 +199,7 @@ var signalWithSubtreeObjectTypeValueTypePropEnum []interface{}
 
 func init() {
 	var res []string
-	if err := json.Unmarshal([]byte(`["undefined","integer","real","boolean"]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`["undefined","integer","real","double","boolean"]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
@@ -217,6 +217,9 @@ const (
 
 	// SignalWithSubtreeObjectValueTypeReal captures enum value "real"
 	SignalWithSubtreeObjectValueTypeReal string = "real"
+
+	// SignalWithSubtreeObjectValueTypeDouble captures enum value "double"
+	SignalWithSubtreeObjectValueTypeDouble string = "double"
 
 	// SignalWithSubtreeObjectValueTypeBoolean captures enum value "boolean"
 	SignalWithSubtreeObjectValueTypeBoolean string = "boolean"

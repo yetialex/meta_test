@@ -19,8 +19,7 @@ var (
 func init() {
 	SwaggerJSON = json.RawMessage([]byte(`{
   "schemes": [
-    "http",
-    "https"
+    "http"
   ],
   "swagger": "2.0",
   "info": {
@@ -40,8 +39,8 @@ func init() {
           "core",
           "directories"
         ],
-        "summary": "Get core directories",
-        "operationId": "getCoreDirectories",
+        "summary": "Get directories",
+        "operationId": "getDirectories",
         "parameters": [
           {
             "type": "string",
@@ -60,40 +59,7 @@ func init() {
                 "items": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "required": [
-                      "id",
-                      "name",
-                      "created_at",
-                      "updated_at"
-                    ],
-                    "properties": {
-                      "created_at": {
-                        "description": "ISO 8601 format",
-                        "type": "string",
-                        "format": "date-time",
-                        "example": "2018-03-20T09:12:28.123Z"
-                      },
-                      "description": {
-                        "type": "string",
-                        "pattern": "^.{2,200}$",
-                        "example": "Description"
-                      },
-                      "id": {
-                        "type": "integer",
-                        "example": 1
-                      },
-                      "name": {
-                        "type": "string",
-                        "example": "some_directory"
-                      },
-                      "updated_at": {
-                        "description": "ISO 8601 format",
-                        "type": "string",
-                        "format": "date-time",
-                        "example": "2018-03-20T09:12:28.123Z"
-                      }
-                    }
+                    "$ref": "#/definitions/directoryObject"
                   }
                 }
               }
@@ -102,49 +68,19 @@ func init() {
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Core directories not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -160,8 +96,8 @@ func init() {
           "core",
           "directories"
         ],
-        "summary": "Create new core directory",
-        "operationId": "createCoreDirectory",
+        "summary": "Create new directory",
+        "operationId": "createDirectory",
         "parameters": [
           {
             "type": "string",
@@ -176,25 +112,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "required": [
-                "name"
-              ],
-              "properties": {
-                "acl": {
-                  "type": "object"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "name": {
-                  "type": "string",
-                  "pattern": "^[A-Za-z0-9_.]{2,50}$",
-                  "example": "directory1"
-                }
-              }
+              "$ref": "#/definitions/createDirectory"
             }
           }
         ],
@@ -202,88 +120,25 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_directory"
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                }
-              }
+              "$ref": "#/definitions/directoryObject"
             }
           },
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "409": {
             "description": "Conflict, gate already registered",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -313,104 +168,31 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_directory"
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                }
-              }
+              "$ref": "#/definitions/directoryObject"
             }
           },
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Directory not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -441,65 +223,25 @@ func init() {
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Directory not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -531,25 +273,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "acl": {
-                  "type": "object",
-                  "x-nullable": true
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "x-nullable": true,
-                  "example": "Description"
-                },
-                "name": {
-                  "type": "string",
-                  "pattern": "^[A-Za-z0-9_.]{2,50}$",
-                  "x-nullable": true,
-                  "example": "directory1"
-                }
-              }
+              "$ref": "#/definitions/updateDirectory"
             }
           }
         ],
@@ -557,104 +281,31 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_directory"
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                }
-              }
+              "$ref": "#/definitions/directoryObject"
             }
           },
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Directory not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -678,8 +329,8 @@ func init() {
           "core",
           "nodes"
         ],
-        "summary": "Get core nodes",
-        "operationId": "getCoreNodes",
+        "summary": "Get nodes",
+        "operationId": "getNodes",
         "parameters": [
           {
             "type": "string",
@@ -698,54 +349,7 @@ func init() {
                 "items": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "required": [
-                      "id",
-                      "name",
-                      "prev_id",
-                      "created_at",
-                      "updated_at"
-                    ],
-                    "properties": {
-                      "created_at": {
-                        "description": "ISO 8601 format",
-                        "type": "string",
-                        "format": "date-time",
-                        "example": "2018-03-20T09:12:28.123Z"
-                      },
-                      "directory_id": {
-                        "type": "integer",
-                        "example": 1
-                      },
-                      "has_children": {
-                        "type": "boolean",
-                        "x-nullable": true,
-                        "x-omitempty": true,
-                        "example": true
-                      },
-                      "id": {
-                        "type": "integer",
-                        "example": 1
-                      },
-                      "name": {
-                        "type": "string",
-                        "example": "some_node"
-                      },
-                      "prev_id": {
-                        "type": "integer",
-                        "example": 0
-                      },
-                      "signal_id": {
-                        "type": "integer",
-                        "example": 1
-                      },
-                      "updated_at": {
-                        "description": "ISO 8601 format",
-                        "type": "string",
-                        "format": "date-time",
-                        "example": "2018-03-20T09:12:28.123Z"
-                      }
-                    }
+                    "$ref": "#/definitions/nodeObject"
                   }
                 }
               }
@@ -754,49 +358,19 @@ func init() {
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Core nodes not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -812,8 +386,8 @@ func init() {
           "core",
           "nodes"
         ],
-        "summary": "Create new core node",
-        "operationId": "createCoreNode",
+        "summary": "Create new node",
+        "operationId": "createNode",
         "parameters": [
           {
             "type": "string",
@@ -828,48 +402,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "required": [
-                "name",
-                "prev_id"
-              ],
-              "properties": {
-                "acl": {
-                  "type": "object"
-                },
-                "comment": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Comment"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "directory_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "meta": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "meta"
-                },
-                "name": {
-                  "type": "string",
-                  "pattern": "^[A-Za-z0-9_.]{2,50}$",
-                  "example": "node1"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "signal_id": {
-                  "type": "integer",
-                  "example": 1
-                }
-              }
+              "$ref": "#/definitions/createNode"
             }
           }
         ],
@@ -877,102 +410,25 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "prev_id",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "directory_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "has_children": {
-                  "type": "boolean",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": true
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_node"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "example": 0
-                },
-                "signal_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                }
-              }
+              "$ref": "#/definitions/nodeObject"
             }
           },
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "409": {
             "description": "Conflict, gate already registered",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -1007,214 +463,31 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "prev_id",
-                "full_name",
-                "directory",
-                "children",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "children": {
-                  "$ref": "#/definitions/nodeWithSubtreeObject"
-                },
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "directory": {
-                  "type": "object",
-                  "required": [
-                    "id",
-                    "name",
-                    "created_at",
-                    "updated_at"
-                  ],
-                  "properties": {
-                    "created_at": {
-                      "description": "ISO 8601 format",
-                      "type": "string",
-                      "format": "date-time",
-                      "example": "2018-03-20T09:12:28.123Z"
-                    },
-                    "description": {
-                      "type": "string",
-                      "pattern": "^.{2,200}$",
-                      "example": "Description"
-                    },
-                    "id": {
-                      "type": "integer",
-                      "example": 1
-                    },
-                    "name": {
-                      "type": "string",
-                      "example": "some_directory"
-                    },
-                    "updated_at": {
-                      "description": "ISO 8601 format",
-                      "type": "string",
-                      "format": "date-time",
-                      "example": "2018-03-20T09:12:28.123Z"
-                    }
-                  }
-                },
-                "full_name": {
-                  "type": "string",
-                  "example": "root/sub/leaf/node"
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_rule"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "example": 0
-                },
-                "signals": {
-                  "type": "object",
-                  "required": [
-                    "id",
-                    "class",
-                    "value_type",
-                    "children",
-                    "created_at",
-                    "updated_at"
-                  ],
-                  "properties": {
-                    "children": {
-                      "$ref": "#/definitions/signalWithSubtreeObject"
-                    },
-                    "class": {
-                      "type": "string",
-                      "enum": [
-                        "analog",
-                        "discrete",
-                        "virtual"
-                      ],
-                      "example": "analog"
-                    },
-                    "created_at": {
-                      "description": "ISO 8601 format",
-                      "type": "string",
-                      "format": "date-time",
-                      "example": "2018-03-20T09:12:28.123Z"
-                    },
-                    "external_id": {
-                      "type": "integer",
-                      "x-nullable": true,
-                      "example": 1
-                    },
-                    "id": {
-                      "type": "integer",
-                      "example": 1
-                    },
-                    "unit": {
-                      "description": "Measurement unit",
-                      "type": "string",
-                      "x-nullable": true,
-                      "x-omitempty": true,
-                      "example": "C"
-                    },
-                    "updated_at": {
-                      "description": "ISO 8601 format",
-                      "type": "string",
-                      "format": "date-time",
-                      "example": "2018-03-20T09:12:28.123Z"
-                    },
-                    "value_type": {
-                      "description": "Value data type",
-                      "type": "string",
-                      "enum": [
-                        "undefined",
-                        "integer",
-                        "real",
-                        "boolean"
-                      ],
-                      "example": "real"
-                    }
-                  }
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                }
-              }
+              "$ref": "#/definitions/nodeWithSubtreeObject"
             }
           },
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Nothing found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -1244,118 +517,31 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "prev_id",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "directory_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "has_children": {
-                  "type": "boolean",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": true
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_node"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "example": 0
-                },
-                "signal_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                }
-              }
+              "$ref": "#/definitions/nodeObject"
             }
           },
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Node not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -1386,65 +572,25 @@ func init() {
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Node not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -1476,51 +622,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "acl": {
-                  "type": "object"
-                },
-                "comment": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "x-nullable": true,
-                  "example": "Comment"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "x-nullable": true,
-                  "example": "Description"
-                },
-                "directory_id": {
-                  "type": "integer",
-                  "x-nullable": true,
-                  "example": 1
-                },
-                "meta": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "x-nullable": true,
-                  "example": "meta"
-                },
-                "name": {
-                  "type": "string",
-                  "pattern": "^[A-Za-z0-9_.]{2,50}$",
-                  "x-nullable": true,
-                  "example": "node1"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "x-nullable": true,
-                  "example": 1
-                },
-                "signal_id": {
-                  "type": "integer",
-                  "x-nullable": true,
-                  "example": 1
-                }
-              }
+              "$ref": "#/definitions/updateNode"
             }
           }
         ],
@@ -1528,118 +630,31 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "prev_id",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "directory_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "has_children": {
-                  "type": "boolean",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": true
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_node"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "example": 0
-                },
-                "signal_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                }
-              }
+              "$ref": "#/definitions/nodeObject"
             }
           },
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Node not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -1718,54 +733,7 @@ func init() {
                 "items": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "required": [
-                      "id",
-                      "name",
-                      "prev_id",
-                      "created_at",
-                      "updated_at"
-                    ],
-                    "properties": {
-                      "created_at": {
-                        "description": "ISO 8601 format",
-                        "type": "string",
-                        "format": "date-time",
-                        "example": "2018-03-20T09:12:28.123Z"
-                      },
-                      "directory_id": {
-                        "type": "integer",
-                        "example": 1
-                      },
-                      "has_children": {
-                        "type": "boolean",
-                        "x-nullable": true,
-                        "x-omitempty": true,
-                        "example": true
-                      },
-                      "id": {
-                        "type": "integer",
-                        "example": 1
-                      },
-                      "name": {
-                        "type": "string",
-                        "example": "some_node"
-                      },
-                      "prev_id": {
-                        "type": "integer",
-                        "example": 0
-                      },
-                      "signal_id": {
-                        "type": "integer",
-                        "example": 1
-                      },
-                      "updated_at": {
-                        "description": "ISO 8601 format",
-                        "type": "string",
-                        "format": "date-time",
-                        "example": "2018-03-20T09:12:28.123Z"
-                      }
-                    }
+                    "$ref": "#/definitions/nodeObject"
                   }
                 },
                 "total": {
@@ -1778,65 +746,25 @@ func init() {
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Node not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -1857,102 +785,25 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "prev_id",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "directory_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "has_children": {
-                  "type": "boolean",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": true
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_node"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "example": 0
-                },
-                "signal_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                }
-              }
+              "$ref": "#/definitions/nodeObject"
             }
           },
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -1967,8 +818,8 @@ func init() {
           "core",
           "signals"
         ],
-        "summary": "Get core signals",
-        "operationId": "getCoreSignals",
+        "summary": "Get signals",
+        "operationId": "getSignals",
         "parameters": [
           {
             "type": "string",
@@ -1987,79 +838,7 @@ func init() {
                 "items": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "required": [
-                      "id",
-                      "name",
-                      "class",
-                      "value_type",
-                      "created_at",
-                      "updated_at"
-                    ],
-                    "properties": {
-                      "class": {
-                        "type": "string",
-                        "enum": [
-                          "analog",
-                          "discrete",
-                          "virtual"
-                        ],
-                        "example": "analog"
-                      },
-                      "created_at": {
-                        "description": "ISO 8601 format",
-                        "type": "string",
-                        "format": "date-time",
-                        "example": "2018-03-20T09:12:28.123Z"
-                      },
-                      "description": {
-                        "type": "string",
-                        "pattern": "^.{2,200}$",
-                        "example": "Description"
-                      },
-                      "external_id": {
-                        "type": "integer",
-                        "example": 1
-                      },
-                      "has_children": {
-                        "type": "boolean",
-                        "x-nullable": true,
-                        "x-omitempty": true,
-                        "example": true
-                      },
-                      "id": {
-                        "type": "integer",
-                        "example": 1
-                      },
-                      "name": {
-                        "type": "string",
-                        "example": "some_signal"
-                      },
-                      "unit": {
-                        "description": "Measurement unit",
-                        "type": "string",
-                        "x-nullable": true,
-                        "x-omitempty": true,
-                        "example": "C"
-                      },
-                      "updated_at": {
-                        "description": "ISO 8601 format",
-                        "type": "string",
-                        "format": "date-time",
-                        "example": "2018-03-20T09:12:28.123Z"
-                      },
-                      "value_type": {
-                        "description": "Value data type",
-                        "type": "string",
-                        "enum": [
-                          "undefined",
-                          "integer",
-                          "real",
-                          "boolean"
-                        ],
-                        "example": "real"
-                      }
-                    }
+                    "$ref": "#/definitions/signalObject"
                   }
                 }
               }
@@ -2068,49 +847,19 @@ func init() {
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Core signals not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -2126,8 +875,8 @@ func init() {
           "core",
           "signals"
         ],
-        "summary": "Create new core signal",
-        "operationId": "createCoreSignal",
+        "summary": "Create new signal",
+        "operationId": "createSignal",
         "parameters": [
           {
             "type": "string",
@@ -2142,61 +891,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "required": [
-                "name",
-                "class",
-                "value_type"
-              ],
-              "properties": {
-                "class": {
-                  "type": "string",
-                  "enum": [
-                    "analog",
-                    "discrete",
-                    "virtual"
-                  ],
-                  "example": "analog"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "external_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "pattern": "^[A-Za-z0-9_.]{2,50}$",
-                  "example": "some_signal"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": 1
-                },
-                "unit": {
-                  "description": "Measurement unit",
-                  "type": "string",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": "C"
-                },
-                "value_type": {
-                  "description": "Value data type",
-                  "type": "string",
-                  "enum": [
-                    "undefined",
-                    "integer",
-                    "real",
-                    "boolean"
-                  ],
-                  "example": "real"
-                }
-              }
+              "$ref": "#/definitions/createSignal"
             }
           }
         ],
@@ -2204,127 +899,25 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "class",
-                "value_type",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "class": {
-                  "type": "string",
-                  "enum": [
-                    "analog",
-                    "discrete",
-                    "virtual"
-                  ],
-                  "example": "analog"
-                },
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "external_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "has_children": {
-                  "type": "boolean",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": true
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_signal"
-                },
-                "unit": {
-                  "description": "Measurement unit",
-                  "type": "string",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": "C"
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "value_type": {
-                  "description": "Value data type",
-                  "type": "string",
-                  "enum": [
-                    "undefined",
-                    "integer",
-                    "real",
-                    "boolean"
-                  ],
-                  "example": "real"
-                }
-              }
+              "$ref": "#/definitions/signalObject"
             }
           },
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "409": {
             "description": "Conflict, signal already registered",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -2354,49 +947,19 @@ func init() {
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -2426,49 +989,19 @@ func init() {
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -2498,143 +1031,31 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "class",
-                "value_type",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "class": {
-                  "type": "string",
-                  "enum": [
-                    "analog",
-                    "discrete",
-                    "virtual"
-                  ],
-                  "example": "analog"
-                },
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "external_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "has_children": {
-                  "type": "boolean",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": true
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_signal"
-                },
-                "unit": {
-                  "description": "Measurement unit",
-                  "type": "string",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": "C"
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "value_type": {
-                  "description": "Value data type",
-                  "type": "string",
-                  "enum": [
-                    "undefined",
-                    "integer",
-                    "real",
-                    "boolean"
-                  ],
-                  "example": "real"
-                }
-              }
+              "$ref": "#/definitions/signalObject"
             }
           },
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Signal not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -2665,65 +1086,25 @@ func init() {
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Signal not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -2755,64 +1136,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "acl": {
-                  "type": "object",
-                  "x-nullable": true
-                },
-                "class": {
-                  "type": "string",
-                  "enum": [
-                    "analog",
-                    "discrete",
-                    "virtual"
-                  ],
-                  "x-nullable": true,
-                  "example": "analog"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "x-nullable": true,
-                  "example": "Description"
-                },
-                "external_id": {
-                  "type": "integer",
-                  "x-nullable": true,
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "pattern": "^[A-Za-z0-9_.]{2,50}$",
-                  "x-nullable": true,
-                  "example": "node1"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "x-nullable": true,
-                  "example": 1
-                },
-                "unit": {
-                  "description": "Measurement unit",
-                  "type": "string",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": "C"
-                },
-                "value_type": {
-                  "description": "Value data type",
-                  "type": "string",
-                  "enum": [
-                    "undefined",
-                    "integer",
-                    "real",
-                    "boolean"
-                  ],
-                  "x-nullable": true,
-                  "example": "real"
-                }
-              }
+              "$ref": "#/definitions/updateSignal"
             }
           }
         ],
@@ -2820,143 +1144,31 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "class",
-                "value_type",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "class": {
-                  "type": "string",
-                  "enum": [
-                    "analog",
-                    "discrete",
-                    "virtual"
-                  ],
-                  "example": "analog"
-                },
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "external_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "has_children": {
-                  "type": "boolean",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": true
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_signal"
-                },
-                "unit": {
-                  "description": "Measurement unit",
-                  "type": "string",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": "C"
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "value_type": {
-                  "description": "Value data type",
-                  "type": "string",
-                  "enum": [
-                    "undefined",
-                    "integer",
-                    "real",
-                    "boolean"
-                  ],
-                  "example": "real"
-                }
-              }
+              "$ref": "#/definitions/signalObject"
             }
           },
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Signal not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -2990,22 +1202,7 @@ func init() {
                 "items": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "required": [
-                      "name"
-                    ],
-                    "properties": {
-                      "comment": {
-                        "description": "Комментарий",
-                        "type": "string",
-                        "example": "Some notes"
-                      },
-                      "name": {
-                        "description": "Имя IBA Gate",
-                        "type": "string",
-                        "example": "p3apr3-pda-vc.p3.ia.nlmk"
-                      }
-                    }
+                    "$ref": "#/definitions/iBAGate"
                   }
                 }
               }
@@ -3014,49 +1211,62 @@ func init() {
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "IBA Server gates not found",
             "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/ibas/gates/${gate_name}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Get Gate",
+        "operationId": "getIBAGateByName",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
               "type": "object",
               "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
+                "items": {
+                  "$ref": "#/definitions/iBAGate"
                 }
               }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "IBA Gate not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -3071,202 +1281,11 @@ func init() {
         "tags": [
           "iba"
         ],
-        "summary": "Register new Gate",
-        "operationId": "registerIBAGate",
+        "summary": "Create or update Gate",
+        "operationId": "createIBAGate",
         "parameters": [
           {
-            "description": "IBA Gate object.",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "name"
-              ],
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "name"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "name": {
-                  "description": "Имя IBA Gate",
-                  "type": "string",
-                  "example": "p3apr3-pda-vc.p3.ia.nlmk"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict, gate already registered",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/ibas/gates/${gate_name}": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Get Gate by name",
-        "operationId": "getIBAGateByName",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "type": "object",
-                  "required": [
-                    "name"
-                  ],
-                  "properties": {
-                    "comment": {
-                      "description": "Комментарий",
-                      "type": "string",
-                      "example": "Some notes"
-                    },
-                    "name": {
-                      "description": "Имя IBA Gate",
-                      "type": "string",
-                      "example": "p3apr3-pda-vc.p3.ia.nlmk"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "IBA Gate not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Modify Gate Metadata",
-        "operationId": "updateIBAGateMetadata",
-        "parameters": [
-          {
-            "description": "IBA Gate Meta object.",
+            "description": "IBA Gate Meta object",
             "name": "body",
             "in": "body",
             "required": true,
@@ -3284,70 +1303,25 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "required": [
-                "name"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "name": {
-                  "description": "Имя IBA Gate",
-                  "type": "string",
-                  "example": "p3apr3-pda-vc.p3.ia.nlmk"
-                }
-              }
+              "$ref": "#/definitions/iBAGate"
             }
           },
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -3381,28 +1355,7 @@ func init() {
                 "items": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "required": [
-                      "mnt",
-                      "iba_server_id"
-                    ],
-                    "properties": {
-                      "comment": {
-                        "description": "Комментарий",
-                        "type": "string",
-                        "example": "Some notes"
-                      },
-                      "iba_server_id": {
-                        "description": "IBA сервер ID",
-                        "type": "integer",
-                        "example": 1
-                      },
-                      "mnt": {
-                        "description": "mnt",
-                        "type": "string",
-                        "example": "dp-khx"
-                      }
-                    }
+                    "$ref": "#/definitions/iBAGateMnt"
                   }
                 }
               }
@@ -3411,155 +1364,19 @@ func init() {
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "IBA Server not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Register new mnt for IBA Gate",
-        "operationId": "registerIBAGateMnt",
-        "parameters": [
-          {
-            "description": "IBA Gate mnt object.",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "mnt",
-                "iba_server_id"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "iba_server_id": {
-                  "description": "IBA сервер ID",
-                  "type": "integer",
-                  "example": 1
-                },
-                "mnt": {
-                  "description": "mnt",
-                  "type": "string",
-                  "example": "dp-khx"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "mnt",
-                "iba_server_id"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "iba_server_id": {
-                  "description": "IBA сервер ID",
-                  "type": "integer",
-                  "example": 1
-                },
-                "mnt": {
-                  "description": "mnt",
-                  "type": "string",
-                  "example": "dp-khx"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -3582,7 +1399,7 @@ func init() {
         "tags": [
           "iba"
         ],
-        "summary": "Get mnt for IBA Gate",
+        "summary": "Get mnt for IBAGate",
         "operationId": "getIBAGateMnt",
         "responses": {
           "200": {
@@ -3591,28 +1408,7 @@ func init() {
               "type": "object",
               "properties": {
                 "items": {
-                  "type": "object",
-                  "required": [
-                    "mnt",
-                    "iba_server_id"
-                  ],
-                  "properties": {
-                    "comment": {
-                      "description": "Комментарий",
-                      "type": "string",
-                      "example": "Some notes"
-                    },
-                    "iba_server_id": {
-                      "description": "IBA сервер ID",
-                      "type": "integer",
-                      "example": 1
-                    },
-                    "mnt": {
-                      "description": "mnt",
-                      "type": "string",
-                      "example": "dp-khx"
-                    }
-                  }
+                  "$ref": "#/definitions/iBAGateMnt"
                 }
               }
             }
@@ -3620,54 +1416,24 @@ func init() {
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Mnt for Gate not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
       },
-      "patch": {
+      "put": {
         "consumes": [
           "application/json"
         ],
@@ -3677,7 +1443,7 @@ func init() {
         "tags": [
           "iba"
         ],
-        "summary": "Modify mnt Metadata",
+        "summary": "Create or Update Mnt Gate",
         "operationId": "updateIBAGateMnt",
         "parameters": [
           {
@@ -3702,76 +1468,25 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "required": [
-                "mnt",
-                "iba_server_id"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "iba_server_id": {
-                  "description": "IBA сервер ID",
-                  "type": "integer",
-                  "example": 1
-                },
-                "mnt": {
-                  "description": "mnt",
-                  "type": "string",
-                  "example": "dp-khx"
-                }
-              }
+              "$ref": "#/definitions/iBAGateMnt"
             }
           },
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -3779,14 +1494,14 @@ func init() {
       "parameters": [
         {
           "type": "string",
-          "description": "IBA Gate name",
+          "description": "IBAGate name",
           "name": "gate_name",
           "in": "path",
           "required": true
         },
         {
           "type": "string",
-          "description": "IBA Gate mnt",
+          "description": "IBAGate mnt",
           "name": "mnt",
           "in": "path",
           "required": true
@@ -3812,31 +1527,7 @@ func init() {
                 "items": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "required": [
-                      "storage_id",
-                      "module_number",
-                      "number_in_module",
-                      "is_digital"
-                    ],
-                    "properties": {
-                      "is_digital": {
-                        "type": "boolean",
-                        "example": true
-                      },
-                      "module_number": {
-                        "type": "integer",
-                        "example": 1
-                      },
-                      "number_in_module": {
-                        "type": "integer",
-                        "example": 102
-                      },
-                      "storage_id": {
-                        "type": "integer",
-                        "example": 1
-                      }
-                    }
+                    "$ref": "#/definitions/iBAMappingObject"
                   }
                 }
               }
@@ -3845,65 +1536,25 @@ func init() {
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Server not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -3952,28 +1603,7 @@ func init() {
                 "items": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "required": [
-                      "id",
-                      "name"
-                    ],
-                    "properties": {
-                      "comment": {
-                        "description": "Комментарий",
-                        "type": "string",
-                        "example": "Some notes"
-                      },
-                      "id": {
-                        "description": "IBA сервер ID",
-                        "type": "integer",
-                        "example": 1
-                      },
-                      "name": {
-                        "description": "Имя IBA Server",
-                        "type": "string",
-                        "example": "iba-server-name.nlmk"
-                      }
-                    }
+                    "$ref": "#/definitions/iBAServer"
                   }
                 }
               }
@@ -3982,49 +1612,19 @@ func init() {
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "IBA Servers not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -4048,28 +1648,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "id": {
-                  "description": "IBA сервер ID",
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "description": "Имя IBA Server",
-                  "type": "string",
-                  "example": "iba-server-name.nlmk"
-                }
-              }
+              "$ref": "#/definitions/iBAServer"
             }
           }
         ],
@@ -4077,76 +1656,25 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "id": {
-                  "description": "IBA сервер ID",
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "description": "Имя IBA Server",
-                  "type": "string",
-                  "example": "iba-server-name.nlmk"
-                }
-              }
+              "$ref": "#/definitions/iBAServer"
             }
           },
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "409": {
             "description": "Conflict, server already registered",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -4166,76 +1694,25 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "id": {
-                  "description": "IBA сервер ID",
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "description": "Имя IBA Server",
-                  "type": "string",
-                  "example": "iba-server-name.nlmk"
-                }
-              }
+              "$ref": "#/definitions/iBAServer"
             }
           },
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "IBA Server not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -4304,95 +1781,31 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "required": [
-                "storage_id",
-                "module_number",
-                "number_in_module",
-                "is_digital"
-              ],
-              "properties": {
-                "is_digital": {
-                  "type": "boolean",
-                  "example": true
-                },
-                "module_number": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "number_in_module": {
-                  "type": "integer",
-                  "example": 102
-                },
-                "storage_id": {
-                  "type": "integer",
-                  "example": 1
-                }
-              }
+              "$ref": "#/definitions/iBAMappingObject"
             }
           },
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -4426,31 +1839,7 @@ func init() {
                 "items": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "required": [
-                      "storage_id",
-                      "module_number",
-                      "number_in_module",
-                      "is_digital"
-                    ],
-                    "properties": {
-                      "is_digital": {
-                        "type": "boolean",
-                        "example": true
-                      },
-                      "module_number": {
-                        "type": "integer",
-                        "example": 1
-                      },
-                      "number_in_module": {
-                        "type": "integer",
-                        "example": 102
-                      },
-                      "storage_id": {
-                        "type": "integer",
-                        "example": 1
-                      }
-                    }
+                    "$ref": "#/definitions/iBAMappingObject"
                   }
                 }
               }
@@ -4459,65 +1848,25 @@ func init() {
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Server not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -4551,31 +1900,7 @@ func init() {
                 "items": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "required": [
-                      "storage_id",
-                      "module_number",
-                      "number_in_module",
-                      "is_digital"
-                    ],
-                    "properties": {
-                      "is_digital": {
-                        "type": "boolean",
-                        "example": true
-                      },
-                      "module_number": {
-                        "type": "integer",
-                        "example": 1
-                      },
-                      "number_in_module": {
-                        "type": "integer",
-                        "example": 102
-                      },
-                      "storage_id": {
-                        "type": "integer",
-                        "example": 1
-                      }
-                    }
+                    "$ref": "#/definitions/iBAMappingObject"
                   }
                 }
               }
@@ -4584,65 +1909,25 @@ func init() {
           "400": {
             "description": "Bad params supplied",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "404": {
             "description": "Server not found",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -4677,33 +1962,13 @@ func init() {
           "401": {
             "description": "Unauthorized",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           },
           "500": {
             "description": "Internal server error",
             "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
+              "$ref": "#/definitions/errorResponse"
             }
           }
         }
@@ -4711,6 +1976,129 @@ func init() {
     }
   },
   "definitions": {
+    "createDirectory": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "acl": {
+          "type": "object"
+        },
+        "description": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "example": "Description"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.]{2,50}$",
+          "example": "directory1"
+        }
+      }
+    },
+    "createNode": {
+      "type": "object",
+      "required": [
+        "name",
+        "parent_id"
+      ],
+      "properties": {
+        "acl": {
+          "type": "object"
+        },
+        "comment": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "example": "Comment"
+        },
+        "description": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "example": "Description"
+        },
+        "directory_id": {
+          "type": "integer",
+          "example": 1
+        },
+        "meta": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "example": "meta"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.]{2,50}$",
+          "example": "node1"
+        },
+        "parent_id": {
+          "type": "integer",
+          "example": 1
+        },
+        "signal_id": {
+          "type": "integer",
+          "example": 1
+        }
+      }
+    },
+    "createSignal": {
+      "type": "object",
+      "required": [
+        "name",
+        "class",
+        "value_type"
+      ],
+      "properties": {
+        "class": {
+          "type": "string",
+          "enum": [
+            "analog",
+            "discrete",
+            "virtual"
+          ],
+          "example": "analog"
+        },
+        "description": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "example": "Description"
+        },
+        "external_id": {
+          "type": "string",
+          "example": "1"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.]{2,50}$",
+          "example": "some_signal"
+        },
+        "parent_id": {
+          "type": "integer",
+          "x-nullable": true,
+          "x-omitempty": true,
+          "example": 1
+        },
+        "unit": {
+          "description": "Measurement unit",
+          "type": "string",
+          "x-nullable": true,
+          "x-omitempty": true,
+          "example": "C"
+        },
+        "value_type": {
+          "description": "Value data type",
+          "type": "string",
+          "enum": [
+            "undefined",
+            "integer",
+            "real",
+            "double",
+            "boolean"
+          ],
+          "example": "real"
+        }
+      }
+    },
     "directoryObject": {
       "type": "object",
       "required": [
@@ -4747,12 +2135,168 @@ func init() {
         }
       }
     },
+    "errorResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "example": 300
+        },
+        "message": {
+          "type": "string",
+          "example": "Something bad happens."
+        }
+      }
+    },
+    "iBAGate": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "comment": {
+          "description": "Комментарий",
+          "type": "string",
+          "example": "Some notes"
+        },
+        "name": {
+          "description": "Имя IBA Gate",
+          "type": "string",
+          "example": "p3apr3-pda-vc.p3.ia.nlmk"
+        }
+      }
+    },
+    "iBAGateMnt": {
+      "type": "object",
+      "required": [
+        "mnt",
+        "iba_server_id"
+      ],
+      "properties": {
+        "comment": {
+          "description": "Комментарий",
+          "type": "string",
+          "example": "Some notes"
+        },
+        "iba_server_id": {
+          "description": "IBA сервер ID",
+          "type": "integer",
+          "example": 1
+        },
+        "mnt": {
+          "description": "mnt",
+          "type": "string",
+          "example": "dp-khx"
+        }
+      }
+    },
+    "iBAMappingObject": {
+      "type": "object",
+      "required": [
+        "storage_id",
+        "module_number",
+        "number_in_module",
+        "is_digital"
+      ],
+      "properties": {
+        "is_digital": {
+          "type": "boolean",
+          "example": true
+        },
+        "module_number": {
+          "type": "integer",
+          "example": 1
+        },
+        "number_in_module": {
+          "type": "integer",
+          "example": 102
+        },
+        "storage_id": {
+          "type": "integer",
+          "example": 1
+        }
+      }
+    },
+    "iBAServer": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "comment": {
+          "description": "Комментарий",
+          "type": "string",
+          "example": "Some notes"
+        },
+        "id": {
+          "description": "IBA сервер ID",
+          "type": "integer",
+          "example": 1
+        },
+        "name": {
+          "description": "Имя IBA Server",
+          "type": "string",
+          "example": "iba-server-name.nlmk"
+        }
+      }
+    },
+    "nodeObject": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "parent_id",
+        "created_at",
+        "updated_at"
+      ],
+      "properties": {
+        "created_at": {
+          "description": "ISO 8601 format",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-03-20T09:12:28.123Z"
+        },
+        "directory_id": {
+          "type": "integer",
+          "example": 1
+        },
+        "has_children": {
+          "type": "boolean",
+          "x-nullable": true,
+          "x-omitempty": true,
+          "example": true
+        },
+        "id": {
+          "type": "integer",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "some_node"
+        },
+        "parent_id": {
+          "type": "integer",
+          "example": 0
+        },
+        "signal_id": {
+          "type": "integer",
+          "example": 1
+        },
+        "updated_at": {
+          "description": "ISO 8601 format",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-03-20T09:12:28.123Z"
+        }
+      }
+    },
     "nodeWithSubtreeObject": {
       "type": "object",
       "required": [
         "id",
         "name",
-        "prev_id",
+        "parent_id",
         "full_name",
         "directory",
         "children",
@@ -4784,7 +2328,7 @@ func init() {
           "type": "string",
           "example": "some_rule"
         },
-        "prev_id": {
+        "parent_id": {
           "type": "integer",
           "example": 0
         },
@@ -4799,4589 +2343,7 @@ func init() {
         }
       }
     },
-    "signalWithSubtreeObject": {
-      "type": "object",
-      "required": [
-        "id",
-        "class",
-        "value_type",
-        "children",
-        "created_at",
-        "updated_at"
-      ],
-      "properties": {
-        "children": {
-          "$ref": "#/definitions/signalWithSubtreeObject"
-        },
-        "class": {
-          "type": "string",
-          "enum": [
-            "analog",
-            "discrete",
-            "virtual"
-          ],
-          "example": "analog"
-        },
-        "created_at": {
-          "description": "ISO 8601 format",
-          "type": "string",
-          "format": "date-time",
-          "example": "2018-03-20T09:12:28.123Z"
-        },
-        "external_id": {
-          "type": "integer",
-          "x-nullable": true,
-          "example": 1
-        },
-        "id": {
-          "type": "integer",
-          "example": 1
-        },
-        "unit": {
-          "description": "Measurement unit",
-          "type": "string",
-          "x-nullable": true,
-          "x-omitempty": true,
-          "example": "C"
-        },
-        "updated_at": {
-          "description": "ISO 8601 format",
-          "type": "string",
-          "format": "date-time",
-          "example": "2018-03-20T09:12:28.123Z"
-        },
-        "value_type": {
-          "description": "Value data type",
-          "type": "string",
-          "enum": [
-            "undefined",
-            "integer",
-            "real",
-            "boolean"
-          ],
-          "example": "real"
-        }
-      }
-    }
-  },
-  "tags": [
-    {
-      "name": "swagger"
-    },
-    {
-      "name": "iba"
-    }
-  ]
-}`))
-	FlatSwaggerJSON = json.RawMessage([]byte(`{
-  "schemes": [
-    "http",
-    "https"
-  ],
-  "swagger": "2.0",
-  "info": {
-    "description": "Сервис мета информации",
-    "title": "Metadata Service",
-    "version": "1.0.0"
-  },
-  "host": "localhost",
-  "basePath": "/v1",
-  "paths": {
-    "/core/directories": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "directories"
-        ],
-        "summary": "Get core directories",
-        "operationId": "getCoreDirectories",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "date-time",
-            "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
-            "name": "datetime",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/ItemsItems0"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Core directories not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "directories"
-        ],
-        "summary": "Create new core directory",
-        "operationId": "createCoreDirectory",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "date-time",
-            "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
-            "name": "datetime",
-            "in": "query"
-          },
-          {
-            "description": "Rule params object.",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "name"
-              ],
-              "properties": {
-                "acl": {
-                  "type": "object"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "name": {
-                  "type": "string",
-                  "pattern": "^[A-Za-z0-9_.]{2,50}$",
-                  "example": "directory1"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_directory"
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict, gate already registered",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/core/directories/{directory_id}": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "directories"
-        ],
-        "summary": "Get directory",
-        "operationId": "getDirectory",
-        "parameters": [
-          {
-            "type": "integer",
-            "description": "Directory ID",
-            "name": "directory_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_directory"
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Directory not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "directories"
-        ],
-        "summary": "Delete directory",
-        "operationId": "deleteDirectory",
-        "parameters": [
-          {
-            "type": "integer",
-            "description": "Directory ID",
-            "name": "directory_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Directory not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "directories"
-        ],
-        "summary": "Update directory",
-        "operationId": "updateDirectory",
-        "parameters": [
-          {
-            "type": "integer",
-            "description": "Directory ID",
-            "name": "directory_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "description": "Update directory params object.",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "acl": {
-                  "type": "object",
-                  "x-nullable": true
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "x-nullable": true,
-                  "example": "Description"
-                },
-                "name": {
-                  "type": "string",
-                  "pattern": "^[A-Za-z0-9_.]{2,50}$",
-                  "x-nullable": true,
-                  "example": "directory1"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_directory"
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Directory not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "type": "string",
-          "format": "date-time",
-          "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
-          "name": "datetime",
-          "in": "query"
-        }
-      ]
-    },
-    "/core/nodes": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "nodes"
-        ],
-        "summary": "Get core nodes",
-        "operationId": "getCoreNodes",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "date-time",
-            "description": "Date time as ISO 8601",
-            "name": "datetime",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/ItemsItems0"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Core nodes not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "nodes"
-        ],
-        "summary": "Create new core node",
-        "operationId": "createCoreNode",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "date-time",
-            "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
-            "name": "datetime",
-            "in": "query"
-          },
-          {
-            "description": "Create node params object.",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "name",
-                "prev_id"
-              ],
-              "properties": {
-                "acl": {
-                  "type": "object"
-                },
-                "comment": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Comment"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "directory_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "meta": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "meta"
-                },
-                "name": {
-                  "type": "string",
-                  "pattern": "^[A-Za-z0-9_.]{2,50}$",
-                  "example": "node1"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "signal_id": {
-                  "type": "integer",
-                  "example": 1
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "prev_id",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "directory_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "has_children": {
-                  "type": "boolean",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": true
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_node"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "example": 0
-                },
-                "signal_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict, gate already registered",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/core/nodes/tree": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "nodes"
-        ],
-        "summary": "Get nodes tree with signals",
-        "operationId": "getNodesTreeWithSignals",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Filter by node name",
-            "name": "node_name",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "Filter by signal name",
-            "name": "signal_name",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "prev_id",
-                "full_name",
-                "directory",
-                "children",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "children": {
-                  "$ref": "#/definitions/nodeWithSubtreeObject"
-                },
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "directory": {
-                  "type": "object",
-                  "required": [
-                    "id",
-                    "name",
-                    "created_at",
-                    "updated_at"
-                  ],
-                  "properties": {
-                    "created_at": {
-                      "description": "ISO 8601 format",
-                      "type": "string",
-                      "format": "date-time",
-                      "example": "2018-03-20T09:12:28.123Z"
-                    },
-                    "description": {
-                      "type": "string",
-                      "pattern": "^.{2,200}$",
-                      "example": "Description"
-                    },
-                    "id": {
-                      "type": "integer",
-                      "example": 1
-                    },
-                    "name": {
-                      "type": "string",
-                      "example": "some_directory"
-                    },
-                    "updated_at": {
-                      "description": "ISO 8601 format",
-                      "type": "string",
-                      "format": "date-time",
-                      "example": "2018-03-20T09:12:28.123Z"
-                    }
-                  }
-                },
-                "full_name": {
-                  "type": "string",
-                  "example": "root/sub/leaf/node"
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_rule"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "example": 0
-                },
-                "signals": {
-                  "type": "object",
-                  "required": [
-                    "id",
-                    "class",
-                    "value_type",
-                    "children",
-                    "created_at",
-                    "updated_at"
-                  ],
-                  "properties": {
-                    "children": {
-                      "$ref": "#/definitions/signalWithSubtreeObject"
-                    },
-                    "class": {
-                      "type": "string",
-                      "enum": [
-                        "analog",
-                        "discrete",
-                        "virtual"
-                      ],
-                      "example": "analog"
-                    },
-                    "created_at": {
-                      "description": "ISO 8601 format",
-                      "type": "string",
-                      "format": "date-time",
-                      "example": "2018-03-20T09:12:28.123Z"
-                    },
-                    "external_id": {
-                      "type": "integer",
-                      "x-nullable": true,
-                      "example": 1
-                    },
-                    "id": {
-                      "type": "integer",
-                      "example": 1
-                    },
-                    "unit": {
-                      "description": "Measurement unit",
-                      "type": "string",
-                      "x-nullable": true,
-                      "x-omitempty": true,
-                      "example": "C"
-                    },
-                    "updated_at": {
-                      "description": "ISO 8601 format",
-                      "type": "string",
-                      "format": "date-time",
-                      "example": "2018-03-20T09:12:28.123Z"
-                    },
-                    "value_type": {
-                      "description": "Value data type",
-                      "type": "string",
-                      "enum": [
-                        "undefined",
-                        "integer",
-                        "real",
-                        "boolean"
-                      ],
-                      "example": "real"
-                    }
-                  }
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Nothing found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/core/nodes/{node_id}": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "nodes"
-        ],
-        "summary": "Get node",
-        "operationId": "getNode",
-        "parameters": [
-          {
-            "type": "integer",
-            "description": "Node ID",
-            "name": "node_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "prev_id",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "directory_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "has_children": {
-                  "type": "boolean",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": true
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_node"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "example": 0
-                },
-                "signal_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Node not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "nodes"
-        ],
-        "summary": "Delete node",
-        "operationId": "deleteNode",
-        "parameters": [
-          {
-            "type": "integer",
-            "description": "Node ID",
-            "name": "node_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Node not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "nodes"
-        ],
-        "summary": "Update node",
-        "operationId": "updateNode",
-        "parameters": [
-          {
-            "type": "integer",
-            "description": "Node ID",
-            "name": "node_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "description": "Update node params object.",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "acl": {
-                  "type": "object"
-                },
-                "comment": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "x-nullable": true,
-                  "example": "Comment"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "x-nullable": true,
-                  "example": "Description"
-                },
-                "directory_id": {
-                  "type": "integer",
-                  "x-nullable": true,
-                  "example": 1
-                },
-                "meta": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "x-nullable": true,
-                  "example": "meta"
-                },
-                "name": {
-                  "type": "string",
-                  "pattern": "^[A-Za-z0-9_.]{2,50}$",
-                  "x-nullable": true,
-                  "example": "node1"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "x-nullable": true,
-                  "example": 1
-                },
-                "signal_id": {
-                  "type": "integer",
-                  "x-nullable": true,
-                  "example": 1
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "prev_id",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "directory_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "has_children": {
-                  "type": "boolean",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": true
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_node"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "example": 0
-                },
-                "signal_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Node not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "type": "string",
-          "format": "date-time",
-          "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
-          "name": "datetime",
-          "in": "query"
-        }
-      ]
-    },
-    "/core/nodes/{node_id}/children": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "nodes"
-        ],
-        "summary": "Get node children",
-        "operationId": "getNodeChildren",
-        "parameters": [
-          {
-            "type": "integer",
-            "description": "Node ID",
-            "name": "node_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "maximum": 1000,
-            "minimum": 1,
-            "type": "integer",
-            "default": 100,
-            "name": "limit",
-            "in": "query"
-          },
-          {
-            "type": "integer",
-            "default": 0,
-            "name": "offset",
-            "in": "query"
-          },
-          {
-            "enum": [
-              "asc(id)",
-              "desc(id)",
-              "asc(created_at)",
-              "desc(created_at)",
-              "asc(updated_at)",
-              "desc(updated_at)"
-            ],
-            "type": "string",
-            "default": "asc(id)",
-            "description": "Must contain string like asc(field) or desc(field)",
-            "name": "order_by",
-            "in": "query"
-          },
-          {
-            "type": "string",
-            "description": "Filter by name",
-            "name": "name",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/ItemsItems0"
-                  }
-                },
-                "total": {
-                  "type": "integer",
-                  "example": 100
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Node not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/core/root_node": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "nodes"
-        ],
-        "summary": "Get root node",
-        "operationId": "getRootNode",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "prev_id",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "directory_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "has_children": {
-                  "type": "boolean",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": true
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_node"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "example": 0
-                },
-                "signal_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/core/signals": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "signals"
-        ],
-        "summary": "Get core signals",
-        "operationId": "getCoreSignals",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "date-time",
-            "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
-            "name": "datetime",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/ItemsItems0"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Core signals not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "signals"
-        ],
-        "summary": "Create new core signal",
-        "operationId": "createCoreSignal",
-        "parameters": [
-          {
-            "type": "string",
-            "format": "date-time",
-            "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
-            "name": "datetime",
-            "in": "query"
-          },
-          {
-            "description": "Create signal params object.",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "name",
-                "class",
-                "value_type"
-              ],
-              "properties": {
-                "class": {
-                  "type": "string",
-                  "enum": [
-                    "analog",
-                    "discrete",
-                    "virtual"
-                  ],
-                  "example": "analog"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "external_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "pattern": "^[A-Za-z0-9_.]{2,50}$",
-                  "example": "some_signal"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": 1
-                },
-                "unit": {
-                  "description": "Measurement unit",
-                  "type": "string",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": "C"
-                },
-                "value_type": {
-                  "description": "Value data type",
-                  "type": "string",
-                  "enum": [
-                    "undefined",
-                    "integer",
-                    "real",
-                    "boolean"
-                  ],
-                  "example": "real"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "class",
-                "value_type",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "class": {
-                  "type": "string",
-                  "enum": [
-                    "analog",
-                    "discrete",
-                    "virtual"
-                  ],
-                  "example": "analog"
-                },
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "external_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "has_children": {
-                  "type": "boolean",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": true
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_signal"
-                },
-                "unit": {
-                  "description": "Measurement unit",
-                  "type": "string",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": "C"
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "value_type": {
-                  "description": "Value data type",
-                  "type": "string",
-                  "enum": [
-                    "undefined",
-                    "integer",
-                    "real",
-                    "boolean"
-                  ],
-                  "example": "real"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict, signal already registered",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/core/signals/classes": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "signals",
-          "core"
-        ],
-        "summary": "Get signals classes",
-        "operationId": "getSignalsClasses",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/core/signals/value_types": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "signals",
-          "core"
-        ],
-        "summary": "Get signals value types",
-        "operationId": "getSignalsValueTypes",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/core/signals/{signal_id}": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "signals"
-        ],
-        "summary": "Get signal",
-        "operationId": "getSignal",
-        "parameters": [
-          {
-            "type": "integer",
-            "description": "Signal ID",
-            "name": "signal_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "class",
-                "value_type",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "class": {
-                  "type": "string",
-                  "enum": [
-                    "analog",
-                    "discrete",
-                    "virtual"
-                  ],
-                  "example": "analog"
-                },
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "external_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "has_children": {
-                  "type": "boolean",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": true
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_signal"
-                },
-                "unit": {
-                  "description": "Measurement unit",
-                  "type": "string",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": "C"
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "value_type": {
-                  "description": "Value data type",
-                  "type": "string",
-                  "enum": [
-                    "undefined",
-                    "integer",
-                    "real",
-                    "boolean"
-                  ],
-                  "example": "real"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Signal not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "signals"
-        ],
-        "summary": "Delete signal",
-        "operationId": "deleteSignal",
-        "parameters": [
-          {
-            "type": "integer",
-            "description": "Signal ID",
-            "name": "signal_id",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Signal not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "core",
-          "signals"
-        ],
-        "summary": "Update signal",
-        "operationId": "updateSignal",
-        "parameters": [
-          {
-            "type": "integer",
-            "description": "Signal ID",
-            "name": "signal_id",
-            "in": "path",
-            "required": true
-          },
-          {
-            "description": "Update signal params object.",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "acl": {
-                  "type": "object",
-                  "x-nullable": true
-                },
-                "class": {
-                  "type": "string",
-                  "enum": [
-                    "analog",
-                    "discrete",
-                    "virtual"
-                  ],
-                  "x-nullable": true,
-                  "example": "analog"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "x-nullable": true,
-                  "example": "Description"
-                },
-                "external_id": {
-                  "type": "integer",
-                  "x-nullable": true,
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "pattern": "^[A-Za-z0-9_.]{2,50}$",
-                  "x-nullable": true,
-                  "example": "node1"
-                },
-                "prev_id": {
-                  "type": "integer",
-                  "x-nullable": true,
-                  "example": 1
-                },
-                "unit": {
-                  "description": "Measurement unit",
-                  "type": "string",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": "C"
-                },
-                "value_type": {
-                  "description": "Value data type",
-                  "type": "string",
-                  "enum": [
-                    "undefined",
-                    "integer",
-                    "real",
-                    "boolean"
-                  ],
-                  "x-nullable": true,
-                  "example": "real"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name",
-                "class",
-                "value_type",
-                "created_at",
-                "updated_at"
-              ],
-              "properties": {
-                "class": {
-                  "type": "string",
-                  "enum": [
-                    "analog",
-                    "discrete",
-                    "virtual"
-                  ],
-                  "example": "analog"
-                },
-                "created_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "description": {
-                  "type": "string",
-                  "pattern": "^.{2,200}$",
-                  "example": "Description"
-                },
-                "external_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "has_children": {
-                  "type": "boolean",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": true
-                },
-                "id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "type": "string",
-                  "example": "some_signal"
-                },
-                "unit": {
-                  "description": "Measurement unit",
-                  "type": "string",
-                  "x-nullable": true,
-                  "x-omitempty": true,
-                  "example": "C"
-                },
-                "updated_at": {
-                  "description": "ISO 8601 format",
-                  "type": "string",
-                  "format": "date-time",
-                  "example": "2018-03-20T09:12:28.123Z"
-                },
-                "value_type": {
-                  "description": "Value data type",
-                  "type": "string",
-                  "enum": [
-                    "undefined",
-                    "integer",
-                    "real",
-                    "boolean"
-                  ],
-                  "example": "real"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Signal not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "type": "string",
-          "format": "date-time",
-          "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
-          "name": "datetime",
-          "in": "query"
-        }
-      ]
-    },
-    "/ibas/gates": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Get all Gates",
-        "operationId": "getIBAGates",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/ItemsItems0"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "IBA Server gates not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Register new Gate",
-        "operationId": "registerIBAGate",
-        "parameters": [
-          {
-            "description": "IBA Gate object.",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "name"
-              ],
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "name"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "name": {
-                  "description": "Имя IBA Gate",
-                  "type": "string",
-                  "example": "p3apr3-pda-vc.p3.ia.nlmk"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict, gate already registered",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/ibas/gates/${gate_name}": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Get Gate by name",
-        "operationId": "getIBAGateByName",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "type": "object",
-                  "required": [
-                    "name"
-                  ],
-                  "properties": {
-                    "comment": {
-                      "description": "Комментарий",
-                      "type": "string",
-                      "example": "Some notes"
-                    },
-                    "name": {
-                      "description": "Имя IBA Gate",
-                      "type": "string",
-                      "example": "p3apr3-pda-vc.p3.ia.nlmk"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "IBA Gate not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Modify Gate Metadata",
-        "operationId": "updateIBAGateMetadata",
-        "parameters": [
-          {
-            "description": "IBA Gate Meta object.",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "comment": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "name"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "name": {
-                  "description": "Имя IBA Gate",
-                  "type": "string",
-                  "example": "p3apr3-pda-vc.p3.ia.nlmk"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "type": "string",
-          "description": "IBA Gate name",
-          "name": "gate_name",
-          "in": "path",
-          "required": true
-        }
-      ]
-    },
-    "/ibas/gates/${gate_name}/mnts": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Get all mnt for IBA Gates",
-        "operationId": "getIBAGateMnts",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/ItemsItems0"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "IBA Server not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Register new mnt for IBA Gate",
-        "operationId": "registerIBAGateMnt",
-        "parameters": [
-          {
-            "description": "IBA Gate mnt object.",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "mnt",
-                "iba_server_id"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "iba_server_id": {
-                  "description": "IBA сервер ID",
-                  "type": "integer",
-                  "example": 1
-                },
-                "mnt": {
-                  "description": "mnt",
-                  "type": "string",
-                  "example": "dp-khx"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "mnt",
-                "iba_server_id"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "iba_server_id": {
-                  "description": "IBA сервер ID",
-                  "type": "integer",
-                  "example": 1
-                },
-                "mnt": {
-                  "description": "mnt",
-                  "type": "string",
-                  "example": "dp-khx"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "type": "string",
-          "description": "IBA Gate name",
-          "name": "gate_name",
-          "in": "path",
-          "required": true
-        }
-      ]
-    },
-    "/ibas/gates/${gate_name}/mnts/${mnt}": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Get mnt for IBA Gate",
-        "operationId": "getIBAGateMnt",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "type": "object",
-                  "required": [
-                    "mnt",
-                    "iba_server_id"
-                  ],
-                  "properties": {
-                    "comment": {
-                      "description": "Комментарий",
-                      "type": "string",
-                      "example": "Some notes"
-                    },
-                    "iba_server_id": {
-                      "description": "IBA сервер ID",
-                      "type": "integer",
-                      "example": 1
-                    },
-                    "mnt": {
-                      "description": "mnt",
-                      "type": "string",
-                      "example": "dp-khx"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Mnt for Gate not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Modify mnt Metadata",
-        "operationId": "updateIBAGateMnt",
-        "parameters": [
-          {
-            "description": "IBA GateMeta object.",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "comment": {
-                  "type": "string"
-                },
-                "iba_server_id": {
-                  "type": "integer"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "mnt",
-                "iba_server_id"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "iba_server_id": {
-                  "description": "IBA сервер ID",
-                  "type": "integer",
-                  "example": 1
-                },
-                "mnt": {
-                  "description": "mnt",
-                  "type": "string",
-                  "example": "dp-khx"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "type": "string",
-          "description": "IBA Gate name",
-          "name": "gate_name",
-          "in": "path",
-          "required": true
-        },
-        {
-          "type": "string",
-          "description": "IBA Gate mnt",
-          "name": "mnt",
-          "in": "path",
-          "required": true
-        }
-      ]
-    },
-    "/ibas/gates/${gate_name}/mnts/${mnt}/signals/mapping": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Return IBA signal mapping by gate and mountpoint",
-        "operationId": "getIBAMappingByGateAndMount",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/ItemsItems0"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Server not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "type": "string",
-          "description": "IBA Gate",
-          "name": "gate_name",
-          "in": "path",
-          "required": true
-        },
-        {
-          "type": "string",
-          "description": "IBA Mountpoint",
-          "name": "mnt",
-          "in": "path",
-          "required": true
-        }
-      ]
-    },
-    "/ibas/servers/": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Get IBA Servers",
-        "operationId": "getIBAServers",
-        "parameters": [
-          {
-            "type": "string",
-            "description": "Name mask for fuzzy search",
-            "name": "name_mask",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/ItemsItems0"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "IBA Servers not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Register new Server",
-        "operationId": "registerIBAServer",
-        "parameters": [
-          {
-            "description": "IBA Server object",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "id": {
-                  "description": "IBA сервер ID",
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "description": "Имя IBA Server",
-                  "type": "string",
-                  "example": "iba-server-name.nlmk"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "id": {
-                  "description": "IBA сервер ID",
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "description": "Имя IBA Server",
-                  "type": "string",
-                  "example": "iba-server-name.nlmk"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict, server already registered",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/ibas/servers/${iba_server_id}": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Get IBA Server by id",
-        "operationId": "getIBAServer",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "id",
-                "name"
-              ],
-              "properties": {
-                "comment": {
-                  "description": "Комментарий",
-                  "type": "string",
-                  "example": "Some notes"
-                },
-                "id": {
-                  "description": "IBA сервер ID",
-                  "type": "integer",
-                  "example": 1
-                },
-                "name": {
-                  "description": "Имя IBA Server",
-                  "type": "string",
-                  "example": "iba-server-name.nlmk"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "IBA Server not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "type": "integer",
-          "description": "IBA Server ID",
-          "name": "iba_server_id",
-          "in": "path",
-          "required": true
-        }
-      ]
-    },
-    "/ibas/servers/${iba_server_id}/signals": {
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Register new signal for IBA Server(batch mode)",
-        "operationId": "registerSignal",
-        "parameters": [
-          {
-            "description": "Signal object.",
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": [
-                "module_number",
-                "number_in_module",
-                "is_digital",
-                "type"
-              ],
-              "properties": {
-                "is_digital": {
-                  "type": "boolean"
-                },
-                "module_number": {
-                  "type": "integer"
-                },
-                "number_in_module": {
-                  "type": "integer"
-                },
-                "type": {
-                  "type": "string",
-                  "enum": [
-                    "bool",
-                    "real",
-                    "double",
-                    "int"
-                  ]
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "required": [
-                "storage_id",
-                "module_number",
-                "number_in_module",
-                "is_digital"
-              ],
-              "properties": {
-                "is_digital": {
-                  "type": "boolean",
-                  "example": true
-                },
-                "module_number": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "number_in_module": {
-                  "type": "integer",
-                  "example": 102
-                },
-                "storage_id": {
-                  "type": "integer",
-                  "example": 1
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "type": "integer",
-          "description": "IBA Server ID",
-          "name": "iba_server_id",
-          "in": "path",
-          "required": true
-        }
-      ]
-    },
-    "/ibas/servers/${iba_server_id}/signals/mapping": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Return IBA signal mapping by server ID",
-        "operationId": "getIBAMappingByServerID",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/ItemsItems0"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Server not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "type": "integer",
-          "description": "IBA Server ID",
-          "name": "iba_server_id",
-          "in": "path",
-          "required": true
-        }
-      ]
-    },
-    "/ibas/topics/${topic_name}/mapping": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Return IBA signal mapping by topic name",
-        "operationId": "getIBAMappingByTopicName",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/ItemsItems0"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Server not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "type": "string",
-          "description": "IBA topic name",
-          "name": "topic_name",
-          "in": "path",
-          "required": true
-        }
-      ]
-    },
-    "/swagger.json": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "swagger"
-        ],
-        "summary": "Get swagger json",
-        "operationId": "getSwaggerJSON",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "code": {
-                  "type": "integer",
-                  "example": 300
-                },
-                "message": {
-                  "type": "string",
-                  "example": "Something bad happens."
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "GetIBAGateByNameOKBodyItems": {
-      "type": "object",
-      "required": [
-        "name"
-      ],
-      "properties": {
-        "comment": {
-          "description": "Комментарий",
-          "type": "string",
-          "example": "Some notes"
-        },
-        "name": {
-          "description": "Имя IBA Gate",
-          "type": "string",
-          "example": "p3apr3-pda-vc.p3.ia.nlmk"
-        }
-      }
-    },
-    "GetIBAGateMntOKBodyItems": {
-      "type": "object",
-      "required": [
-        "mnt",
-        "iba_server_id"
-      ],
-      "properties": {
-        "comment": {
-          "description": "Комментарий",
-          "type": "string",
-          "example": "Some notes"
-        },
-        "iba_server_id": {
-          "description": "IBA сервер ID",
-          "type": "integer",
-          "example": 1
-        },
-        "mnt": {
-          "description": "mnt",
-          "type": "string",
-          "example": "dp-khx"
-        }
-      }
-    },
-    "GetNodesTreeWithSignalsOKBodyDirectory": {
-      "type": "object",
-      "required": [
-        "id",
-        "name",
-        "created_at",
-        "updated_at"
-      ],
-      "properties": {
-        "created_at": {
-          "description": "ISO 8601 format",
-          "type": "string",
-          "format": "date-time",
-          "example": "2018-03-20T09:12:28.123Z"
-        },
-        "description": {
-          "type": "string",
-          "pattern": "^.{2,200}$",
-          "example": "Description"
-        },
-        "id": {
-          "type": "integer",
-          "example": 1
-        },
-        "name": {
-          "type": "string",
-          "example": "some_directory"
-        },
-        "updated_at": {
-          "description": "ISO 8601 format",
-          "type": "string",
-          "format": "date-time",
-          "example": "2018-03-20T09:12:28.123Z"
-        }
-      }
-    },
-    "GetNodesTreeWithSignalsOKBodySignals": {
-      "type": "object",
-      "required": [
-        "id",
-        "class",
-        "value_type",
-        "children",
-        "created_at",
-        "updated_at"
-      ],
-      "properties": {
-        "children": {
-          "$ref": "#/definitions/signalWithSubtreeObject"
-        },
-        "class": {
-          "type": "string",
-          "enum": [
-            "analog",
-            "discrete",
-            "virtual"
-          ],
-          "example": "analog"
-        },
-        "created_at": {
-          "description": "ISO 8601 format",
-          "type": "string",
-          "format": "date-time",
-          "example": "2018-03-20T09:12:28.123Z"
-        },
-        "external_id": {
-          "type": "integer",
-          "x-nullable": true,
-          "example": 1
-        },
-        "id": {
-          "type": "integer",
-          "example": 1
-        },
-        "unit": {
-          "description": "Measurement unit",
-          "type": "string",
-          "x-nullable": true,
-          "x-omitempty": true,
-          "example": "C"
-        },
-        "updated_at": {
-          "description": "ISO 8601 format",
-          "type": "string",
-          "format": "date-time",
-          "example": "2018-03-20T09:12:28.123Z"
-        },
-        "value_type": {
-          "description": "Value data type",
-          "type": "string",
-          "enum": [
-            "undefined",
-            "integer",
-            "real",
-            "boolean"
-          ],
-          "example": "real"
-        }
-      }
-    },
-    "ItemsItems0": {
+    "signalObject": {
       "type": "object",
       "required": [
         "id",
@@ -9413,8 +2375,8 @@ func init() {
           "example": "Description"
         },
         "external_id": {
-          "type": "integer",
-          "example": 1
+          "type": "string",
+          "example": "1"
         },
         "has_children": {
           "type": "boolean",
@@ -9450,6 +2412,2293 @@ func init() {
             "undefined",
             "integer",
             "real",
+            "double",
+            "boolean"
+          ],
+          "example": "real"
+        }
+      }
+    },
+    "signalWithSubtreeObject": {
+      "type": "object",
+      "required": [
+        "id",
+        "class",
+        "value_type",
+        "children",
+        "created_at",
+        "updated_at"
+      ],
+      "properties": {
+        "children": {
+          "$ref": "#/definitions/signalWithSubtreeObject"
+        },
+        "class": {
+          "type": "string",
+          "enum": [
+            "analog",
+            "discrete",
+            "virtual"
+          ],
+          "example": "analog"
+        },
+        "created_at": {
+          "description": "ISO 8601 format",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-03-20T09:12:28.123Z"
+        },
+        "external_id": {
+          "type": "string",
+          "x-nullable": true,
+          "example": "1"
+        },
+        "id": {
+          "type": "integer",
+          "example": 1
+        },
+        "unit": {
+          "description": "Measurement unit",
+          "type": "string",
+          "x-nullable": true,
+          "x-omitempty": true,
+          "example": "C"
+        },
+        "updated_at": {
+          "description": "ISO 8601 format",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-03-20T09:12:28.123Z"
+        },
+        "value_type": {
+          "description": "Value data type",
+          "type": "string",
+          "enum": [
+            "undefined",
+            "integer",
+            "real",
+            "double",
+            "boolean"
+          ],
+          "example": "real"
+        }
+      }
+    },
+    "updateDirectory": {
+      "type": "object",
+      "properties": {
+        "acl": {
+          "type": "object",
+          "x-nullable": true
+        },
+        "description": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "x-nullable": true,
+          "example": "Description"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.]{2,50}$",
+          "x-nullable": true,
+          "example": "directory1"
+        }
+      }
+    },
+    "updateNode": {
+      "type": "object",
+      "properties": {
+        "acl": {
+          "type": "object"
+        },
+        "comment": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "x-nullable": true,
+          "example": "Comment"
+        },
+        "description": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "x-nullable": true,
+          "example": "Description"
+        },
+        "directory_id": {
+          "type": "integer",
+          "x-nullable": true,
+          "example": 1
+        },
+        "meta": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "x-nullable": true,
+          "example": "meta"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.]{2,50}$",
+          "x-nullable": true,
+          "example": "node1"
+        },
+        "parent_id": {
+          "type": "integer",
+          "x-nullable": true,
+          "example": 1
+        },
+        "signal_id": {
+          "type": "integer",
+          "x-nullable": true,
+          "example": 1
+        }
+      }
+    },
+    "updateSignal": {
+      "type": "object",
+      "properties": {
+        "acl": {
+          "type": "object",
+          "x-nullable": true
+        },
+        "class": {
+          "type": "string",
+          "enum": [
+            "analog",
+            "discrete",
+            "virtual"
+          ],
+          "x-nullable": true,
+          "example": "analog"
+        },
+        "description": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "x-nullable": true,
+          "example": "Description"
+        },
+        "external_id": {
+          "type": "string",
+          "x-nullable": true,
+          "example": "1"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.]{2,50}$",
+          "x-nullable": true,
+          "example": "node1"
+        },
+        "parent_id": {
+          "type": "integer",
+          "x-nullable": true,
+          "example": 1
+        },
+        "unit": {
+          "description": "Measurement unit",
+          "type": "string",
+          "x-nullable": true,
+          "x-omitempty": true,
+          "example": "C"
+        },
+        "value_type": {
+          "description": "Value data type",
+          "type": "string",
+          "enum": [
+            "undefined",
+            "integer",
+            "real",
+            "double",
+            "boolean"
+          ],
+          "x-nullable": true,
+          "example": "real"
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "swagger"
+    },
+    {
+      "name": "iba"
+    }
+  ]
+}`))
+	FlatSwaggerJSON = json.RawMessage([]byte(`{
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Сервис мета информации",
+    "title": "Metadata Service",
+    "version": "1.0.0"
+  },
+  "host": "localhost",
+  "basePath": "/v1",
+  "paths": {
+    "/core/directories": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "directories"
+        ],
+        "summary": "Get directories",
+        "operationId": "getDirectories",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
+            "name": "datetime",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/directoryObject"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Core directories not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "directories"
+        ],
+        "summary": "Create new directory",
+        "operationId": "createDirectory",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
+            "name": "datetime",
+            "in": "query"
+          },
+          {
+            "description": "Rule params object.",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/createDirectory"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/directoryObject"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict, gate already registered",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/core/directories/{directory_id}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "directories"
+        ],
+        "summary": "Get directory",
+        "operationId": "getDirectory",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Directory ID",
+            "name": "directory_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/directoryObject"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Directory not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "directories"
+        ],
+        "summary": "Delete directory",
+        "operationId": "deleteDirectory",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Directory ID",
+            "name": "directory_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Directory not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "directories"
+        ],
+        "summary": "Update directory",
+        "operationId": "updateDirectory",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Directory ID",
+            "name": "directory_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "Update directory params object.",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateDirectory"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/directoryObject"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Directory not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "format": "date-time",
+          "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
+          "name": "datetime",
+          "in": "query"
+        }
+      ]
+    },
+    "/core/nodes": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "nodes"
+        ],
+        "summary": "Get nodes",
+        "operationId": "getNodes",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date time as ISO 8601",
+            "name": "datetime",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/nodeObject"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Core nodes not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "nodes"
+        ],
+        "summary": "Create new node",
+        "operationId": "createNode",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
+            "name": "datetime",
+            "in": "query"
+          },
+          {
+            "description": "Create node params object.",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/createNode"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/nodeObject"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict, gate already registered",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/core/nodes/tree": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "nodes"
+        ],
+        "summary": "Get nodes tree with signals",
+        "operationId": "getNodesTreeWithSignals",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Filter by node name",
+            "name": "node_name",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Filter by signal name",
+            "name": "signal_name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/nodeWithSubtreeObject"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Nothing found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/core/nodes/{node_id}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "nodes"
+        ],
+        "summary": "Get node",
+        "operationId": "getNode",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Node ID",
+            "name": "node_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/nodeObject"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Node not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "nodes"
+        ],
+        "summary": "Delete node",
+        "operationId": "deleteNode",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Node ID",
+            "name": "node_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Node not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "nodes"
+        ],
+        "summary": "Update node",
+        "operationId": "updateNode",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Node ID",
+            "name": "node_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "Update node params object.",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateNode"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/nodeObject"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Node not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "format": "date-time",
+          "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
+          "name": "datetime",
+          "in": "query"
+        }
+      ]
+    },
+    "/core/nodes/{node_id}/children": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "nodes"
+        ],
+        "summary": "Get node children",
+        "operationId": "getNodeChildren",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Node ID",
+            "name": "node_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer",
+            "default": 100,
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "default": 0,
+            "name": "offset",
+            "in": "query"
+          },
+          {
+            "enum": [
+              "asc(id)",
+              "desc(id)",
+              "asc(created_at)",
+              "desc(created_at)",
+              "asc(updated_at)",
+              "desc(updated_at)"
+            ],
+            "type": "string",
+            "default": "asc(id)",
+            "description": "Must contain string like asc(field) or desc(field)",
+            "name": "order_by",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "Filter by name",
+            "name": "name",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/nodeObject"
+                  }
+                },
+                "total": {
+                  "type": "integer",
+                  "example": 100
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Node not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/core/root_node": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "nodes"
+        ],
+        "summary": "Get root node",
+        "operationId": "getRootNode",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/nodeObject"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/core/signals": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "signals"
+        ],
+        "summary": "Get signals",
+        "operationId": "getSignals",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
+            "name": "datetime",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/signalObject"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Core signals not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "signals"
+        ],
+        "summary": "Create new signal",
+        "operationId": "createSignal",
+        "parameters": [
+          {
+            "type": "string",
+            "format": "date-time",
+            "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
+            "name": "datetime",
+            "in": "query"
+          },
+          {
+            "description": "Create signal params object.",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/createSignal"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/signalObject"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict, signal already registered",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/core/signals/classes": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "signals",
+          "core"
+        ],
+        "summary": "Get signals classes",
+        "operationId": "getSignalsClasses",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/core/signals/value_types": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "signals",
+          "core"
+        ],
+        "summary": "Get signals value types",
+        "operationId": "getSignalsValueTypes",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/core/signals/{signal_id}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "signals"
+        ],
+        "summary": "Get signal",
+        "operationId": "getSignal",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Signal ID",
+            "name": "signal_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/signalObject"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Signal not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "signals"
+        ],
+        "summary": "Delete signal",
+        "operationId": "deleteSignal",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Signal ID",
+            "name": "signal_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Signal not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "core",
+          "signals"
+        ],
+        "summary": "Update signal",
+        "operationId": "updateSignal",
+        "parameters": [
+          {
+            "type": "integer",
+            "description": "Signal ID",
+            "name": "signal_id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "Update signal params object.",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/updateSignal"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/signalObject"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Signal not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "format": "date-time",
+          "description": "Datetime as ISO 8601, for example 2018-03-20T09:12:28.123",
+          "name": "datetime",
+          "in": "query"
+        }
+      ]
+    },
+    "/ibas/gates": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Get all Gates",
+        "operationId": "getIBAGates",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/iBAGate"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "IBA Server gates not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/ibas/gates/${gate_name}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Get Gate",
+        "operationId": "getIBAGateByName",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "$ref": "#/definitions/iBAGate"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "IBA Gate not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Create or update Gate",
+        "operationId": "createIBAGate",
+        "parameters": [
+          {
+            "description": "IBA Gate Meta object",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "comment": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/iBAGate"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "IBA Gate name",
+          "name": "gate_name",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/ibas/gates/${gate_name}/mnts": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Get all mnt for IBA Gates",
+        "operationId": "getIBAGateMnts",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/iBAGateMnt"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "IBA Server not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "IBA Gate name",
+          "name": "gate_name",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/ibas/gates/${gate_name}/mnts/${mnt}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Get mnt for IBAGate",
+        "operationId": "getIBAGateMnt",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "$ref": "#/definitions/iBAGateMnt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Mnt for Gate not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Create or Update Mnt Gate",
+        "operationId": "updateIBAGateMnt",
+        "parameters": [
+          {
+            "description": "IBA GateMeta object.",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "comment": {
+                  "type": "string"
+                },
+                "iba_server_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/iBAGateMnt"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "IBAGate name",
+          "name": "gate_name",
+          "in": "path",
+          "required": true
+        },
+        {
+          "type": "string",
+          "description": "IBAGate mnt",
+          "name": "mnt",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/ibas/gates/${gate_name}/mnts/${mnt}/signals/mapping": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Return IBA signal mapping by gate and mountpoint",
+        "operationId": "getIBAMappingByGateAndMount",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/iBAMappingObject"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Server not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "IBA Gate",
+          "name": "gate_name",
+          "in": "path",
+          "required": true
+        },
+        {
+          "type": "string",
+          "description": "IBA Mountpoint",
+          "name": "mnt",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/ibas/servers/": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Get IBA Servers",
+        "operationId": "getIBAServers",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "Name mask for fuzzy search",
+            "name": "name_mask",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/iBAServer"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "IBA Servers not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Register new Server",
+        "operationId": "registerIBAServer",
+        "parameters": [
+          {
+            "description": "IBA Server object",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/iBAServer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/iBAServer"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict, server already registered",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/ibas/servers/${iba_server_id}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Get IBA Server by id",
+        "operationId": "getIBAServer",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/iBAServer"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "IBA Server not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "integer",
+          "description": "IBA Server ID",
+          "name": "iba_server_id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/ibas/servers/${iba_server_id}/signals": {
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Register new signal for IBA Server(batch mode)",
+        "operationId": "registerSignal",
+        "parameters": [
+          {
+            "description": "Signal object.",
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "module_number",
+                "number_in_module",
+                "is_digital",
+                "type"
+              ],
+              "properties": {
+                "is_digital": {
+                  "type": "boolean"
+                },
+                "module_number": {
+                  "type": "integer"
+                },
+                "number_in_module": {
+                  "type": "integer"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "bool",
+                    "real",
+                    "double",
+                    "int"
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/iBAMappingObject"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "integer",
+          "description": "IBA Server ID",
+          "name": "iba_server_id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/ibas/servers/${iba_server_id}/signals/mapping": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Return IBA signal mapping by server ID",
+        "operationId": "getIBAMappingByServerID",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/iBAMappingObject"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Server not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "integer",
+          "description": "IBA Server ID",
+          "name": "iba_server_id",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/ibas/topics/${topic_name}/mapping": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Return IBA signal mapping by topic name",
+        "operationId": "getIBAMappingByTopicName",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/iBAMappingObject"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Server not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "description": "IBA topic name",
+          "name": "topic_name",
+          "in": "path",
+          "required": true
+        }
+      ]
+    },
+    "/swagger.json": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "swagger"
+        ],
+        "summary": "Get swagger json",
+        "operationId": "getSwaggerJSON",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "createDirectory": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "acl": {
+          "type": "object"
+        },
+        "description": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "example": "Description"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.]{2,50}$",
+          "example": "directory1"
+        }
+      }
+    },
+    "createNode": {
+      "type": "object",
+      "required": [
+        "name",
+        "parent_id"
+      ],
+      "properties": {
+        "acl": {
+          "type": "object"
+        },
+        "comment": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "example": "Comment"
+        },
+        "description": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "example": "Description"
+        },
+        "directory_id": {
+          "type": "integer",
+          "example": 1
+        },
+        "meta": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "example": "meta"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.]{2,50}$",
+          "example": "node1"
+        },
+        "parent_id": {
+          "type": "integer",
+          "example": 1
+        },
+        "signal_id": {
+          "type": "integer",
+          "example": 1
+        }
+      }
+    },
+    "createSignal": {
+      "type": "object",
+      "required": [
+        "name",
+        "class",
+        "value_type"
+      ],
+      "properties": {
+        "class": {
+          "type": "string",
+          "enum": [
+            "analog",
+            "discrete",
+            "virtual"
+          ],
+          "example": "analog"
+        },
+        "description": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "example": "Description"
+        },
+        "external_id": {
+          "type": "string",
+          "example": "1"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.]{2,50}$",
+          "example": "some_signal"
+        },
+        "parent_id": {
+          "type": "integer",
+          "x-nullable": true,
+          "x-omitempty": true,
+          "example": 1
+        },
+        "unit": {
+          "description": "Measurement unit",
+          "type": "string",
+          "x-nullable": true,
+          "x-omitempty": true,
+          "example": "C"
+        },
+        "value_type": {
+          "description": "Value data type",
+          "type": "string",
+          "enum": [
+            "undefined",
+            "integer",
+            "real",
+            "double",
             "boolean"
           ],
           "example": "real"
@@ -9492,12 +4741,168 @@ func init() {
         }
       }
     },
+    "errorResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "example": 300
+        },
+        "message": {
+          "type": "string",
+          "example": "Something bad happens."
+        }
+      }
+    },
+    "iBAGate": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "comment": {
+          "description": "Комментарий",
+          "type": "string",
+          "example": "Some notes"
+        },
+        "name": {
+          "description": "Имя IBA Gate",
+          "type": "string",
+          "example": "p3apr3-pda-vc.p3.ia.nlmk"
+        }
+      }
+    },
+    "iBAGateMnt": {
+      "type": "object",
+      "required": [
+        "mnt",
+        "iba_server_id"
+      ],
+      "properties": {
+        "comment": {
+          "description": "Комментарий",
+          "type": "string",
+          "example": "Some notes"
+        },
+        "iba_server_id": {
+          "description": "IBA сервер ID",
+          "type": "integer",
+          "example": 1
+        },
+        "mnt": {
+          "description": "mnt",
+          "type": "string",
+          "example": "dp-khx"
+        }
+      }
+    },
+    "iBAMappingObject": {
+      "type": "object",
+      "required": [
+        "storage_id",
+        "module_number",
+        "number_in_module",
+        "is_digital"
+      ],
+      "properties": {
+        "is_digital": {
+          "type": "boolean",
+          "example": true
+        },
+        "module_number": {
+          "type": "integer",
+          "example": 1
+        },
+        "number_in_module": {
+          "type": "integer",
+          "example": 102
+        },
+        "storage_id": {
+          "type": "integer",
+          "example": 1
+        }
+      }
+    },
+    "iBAServer": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "comment": {
+          "description": "Комментарий",
+          "type": "string",
+          "example": "Some notes"
+        },
+        "id": {
+          "description": "IBA сервер ID",
+          "type": "integer",
+          "example": 1
+        },
+        "name": {
+          "description": "Имя IBA Server",
+          "type": "string",
+          "example": "iba-server-name.nlmk"
+        }
+      }
+    },
+    "nodeObject": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "parent_id",
+        "created_at",
+        "updated_at"
+      ],
+      "properties": {
+        "created_at": {
+          "description": "ISO 8601 format",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-03-20T09:12:28.123Z"
+        },
+        "directory_id": {
+          "type": "integer",
+          "example": 1
+        },
+        "has_children": {
+          "type": "boolean",
+          "x-nullable": true,
+          "x-omitempty": true,
+          "example": true
+        },
+        "id": {
+          "type": "integer",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "some_node"
+        },
+        "parent_id": {
+          "type": "integer",
+          "example": 0
+        },
+        "signal_id": {
+          "type": "integer",
+          "example": 1
+        },
+        "updated_at": {
+          "description": "ISO 8601 format",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-03-20T09:12:28.123Z"
+        }
+      }
+    },
     "nodeWithSubtreeObject": {
       "type": "object",
       "required": [
         "id",
         "name",
-        "prev_id",
+        "parent_id",
         "full_name",
         "directory",
         "children",
@@ -9529,7 +4934,7 @@ func init() {
           "type": "string",
           "example": "some_rule"
         },
-        "prev_id": {
+        "parent_id": {
           "type": "integer",
           "example": 0
         },
@@ -9541,6 +4946,82 @@ func init() {
           "type": "string",
           "format": "date-time",
           "example": "2018-03-20T09:12:28.123Z"
+        }
+      }
+    },
+    "signalObject": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "class",
+        "value_type",
+        "created_at",
+        "updated_at"
+      ],
+      "properties": {
+        "class": {
+          "type": "string",
+          "enum": [
+            "analog",
+            "discrete",
+            "virtual"
+          ],
+          "example": "analog"
+        },
+        "created_at": {
+          "description": "ISO 8601 format",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-03-20T09:12:28.123Z"
+        },
+        "description": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "example": "Description"
+        },
+        "external_id": {
+          "type": "string",
+          "example": "1"
+        },
+        "has_children": {
+          "type": "boolean",
+          "x-nullable": true,
+          "x-omitempty": true,
+          "example": true
+        },
+        "id": {
+          "type": "integer",
+          "example": 1
+        },
+        "name": {
+          "type": "string",
+          "example": "some_signal"
+        },
+        "unit": {
+          "description": "Measurement unit",
+          "type": "string",
+          "x-nullable": true,
+          "x-omitempty": true,
+          "example": "C"
+        },
+        "updated_at": {
+          "description": "ISO 8601 format",
+          "type": "string",
+          "format": "date-time",
+          "example": "2018-03-20T09:12:28.123Z"
+        },
+        "value_type": {
+          "description": "Value data type",
+          "type": "string",
+          "enum": [
+            "undefined",
+            "integer",
+            "real",
+            "double",
+            "boolean"
+          ],
+          "example": "real"
         }
       }
     },
@@ -9574,9 +5055,9 @@ func init() {
           "example": "2018-03-20T09:12:28.123Z"
         },
         "external_id": {
-          "type": "integer",
+          "type": "string",
           "x-nullable": true,
-          "example": 1
+          "example": "1"
         },
         "id": {
           "type": "integer",
@@ -9602,8 +5083,138 @@ func init() {
             "undefined",
             "integer",
             "real",
+            "double",
             "boolean"
           ],
+          "example": "real"
+        }
+      }
+    },
+    "updateDirectory": {
+      "type": "object",
+      "properties": {
+        "acl": {
+          "type": "object",
+          "x-nullable": true
+        },
+        "description": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "x-nullable": true,
+          "example": "Description"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.]{2,50}$",
+          "x-nullable": true,
+          "example": "directory1"
+        }
+      }
+    },
+    "updateNode": {
+      "type": "object",
+      "properties": {
+        "acl": {
+          "type": "object"
+        },
+        "comment": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "x-nullable": true,
+          "example": "Comment"
+        },
+        "description": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "x-nullable": true,
+          "example": "Description"
+        },
+        "directory_id": {
+          "type": "integer",
+          "x-nullable": true,
+          "example": 1
+        },
+        "meta": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "x-nullable": true,
+          "example": "meta"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.]{2,50}$",
+          "x-nullable": true,
+          "example": "node1"
+        },
+        "parent_id": {
+          "type": "integer",
+          "x-nullable": true,
+          "example": 1
+        },
+        "signal_id": {
+          "type": "integer",
+          "x-nullable": true,
+          "example": 1
+        }
+      }
+    },
+    "updateSignal": {
+      "type": "object",
+      "properties": {
+        "acl": {
+          "type": "object",
+          "x-nullable": true
+        },
+        "class": {
+          "type": "string",
+          "enum": [
+            "analog",
+            "discrete",
+            "virtual"
+          ],
+          "x-nullable": true,
+          "example": "analog"
+        },
+        "description": {
+          "type": "string",
+          "pattern": "^.{2,200}$",
+          "x-nullable": true,
+          "example": "Description"
+        },
+        "external_id": {
+          "type": "string",
+          "x-nullable": true,
+          "example": "1"
+        },
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.]{2,50}$",
+          "x-nullable": true,
+          "example": "node1"
+        },
+        "parent_id": {
+          "type": "integer",
+          "x-nullable": true,
+          "example": 1
+        },
+        "unit": {
+          "description": "Measurement unit",
+          "type": "string",
+          "x-nullable": true,
+          "x-omitempty": true,
+          "example": "C"
+        },
+        "value_type": {
+          "description": "Value data type",
+          "type": "string",
+          "enum": [
+            "undefined",
+            "integer",
+            "real",
+            "double",
+            "boolean"
+          ],
+          "x-nullable": true,
           "example": "real"
         }
       }

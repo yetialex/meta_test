@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // DeleteNodeOKCode is the HTTP code returned for type DeleteNodeOK
@@ -47,7 +49,7 @@ type DeleteNodeBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *DeleteNodeBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewDeleteNodeBadRequest creates DeleteNodeBadRequest with default headers values
@@ -57,13 +59,13 @@ func NewDeleteNodeBadRequest() *DeleteNodeBadRequest {
 }
 
 // WithPayload adds the payload to the delete node bad request response
-func (o *DeleteNodeBadRequest) WithPayload(payload *DeleteNodeBadRequestBody) *DeleteNodeBadRequest {
+func (o *DeleteNodeBadRequest) WithPayload(payload *models.ErrorResponse) *DeleteNodeBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete node bad request response
-func (o *DeleteNodeBadRequest) SetPayload(payload *DeleteNodeBadRequestBody) {
+func (o *DeleteNodeBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -91,7 +93,7 @@ type DeleteNodeUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *DeleteNodeUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewDeleteNodeUnauthorized creates DeleteNodeUnauthorized with default headers values
@@ -101,13 +103,13 @@ func NewDeleteNodeUnauthorized() *DeleteNodeUnauthorized {
 }
 
 // WithPayload adds the payload to the delete node unauthorized response
-func (o *DeleteNodeUnauthorized) WithPayload(payload *DeleteNodeUnauthorizedBody) *DeleteNodeUnauthorized {
+func (o *DeleteNodeUnauthorized) WithPayload(payload *models.ErrorResponse) *DeleteNodeUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete node unauthorized response
-func (o *DeleteNodeUnauthorized) SetPayload(payload *DeleteNodeUnauthorizedBody) {
+func (o *DeleteNodeUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -135,7 +137,7 @@ type DeleteNodeNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *DeleteNodeNotFoundBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewDeleteNodeNotFound creates DeleteNodeNotFound with default headers values
@@ -145,13 +147,13 @@ func NewDeleteNodeNotFound() *DeleteNodeNotFound {
 }
 
 // WithPayload adds the payload to the delete node not found response
-func (o *DeleteNodeNotFound) WithPayload(payload *DeleteNodeNotFoundBody) *DeleteNodeNotFound {
+func (o *DeleteNodeNotFound) WithPayload(payload *models.ErrorResponse) *DeleteNodeNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete node not found response
-func (o *DeleteNodeNotFound) SetPayload(payload *DeleteNodeNotFoundBody) {
+func (o *DeleteNodeNotFound) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -179,7 +181,7 @@ type DeleteNodeInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *DeleteNodeInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewDeleteNodeInternalServerError creates DeleteNodeInternalServerError with default headers values
@@ -189,13 +191,13 @@ func NewDeleteNodeInternalServerError() *DeleteNodeInternalServerError {
 }
 
 // WithPayload adds the payload to the delete node internal server error response
-func (o *DeleteNodeInternalServerError) WithPayload(payload *DeleteNodeInternalServerErrorBody) *DeleteNodeInternalServerError {
+func (o *DeleteNodeInternalServerError) WithPayload(payload *models.ErrorResponse) *DeleteNodeInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete node internal server error response
-func (o *DeleteNodeInternalServerError) SetPayload(payload *DeleteNodeInternalServerErrorBody) {
+func (o *DeleteNodeInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

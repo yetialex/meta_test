@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // GetNodesTreeWithSignalsOKCode is the HTTP code returned for type GetNodesTreeWithSignalsOK
@@ -23,7 +25,7 @@ type GetNodesTreeWithSignalsOK struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetNodesTreeWithSignalsOKBody `json:"body,omitempty"`
+	Payload *models.NodeWithSubtreeObject `json:"body,omitempty"`
 }
 
 // NewGetNodesTreeWithSignalsOK creates GetNodesTreeWithSignalsOK with default headers values
@@ -33,13 +35,13 @@ func NewGetNodesTreeWithSignalsOK() *GetNodesTreeWithSignalsOK {
 }
 
 // WithPayload adds the payload to the get nodes tree with signals o k response
-func (o *GetNodesTreeWithSignalsOK) WithPayload(payload *GetNodesTreeWithSignalsOKBody) *GetNodesTreeWithSignalsOK {
+func (o *GetNodesTreeWithSignalsOK) WithPayload(payload *models.NodeWithSubtreeObject) *GetNodesTreeWithSignalsOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get nodes tree with signals o k response
-func (o *GetNodesTreeWithSignalsOK) SetPayload(payload *GetNodesTreeWithSignalsOKBody) {
+func (o *GetNodesTreeWithSignalsOK) SetPayload(payload *models.NodeWithSubtreeObject) {
 	o.Payload = payload
 }
 
@@ -67,7 +69,7 @@ type GetNodesTreeWithSignalsBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetNodesTreeWithSignalsBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetNodesTreeWithSignalsBadRequest creates GetNodesTreeWithSignalsBadRequest with default headers values
@@ -77,13 +79,13 @@ func NewGetNodesTreeWithSignalsBadRequest() *GetNodesTreeWithSignalsBadRequest {
 }
 
 // WithPayload adds the payload to the get nodes tree with signals bad request response
-func (o *GetNodesTreeWithSignalsBadRequest) WithPayload(payload *GetNodesTreeWithSignalsBadRequestBody) *GetNodesTreeWithSignalsBadRequest {
+func (o *GetNodesTreeWithSignalsBadRequest) WithPayload(payload *models.ErrorResponse) *GetNodesTreeWithSignalsBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get nodes tree with signals bad request response
-func (o *GetNodesTreeWithSignalsBadRequest) SetPayload(payload *GetNodesTreeWithSignalsBadRequestBody) {
+func (o *GetNodesTreeWithSignalsBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -111,7 +113,7 @@ type GetNodesTreeWithSignalsUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetNodesTreeWithSignalsUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetNodesTreeWithSignalsUnauthorized creates GetNodesTreeWithSignalsUnauthorized with default headers values
@@ -121,13 +123,13 @@ func NewGetNodesTreeWithSignalsUnauthorized() *GetNodesTreeWithSignalsUnauthoriz
 }
 
 // WithPayload adds the payload to the get nodes tree with signals unauthorized response
-func (o *GetNodesTreeWithSignalsUnauthorized) WithPayload(payload *GetNodesTreeWithSignalsUnauthorizedBody) *GetNodesTreeWithSignalsUnauthorized {
+func (o *GetNodesTreeWithSignalsUnauthorized) WithPayload(payload *models.ErrorResponse) *GetNodesTreeWithSignalsUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get nodes tree with signals unauthorized response
-func (o *GetNodesTreeWithSignalsUnauthorized) SetPayload(payload *GetNodesTreeWithSignalsUnauthorizedBody) {
+func (o *GetNodesTreeWithSignalsUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -155,7 +157,7 @@ type GetNodesTreeWithSignalsNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetNodesTreeWithSignalsNotFoundBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetNodesTreeWithSignalsNotFound creates GetNodesTreeWithSignalsNotFound with default headers values
@@ -165,13 +167,13 @@ func NewGetNodesTreeWithSignalsNotFound() *GetNodesTreeWithSignalsNotFound {
 }
 
 // WithPayload adds the payload to the get nodes tree with signals not found response
-func (o *GetNodesTreeWithSignalsNotFound) WithPayload(payload *GetNodesTreeWithSignalsNotFoundBody) *GetNodesTreeWithSignalsNotFound {
+func (o *GetNodesTreeWithSignalsNotFound) WithPayload(payload *models.ErrorResponse) *GetNodesTreeWithSignalsNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get nodes tree with signals not found response
-func (o *GetNodesTreeWithSignalsNotFound) SetPayload(payload *GetNodesTreeWithSignalsNotFoundBody) {
+func (o *GetNodesTreeWithSignalsNotFound) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -199,7 +201,7 @@ type GetNodesTreeWithSignalsInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetNodesTreeWithSignalsInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetNodesTreeWithSignalsInternalServerError creates GetNodesTreeWithSignalsInternalServerError with default headers values
@@ -209,13 +211,13 @@ func NewGetNodesTreeWithSignalsInternalServerError() *GetNodesTreeWithSignalsInt
 }
 
 // WithPayload adds the payload to the get nodes tree with signals internal server error response
-func (o *GetNodesTreeWithSignalsInternalServerError) WithPayload(payload *GetNodesTreeWithSignalsInternalServerErrorBody) *GetNodesTreeWithSignalsInternalServerError {
+func (o *GetNodesTreeWithSignalsInternalServerError) WithPayload(payload *models.ErrorResponse) *GetNodesTreeWithSignalsInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get nodes tree with signals internal server error response
-func (o *GetNodesTreeWithSignalsInternalServerError) SetPayload(payload *GetNodesTreeWithSignalsInternalServerErrorBody) {
+func (o *GetNodesTreeWithSignalsInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // GetIBAMappingByTopicNameOKCode is the HTTP code returned for type GetIBAMappingByTopicNameOK
@@ -67,7 +69,7 @@ type GetIBAMappingByTopicNameBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetIBAMappingByTopicNameBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetIBAMappingByTopicNameBadRequest creates GetIBAMappingByTopicNameBadRequest with default headers values
@@ -77,13 +79,13 @@ func NewGetIBAMappingByTopicNameBadRequest() *GetIBAMappingByTopicNameBadRequest
 }
 
 // WithPayload adds the payload to the get i b a mapping by topic name bad request response
-func (o *GetIBAMappingByTopicNameBadRequest) WithPayload(payload *GetIBAMappingByTopicNameBadRequestBody) *GetIBAMappingByTopicNameBadRequest {
+func (o *GetIBAMappingByTopicNameBadRequest) WithPayload(payload *models.ErrorResponse) *GetIBAMappingByTopicNameBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get i b a mapping by topic name bad request response
-func (o *GetIBAMappingByTopicNameBadRequest) SetPayload(payload *GetIBAMappingByTopicNameBadRequestBody) {
+func (o *GetIBAMappingByTopicNameBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -111,7 +113,7 @@ type GetIBAMappingByTopicNameUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetIBAMappingByTopicNameUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetIBAMappingByTopicNameUnauthorized creates GetIBAMappingByTopicNameUnauthorized with default headers values
@@ -121,13 +123,13 @@ func NewGetIBAMappingByTopicNameUnauthorized() *GetIBAMappingByTopicNameUnauthor
 }
 
 // WithPayload adds the payload to the get i b a mapping by topic name unauthorized response
-func (o *GetIBAMappingByTopicNameUnauthorized) WithPayload(payload *GetIBAMappingByTopicNameUnauthorizedBody) *GetIBAMappingByTopicNameUnauthorized {
+func (o *GetIBAMappingByTopicNameUnauthorized) WithPayload(payload *models.ErrorResponse) *GetIBAMappingByTopicNameUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get i b a mapping by topic name unauthorized response
-func (o *GetIBAMappingByTopicNameUnauthorized) SetPayload(payload *GetIBAMappingByTopicNameUnauthorizedBody) {
+func (o *GetIBAMappingByTopicNameUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -155,7 +157,7 @@ type GetIBAMappingByTopicNameNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetIBAMappingByTopicNameNotFoundBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetIBAMappingByTopicNameNotFound creates GetIBAMappingByTopicNameNotFound with default headers values
@@ -165,13 +167,13 @@ func NewGetIBAMappingByTopicNameNotFound() *GetIBAMappingByTopicNameNotFound {
 }
 
 // WithPayload adds the payload to the get i b a mapping by topic name not found response
-func (o *GetIBAMappingByTopicNameNotFound) WithPayload(payload *GetIBAMappingByTopicNameNotFoundBody) *GetIBAMappingByTopicNameNotFound {
+func (o *GetIBAMappingByTopicNameNotFound) WithPayload(payload *models.ErrorResponse) *GetIBAMappingByTopicNameNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get i b a mapping by topic name not found response
-func (o *GetIBAMappingByTopicNameNotFound) SetPayload(payload *GetIBAMappingByTopicNameNotFoundBody) {
+func (o *GetIBAMappingByTopicNameNotFound) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -199,7 +201,7 @@ type GetIBAMappingByTopicNameInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetIBAMappingByTopicNameInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetIBAMappingByTopicNameInternalServerError creates GetIBAMappingByTopicNameInternalServerError with default headers values
@@ -209,13 +211,13 @@ func NewGetIBAMappingByTopicNameInternalServerError() *GetIBAMappingByTopicNameI
 }
 
 // WithPayload adds the payload to the get i b a mapping by topic name internal server error response
-func (o *GetIBAMappingByTopicNameInternalServerError) WithPayload(payload *GetIBAMappingByTopicNameInternalServerErrorBody) *GetIBAMappingByTopicNameInternalServerError {
+func (o *GetIBAMappingByTopicNameInternalServerError) WithPayload(payload *models.ErrorResponse) *GetIBAMappingByTopicNameInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get i b a mapping by topic name internal server error response
-func (o *GetIBAMappingByTopicNameInternalServerError) SetPayload(payload *GetIBAMappingByTopicNameInternalServerErrorBody) {
+func (o *GetIBAMappingByTopicNameInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

@@ -14,7 +14,8 @@ import (
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // GetIBAGateMntsHandlerFunc turns a function with the right signature into a get i b a gate mnts handler
@@ -61,97 +62,13 @@ func (o *GetIBAGateMnts) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 
 }
 
-// GetIBAGateMntsBadRequestBody get i b a gate mnts bad request body
-//
-// swagger:model GetIBAGateMntsBadRequestBody
-type GetIBAGateMntsBadRequestBody struct {
-
-	// code
-	// Example: 300
-	Code int64 `json:"code,omitempty"`
-
-	// message
-	// Example: Something bad happens.
-	Message string `json:"message,omitempty"`
-}
-
-// Validate validates this get i b a gate mnts bad request body
-func (o *GetIBAGateMntsBadRequestBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this get i b a gate mnts bad request body based on context it is used
-func (o *GetIBAGateMntsBadRequestBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (o *GetIBAGateMntsBadRequestBody) MarshalBinary() ([]byte, error) {
-	if o == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(o)
-}
-
-// UnmarshalBinary interface implementation
-func (o *GetIBAGateMntsBadRequestBody) UnmarshalBinary(b []byte) error {
-	var res GetIBAGateMntsBadRequestBody
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*o = res
-	return nil
-}
-
-// GetIBAGateMntsNotFoundBody get i b a gate mnts not found body
-//
-// swagger:model GetIBAGateMntsNotFoundBody
-type GetIBAGateMntsNotFoundBody struct {
-
-	// code
-	// Example: 300
-	Code int64 `json:"code,omitempty"`
-
-	// message
-	// Example: Something bad happens.
-	Message string `json:"message,omitempty"`
-}
-
-// Validate validates this get i b a gate mnts not found body
-func (o *GetIBAGateMntsNotFoundBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this get i b a gate mnts not found body based on context it is used
-func (o *GetIBAGateMntsNotFoundBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (o *GetIBAGateMntsNotFoundBody) MarshalBinary() ([]byte, error) {
-	if o == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(o)
-}
-
-// UnmarshalBinary interface implementation
-func (o *GetIBAGateMntsNotFoundBody) UnmarshalBinary(b []byte) error {
-	var res GetIBAGateMntsNotFoundBody
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*o = res
-	return nil
-}
-
 // GetIBAGateMntsOKBody get i b a gate mnts o k body
 //
 // swagger:model GetIBAGateMntsOKBody
 type GetIBAGateMntsOKBody struct {
 
 	// items
-	Items []*GetIBAGateMntsOKBodyItemsItems0 `json:"items"`
+	Items []*models.IBAGateMnt `json:"items"`
 }
 
 // Validate validates this get i b a gate mnts o k body
@@ -235,127 +152,6 @@ func (o *GetIBAGateMntsOKBody) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (o *GetIBAGateMntsOKBody) UnmarshalBinary(b []byte) error {
 	var res GetIBAGateMntsOKBody
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*o = res
-	return nil
-}
-
-// GetIBAGateMntsOKBodyItemsItems0 get i b a gate mnts o k body items items0
-//
-// swagger:model GetIBAGateMntsOKBodyItemsItems0
-type GetIBAGateMntsOKBodyItemsItems0 struct {
-
-	// Комментарий
-	// Example: Some notes
-	Comment string `json:"comment,omitempty"`
-
-	// IBA сервер ID
-	// Example: 1
-	// Required: true
-	IbaServerID *int64 `json:"iba_server_id"`
-
-	// mnt
-	// Example: dp-khx
-	// Required: true
-	Mnt *string `json:"mnt"`
-}
-
-// Validate validates this get i b a gate mnts o k body items items0
-func (o *GetIBAGateMntsOKBodyItemsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := o.validateIbaServerID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := o.validateMnt(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (o *GetIBAGateMntsOKBodyItemsItems0) validateIbaServerID(formats strfmt.Registry) error {
-
-	if err := validate.Required("iba_server_id", "body", o.IbaServerID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (o *GetIBAGateMntsOKBodyItemsItems0) validateMnt(formats strfmt.Registry) error {
-
-	if err := validate.Required("mnt", "body", o.Mnt); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this get i b a gate mnts o k body items items0 based on context it is used
-func (o *GetIBAGateMntsOKBodyItemsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (o *GetIBAGateMntsOKBodyItemsItems0) MarshalBinary() ([]byte, error) {
-	if o == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(o)
-}
-
-// UnmarshalBinary interface implementation
-func (o *GetIBAGateMntsOKBodyItemsItems0) UnmarshalBinary(b []byte) error {
-	var res GetIBAGateMntsOKBodyItemsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*o = res
-	return nil
-}
-
-// GetIBAGateMntsUnauthorizedBody get i b a gate mnts unauthorized body
-//
-// swagger:model GetIBAGateMntsUnauthorizedBody
-type GetIBAGateMntsUnauthorizedBody struct {
-
-	// code
-	// Example: 300
-	Code int64 `json:"code,omitempty"`
-
-	// message
-	// Example: Something bad happens.
-	Message string `json:"message,omitempty"`
-}
-
-// Validate validates this get i b a gate mnts unauthorized body
-func (o *GetIBAGateMntsUnauthorizedBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this get i b a gate mnts unauthorized body based on context it is used
-func (o *GetIBAGateMntsUnauthorizedBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (o *GetIBAGateMntsUnauthorizedBody) MarshalBinary() ([]byte, error) {
-	if o == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(o)
-}
-
-// UnmarshalBinary interface implementation
-func (o *GetIBAGateMntsUnauthorizedBody) UnmarshalBinary(b []byte) error {
-	var res GetIBAGateMntsUnauthorizedBody
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

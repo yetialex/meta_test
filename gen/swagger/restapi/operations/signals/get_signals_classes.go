@@ -6,12 +6,9 @@ package signals
 // Editing this file might prove futile when you re-run the generate command
 
 import (
-	"context"
 	"net/http"
 
 	"github.com/go-openapi/runtime/middleware"
-	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // GetSignalsClassesHandlerFunc turns a function with the right signature into a get signals classes handler
@@ -56,130 +53,4 @@ func (o *GetSignalsClasses) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 	res := o.Handler.Handle(Params) // actually handle the request
 	o.Context.Respond(rw, r, route.Produces, route, res)
 
-}
-
-// GetSignalsClassesBadRequestBody get signals classes bad request body
-//
-// swagger:model GetSignalsClassesBadRequestBody
-type GetSignalsClassesBadRequestBody struct {
-
-	// code
-	// Example: 300
-	Code int64 `json:"code,omitempty"`
-
-	// message
-	// Example: Something bad happens.
-	Message string `json:"message,omitempty"`
-}
-
-// Validate validates this get signals classes bad request body
-func (o *GetSignalsClassesBadRequestBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this get signals classes bad request body based on context it is used
-func (o *GetSignalsClassesBadRequestBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (o *GetSignalsClassesBadRequestBody) MarshalBinary() ([]byte, error) {
-	if o == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(o)
-}
-
-// UnmarshalBinary interface implementation
-func (o *GetSignalsClassesBadRequestBody) UnmarshalBinary(b []byte) error {
-	var res GetSignalsClassesBadRequestBody
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*o = res
-	return nil
-}
-
-// GetSignalsClassesInternalServerErrorBody get signals classes internal server error body
-//
-// swagger:model GetSignalsClassesInternalServerErrorBody
-type GetSignalsClassesInternalServerErrorBody struct {
-
-	// code
-	// Example: 300
-	Code int64 `json:"code,omitempty"`
-
-	// message
-	// Example: Something bad happens.
-	Message string `json:"message,omitempty"`
-}
-
-// Validate validates this get signals classes internal server error body
-func (o *GetSignalsClassesInternalServerErrorBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this get signals classes internal server error body based on context it is used
-func (o *GetSignalsClassesInternalServerErrorBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (o *GetSignalsClassesInternalServerErrorBody) MarshalBinary() ([]byte, error) {
-	if o == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(o)
-}
-
-// UnmarshalBinary interface implementation
-func (o *GetSignalsClassesInternalServerErrorBody) UnmarshalBinary(b []byte) error {
-	var res GetSignalsClassesInternalServerErrorBody
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*o = res
-	return nil
-}
-
-// GetSignalsClassesUnauthorizedBody get signals classes unauthorized body
-//
-// swagger:model GetSignalsClassesUnauthorizedBody
-type GetSignalsClassesUnauthorizedBody struct {
-
-	// code
-	// Example: 300
-	Code int64 `json:"code,omitempty"`
-
-	// message
-	// Example: Something bad happens.
-	Message string `json:"message,omitempty"`
-}
-
-// Validate validates this get signals classes unauthorized body
-func (o *GetSignalsClassesUnauthorizedBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this get signals classes unauthorized body based on context it is used
-func (o *GetSignalsClassesUnauthorizedBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (o *GetSignalsClassesUnauthorizedBody) MarshalBinary() ([]byte, error) {
-	if o == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(o)
-}
-
-// UnmarshalBinary interface implementation
-func (o *GetSignalsClassesUnauthorizedBody) UnmarshalBinary(b []byte) error {
-	var res GetSignalsClassesUnauthorizedBody
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*o = res
-	return nil
 }

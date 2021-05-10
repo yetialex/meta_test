@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // GetNodeOKCode is the HTTP code returned for type GetNodeOK
@@ -23,7 +25,7 @@ type GetNodeOK struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetNodeOKBody `json:"body,omitempty"`
+	Payload *models.NodeObject `json:"body,omitempty"`
 }
 
 // NewGetNodeOK creates GetNodeOK with default headers values
@@ -33,13 +35,13 @@ func NewGetNodeOK() *GetNodeOK {
 }
 
 // WithPayload adds the payload to the get node o k response
-func (o *GetNodeOK) WithPayload(payload *GetNodeOKBody) *GetNodeOK {
+func (o *GetNodeOK) WithPayload(payload *models.NodeObject) *GetNodeOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get node o k response
-func (o *GetNodeOK) SetPayload(payload *GetNodeOKBody) {
+func (o *GetNodeOK) SetPayload(payload *models.NodeObject) {
 	o.Payload = payload
 }
 
@@ -67,7 +69,7 @@ type GetNodeBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetNodeBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetNodeBadRequest creates GetNodeBadRequest with default headers values
@@ -77,13 +79,13 @@ func NewGetNodeBadRequest() *GetNodeBadRequest {
 }
 
 // WithPayload adds the payload to the get node bad request response
-func (o *GetNodeBadRequest) WithPayload(payload *GetNodeBadRequestBody) *GetNodeBadRequest {
+func (o *GetNodeBadRequest) WithPayload(payload *models.ErrorResponse) *GetNodeBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get node bad request response
-func (o *GetNodeBadRequest) SetPayload(payload *GetNodeBadRequestBody) {
+func (o *GetNodeBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -111,7 +113,7 @@ type GetNodeUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetNodeUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetNodeUnauthorized creates GetNodeUnauthorized with default headers values
@@ -121,13 +123,13 @@ func NewGetNodeUnauthorized() *GetNodeUnauthorized {
 }
 
 // WithPayload adds the payload to the get node unauthorized response
-func (o *GetNodeUnauthorized) WithPayload(payload *GetNodeUnauthorizedBody) *GetNodeUnauthorized {
+func (o *GetNodeUnauthorized) WithPayload(payload *models.ErrorResponse) *GetNodeUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get node unauthorized response
-func (o *GetNodeUnauthorized) SetPayload(payload *GetNodeUnauthorizedBody) {
+func (o *GetNodeUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -155,7 +157,7 @@ type GetNodeNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetNodeNotFoundBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetNodeNotFound creates GetNodeNotFound with default headers values
@@ -165,13 +167,13 @@ func NewGetNodeNotFound() *GetNodeNotFound {
 }
 
 // WithPayload adds the payload to the get node not found response
-func (o *GetNodeNotFound) WithPayload(payload *GetNodeNotFoundBody) *GetNodeNotFound {
+func (o *GetNodeNotFound) WithPayload(payload *models.ErrorResponse) *GetNodeNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get node not found response
-func (o *GetNodeNotFound) SetPayload(payload *GetNodeNotFoundBody) {
+func (o *GetNodeNotFound) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -199,7 +201,7 @@ type GetNodeInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetNodeInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetNodeInternalServerError creates GetNodeInternalServerError with default headers values
@@ -209,13 +211,13 @@ func NewGetNodeInternalServerError() *GetNodeInternalServerError {
 }
 
 // WithPayload adds the payload to the get node internal server error response
-func (o *GetNodeInternalServerError) WithPayload(payload *GetNodeInternalServerErrorBody) *GetNodeInternalServerError {
+func (o *GetNodeInternalServerError) WithPayload(payload *models.ErrorResponse) *GetNodeInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get node internal server error response
-func (o *GetNodeInternalServerError) SetPayload(payload *GetNodeInternalServerErrorBody) {
+func (o *GetNodeInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

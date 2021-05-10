@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // GetDirectoryOKCode is the HTTP code returned for type GetDirectoryOK
@@ -23,7 +25,7 @@ type GetDirectoryOK struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetDirectoryOKBody `json:"body,omitempty"`
+	Payload *models.DirectoryObject `json:"body,omitempty"`
 }
 
 // NewGetDirectoryOK creates GetDirectoryOK with default headers values
@@ -33,13 +35,13 @@ func NewGetDirectoryOK() *GetDirectoryOK {
 }
 
 // WithPayload adds the payload to the get directory o k response
-func (o *GetDirectoryOK) WithPayload(payload *GetDirectoryOKBody) *GetDirectoryOK {
+func (o *GetDirectoryOK) WithPayload(payload *models.DirectoryObject) *GetDirectoryOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get directory o k response
-func (o *GetDirectoryOK) SetPayload(payload *GetDirectoryOKBody) {
+func (o *GetDirectoryOK) SetPayload(payload *models.DirectoryObject) {
 	o.Payload = payload
 }
 
@@ -67,7 +69,7 @@ type GetDirectoryBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetDirectoryBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetDirectoryBadRequest creates GetDirectoryBadRequest with default headers values
@@ -77,13 +79,13 @@ func NewGetDirectoryBadRequest() *GetDirectoryBadRequest {
 }
 
 // WithPayload adds the payload to the get directory bad request response
-func (o *GetDirectoryBadRequest) WithPayload(payload *GetDirectoryBadRequestBody) *GetDirectoryBadRequest {
+func (o *GetDirectoryBadRequest) WithPayload(payload *models.ErrorResponse) *GetDirectoryBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get directory bad request response
-func (o *GetDirectoryBadRequest) SetPayload(payload *GetDirectoryBadRequestBody) {
+func (o *GetDirectoryBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -111,7 +113,7 @@ type GetDirectoryUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetDirectoryUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetDirectoryUnauthorized creates GetDirectoryUnauthorized with default headers values
@@ -121,13 +123,13 @@ func NewGetDirectoryUnauthorized() *GetDirectoryUnauthorized {
 }
 
 // WithPayload adds the payload to the get directory unauthorized response
-func (o *GetDirectoryUnauthorized) WithPayload(payload *GetDirectoryUnauthorizedBody) *GetDirectoryUnauthorized {
+func (o *GetDirectoryUnauthorized) WithPayload(payload *models.ErrorResponse) *GetDirectoryUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get directory unauthorized response
-func (o *GetDirectoryUnauthorized) SetPayload(payload *GetDirectoryUnauthorizedBody) {
+func (o *GetDirectoryUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -155,7 +157,7 @@ type GetDirectoryNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetDirectoryNotFoundBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetDirectoryNotFound creates GetDirectoryNotFound with default headers values
@@ -165,13 +167,13 @@ func NewGetDirectoryNotFound() *GetDirectoryNotFound {
 }
 
 // WithPayload adds the payload to the get directory not found response
-func (o *GetDirectoryNotFound) WithPayload(payload *GetDirectoryNotFoundBody) *GetDirectoryNotFound {
+func (o *GetDirectoryNotFound) WithPayload(payload *models.ErrorResponse) *GetDirectoryNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get directory not found response
-func (o *GetDirectoryNotFound) SetPayload(payload *GetDirectoryNotFoundBody) {
+func (o *GetDirectoryNotFound) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -199,7 +201,7 @@ type GetDirectoryInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetDirectoryInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetDirectoryInternalServerError creates GetDirectoryInternalServerError with default headers values
@@ -209,13 +211,13 @@ func NewGetDirectoryInternalServerError() *GetDirectoryInternalServerError {
 }
 
 // WithPayload adds the payload to the get directory internal server error response
-func (o *GetDirectoryInternalServerError) WithPayload(payload *GetDirectoryInternalServerErrorBody) *GetDirectoryInternalServerError {
+func (o *GetDirectoryInternalServerError) WithPayload(payload *models.ErrorResponse) *GetDirectoryInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get directory internal server error response
-func (o *GetDirectoryInternalServerError) SetPayload(payload *GetDirectoryInternalServerErrorBody) {
+func (o *GetDirectoryInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

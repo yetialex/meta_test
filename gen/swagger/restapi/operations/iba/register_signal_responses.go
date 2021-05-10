@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // RegisterSignalOKCode is the HTTP code returned for type RegisterSignalOK
@@ -23,7 +25,7 @@ type RegisterSignalOK struct {
 	/*
 	  In: Body
 	*/
-	Payload *RegisterSignalOKBody `json:"body,omitempty"`
+	Payload *models.IBAMappingObject `json:"body,omitempty"`
 }
 
 // NewRegisterSignalOK creates RegisterSignalOK with default headers values
@@ -33,13 +35,13 @@ func NewRegisterSignalOK() *RegisterSignalOK {
 }
 
 // WithPayload adds the payload to the register signal o k response
-func (o *RegisterSignalOK) WithPayload(payload *RegisterSignalOKBody) *RegisterSignalOK {
+func (o *RegisterSignalOK) WithPayload(payload *models.IBAMappingObject) *RegisterSignalOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the register signal o k response
-func (o *RegisterSignalOK) SetPayload(payload *RegisterSignalOKBody) {
+func (o *RegisterSignalOK) SetPayload(payload *models.IBAMappingObject) {
 	o.Payload = payload
 }
 
@@ -67,7 +69,7 @@ type RegisterSignalBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *RegisterSignalBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewRegisterSignalBadRequest creates RegisterSignalBadRequest with default headers values
@@ -77,13 +79,13 @@ func NewRegisterSignalBadRequest() *RegisterSignalBadRequest {
 }
 
 // WithPayload adds the payload to the register signal bad request response
-func (o *RegisterSignalBadRequest) WithPayload(payload *RegisterSignalBadRequestBody) *RegisterSignalBadRequest {
+func (o *RegisterSignalBadRequest) WithPayload(payload *models.ErrorResponse) *RegisterSignalBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the register signal bad request response
-func (o *RegisterSignalBadRequest) SetPayload(payload *RegisterSignalBadRequestBody) {
+func (o *RegisterSignalBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -111,7 +113,7 @@ type RegisterSignalUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *RegisterSignalUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewRegisterSignalUnauthorized creates RegisterSignalUnauthorized with default headers values
@@ -121,13 +123,13 @@ func NewRegisterSignalUnauthorized() *RegisterSignalUnauthorized {
 }
 
 // WithPayload adds the payload to the register signal unauthorized response
-func (o *RegisterSignalUnauthorized) WithPayload(payload *RegisterSignalUnauthorizedBody) *RegisterSignalUnauthorized {
+func (o *RegisterSignalUnauthorized) WithPayload(payload *models.ErrorResponse) *RegisterSignalUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the register signal unauthorized response
-func (o *RegisterSignalUnauthorized) SetPayload(payload *RegisterSignalUnauthorizedBody) {
+func (o *RegisterSignalUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -155,7 +157,7 @@ type RegisterSignalNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *RegisterSignalNotFoundBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewRegisterSignalNotFound creates RegisterSignalNotFound with default headers values
@@ -165,13 +167,13 @@ func NewRegisterSignalNotFound() *RegisterSignalNotFound {
 }
 
 // WithPayload adds the payload to the register signal not found response
-func (o *RegisterSignalNotFound) WithPayload(payload *RegisterSignalNotFoundBody) *RegisterSignalNotFound {
+func (o *RegisterSignalNotFound) WithPayload(payload *models.ErrorResponse) *RegisterSignalNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the register signal not found response
-func (o *RegisterSignalNotFound) SetPayload(payload *RegisterSignalNotFoundBody) {
+func (o *RegisterSignalNotFound) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -199,7 +201,7 @@ type RegisterSignalInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *RegisterSignalInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewRegisterSignalInternalServerError creates RegisterSignalInternalServerError with default headers values
@@ -209,13 +211,13 @@ func NewRegisterSignalInternalServerError() *RegisterSignalInternalServerError {
 }
 
 // WithPayload adds the payload to the register signal internal server error response
-func (o *RegisterSignalInternalServerError) WithPayload(payload *RegisterSignalInternalServerErrorBody) *RegisterSignalInternalServerError {
+func (o *RegisterSignalInternalServerError) WithPayload(payload *models.ErrorResponse) *RegisterSignalInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the register signal internal server error response
-func (o *RegisterSignalInternalServerError) SetPayload(payload *RegisterSignalInternalServerErrorBody) {
+func (o *RegisterSignalInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // GetSignalsClassesOKCode is the HTTP code returned for type GetSignalsClassesOK
@@ -70,7 +72,7 @@ type GetSignalsClassesBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetSignalsClassesBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetSignalsClassesBadRequest creates GetSignalsClassesBadRequest with default headers values
@@ -80,13 +82,13 @@ func NewGetSignalsClassesBadRequest() *GetSignalsClassesBadRequest {
 }
 
 // WithPayload adds the payload to the get signals classes bad request response
-func (o *GetSignalsClassesBadRequest) WithPayload(payload *GetSignalsClassesBadRequestBody) *GetSignalsClassesBadRequest {
+func (o *GetSignalsClassesBadRequest) WithPayload(payload *models.ErrorResponse) *GetSignalsClassesBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get signals classes bad request response
-func (o *GetSignalsClassesBadRequest) SetPayload(payload *GetSignalsClassesBadRequestBody) {
+func (o *GetSignalsClassesBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -114,7 +116,7 @@ type GetSignalsClassesUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetSignalsClassesUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetSignalsClassesUnauthorized creates GetSignalsClassesUnauthorized with default headers values
@@ -124,13 +126,13 @@ func NewGetSignalsClassesUnauthorized() *GetSignalsClassesUnauthorized {
 }
 
 // WithPayload adds the payload to the get signals classes unauthorized response
-func (o *GetSignalsClassesUnauthorized) WithPayload(payload *GetSignalsClassesUnauthorizedBody) *GetSignalsClassesUnauthorized {
+func (o *GetSignalsClassesUnauthorized) WithPayload(payload *models.ErrorResponse) *GetSignalsClassesUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get signals classes unauthorized response
-func (o *GetSignalsClassesUnauthorized) SetPayload(payload *GetSignalsClassesUnauthorizedBody) {
+func (o *GetSignalsClassesUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -158,7 +160,7 @@ type GetSignalsClassesInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetSignalsClassesInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetSignalsClassesInternalServerError creates GetSignalsClassesInternalServerError with default headers values
@@ -168,13 +170,13 @@ func NewGetSignalsClassesInternalServerError() *GetSignalsClassesInternalServerE
 }
 
 // WithPayload adds the payload to the get signals classes internal server error response
-func (o *GetSignalsClassesInternalServerError) WithPayload(payload *GetSignalsClassesInternalServerErrorBody) *GetSignalsClassesInternalServerError {
+func (o *GetSignalsClassesInternalServerError) WithPayload(payload *models.ErrorResponse) *GetSignalsClassesInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get signals classes internal server error response
-func (o *GetSignalsClassesInternalServerError) SetPayload(payload *GetSignalsClassesInternalServerErrorBody) {
+func (o *GetSignalsClassesInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

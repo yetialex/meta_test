@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // UpdateSignalOKCode is the HTTP code returned for type UpdateSignalOK
@@ -23,7 +25,7 @@ type UpdateSignalOK struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateSignalOKBody `json:"body,omitempty"`
+	Payload *models.SignalObject `json:"body,omitempty"`
 }
 
 // NewUpdateSignalOK creates UpdateSignalOK with default headers values
@@ -33,13 +35,13 @@ func NewUpdateSignalOK() *UpdateSignalOK {
 }
 
 // WithPayload adds the payload to the update signal o k response
-func (o *UpdateSignalOK) WithPayload(payload *UpdateSignalOKBody) *UpdateSignalOK {
+func (o *UpdateSignalOK) WithPayload(payload *models.SignalObject) *UpdateSignalOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update signal o k response
-func (o *UpdateSignalOK) SetPayload(payload *UpdateSignalOKBody) {
+func (o *UpdateSignalOK) SetPayload(payload *models.SignalObject) {
 	o.Payload = payload
 }
 
@@ -67,7 +69,7 @@ type UpdateSignalBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateSignalBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewUpdateSignalBadRequest creates UpdateSignalBadRequest with default headers values
@@ -77,13 +79,13 @@ func NewUpdateSignalBadRequest() *UpdateSignalBadRequest {
 }
 
 // WithPayload adds the payload to the update signal bad request response
-func (o *UpdateSignalBadRequest) WithPayload(payload *UpdateSignalBadRequestBody) *UpdateSignalBadRequest {
+func (o *UpdateSignalBadRequest) WithPayload(payload *models.ErrorResponse) *UpdateSignalBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update signal bad request response
-func (o *UpdateSignalBadRequest) SetPayload(payload *UpdateSignalBadRequestBody) {
+func (o *UpdateSignalBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -111,7 +113,7 @@ type UpdateSignalUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateSignalUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewUpdateSignalUnauthorized creates UpdateSignalUnauthorized with default headers values
@@ -121,13 +123,13 @@ func NewUpdateSignalUnauthorized() *UpdateSignalUnauthorized {
 }
 
 // WithPayload adds the payload to the update signal unauthorized response
-func (o *UpdateSignalUnauthorized) WithPayload(payload *UpdateSignalUnauthorizedBody) *UpdateSignalUnauthorized {
+func (o *UpdateSignalUnauthorized) WithPayload(payload *models.ErrorResponse) *UpdateSignalUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update signal unauthorized response
-func (o *UpdateSignalUnauthorized) SetPayload(payload *UpdateSignalUnauthorizedBody) {
+func (o *UpdateSignalUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -155,7 +157,7 @@ type UpdateSignalNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateSignalNotFoundBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewUpdateSignalNotFound creates UpdateSignalNotFound with default headers values
@@ -165,13 +167,13 @@ func NewUpdateSignalNotFound() *UpdateSignalNotFound {
 }
 
 // WithPayload adds the payload to the update signal not found response
-func (o *UpdateSignalNotFound) WithPayload(payload *UpdateSignalNotFoundBody) *UpdateSignalNotFound {
+func (o *UpdateSignalNotFound) WithPayload(payload *models.ErrorResponse) *UpdateSignalNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update signal not found response
-func (o *UpdateSignalNotFound) SetPayload(payload *UpdateSignalNotFoundBody) {
+func (o *UpdateSignalNotFound) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -199,7 +201,7 @@ type UpdateSignalInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateSignalInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewUpdateSignalInternalServerError creates UpdateSignalInternalServerError with default headers values
@@ -209,13 +211,13 @@ func NewUpdateSignalInternalServerError() *UpdateSignalInternalServerError {
 }
 
 // WithPayload adds the payload to the update signal internal server error response
-func (o *UpdateSignalInternalServerError) WithPayload(payload *UpdateSignalInternalServerErrorBody) *UpdateSignalInternalServerError {
+func (o *UpdateSignalInternalServerError) WithPayload(payload *models.ErrorResponse) *UpdateSignalInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update signal internal server error response
-func (o *UpdateSignalInternalServerError) SetPayload(payload *UpdateSignalInternalServerErrorBody) {
+func (o *UpdateSignalInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

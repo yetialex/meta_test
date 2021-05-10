@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // GetIBAGateMntsOKCode is the HTTP code returned for type GetIBAGateMntsOK
@@ -67,7 +69,7 @@ type GetIBAGateMntsBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetIBAGateMntsBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetIBAGateMntsBadRequest creates GetIBAGateMntsBadRequest with default headers values
@@ -77,13 +79,13 @@ func NewGetIBAGateMntsBadRequest() *GetIBAGateMntsBadRequest {
 }
 
 // WithPayload adds the payload to the get i b a gate mnts bad request response
-func (o *GetIBAGateMntsBadRequest) WithPayload(payload *GetIBAGateMntsBadRequestBody) *GetIBAGateMntsBadRequest {
+func (o *GetIBAGateMntsBadRequest) WithPayload(payload *models.ErrorResponse) *GetIBAGateMntsBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get i b a gate mnts bad request response
-func (o *GetIBAGateMntsBadRequest) SetPayload(payload *GetIBAGateMntsBadRequestBody) {
+func (o *GetIBAGateMntsBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -111,7 +113,7 @@ type GetIBAGateMntsUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetIBAGateMntsUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetIBAGateMntsUnauthorized creates GetIBAGateMntsUnauthorized with default headers values
@@ -121,13 +123,13 @@ func NewGetIBAGateMntsUnauthorized() *GetIBAGateMntsUnauthorized {
 }
 
 // WithPayload adds the payload to the get i b a gate mnts unauthorized response
-func (o *GetIBAGateMntsUnauthorized) WithPayload(payload *GetIBAGateMntsUnauthorizedBody) *GetIBAGateMntsUnauthorized {
+func (o *GetIBAGateMntsUnauthorized) WithPayload(payload *models.ErrorResponse) *GetIBAGateMntsUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get i b a gate mnts unauthorized response
-func (o *GetIBAGateMntsUnauthorized) SetPayload(payload *GetIBAGateMntsUnauthorizedBody) {
+func (o *GetIBAGateMntsUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -155,7 +157,7 @@ type GetIBAGateMntsNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetIBAGateMntsNotFoundBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetIBAGateMntsNotFound creates GetIBAGateMntsNotFound with default headers values
@@ -165,13 +167,13 @@ func NewGetIBAGateMntsNotFound() *GetIBAGateMntsNotFound {
 }
 
 // WithPayload adds the payload to the get i b a gate mnts not found response
-func (o *GetIBAGateMntsNotFound) WithPayload(payload *GetIBAGateMntsNotFoundBody) *GetIBAGateMntsNotFound {
+func (o *GetIBAGateMntsNotFound) WithPayload(payload *models.ErrorResponse) *GetIBAGateMntsNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get i b a gate mnts not found response
-func (o *GetIBAGateMntsNotFound) SetPayload(payload *GetIBAGateMntsNotFoundBody) {
+func (o *GetIBAGateMntsNotFound) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

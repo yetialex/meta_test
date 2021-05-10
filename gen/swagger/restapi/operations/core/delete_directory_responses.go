@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // DeleteDirectoryOKCode is the HTTP code returned for type DeleteDirectoryOK
@@ -47,7 +49,7 @@ type DeleteDirectoryBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *DeleteDirectoryBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewDeleteDirectoryBadRequest creates DeleteDirectoryBadRequest with default headers values
@@ -57,13 +59,13 @@ func NewDeleteDirectoryBadRequest() *DeleteDirectoryBadRequest {
 }
 
 // WithPayload adds the payload to the delete directory bad request response
-func (o *DeleteDirectoryBadRequest) WithPayload(payload *DeleteDirectoryBadRequestBody) *DeleteDirectoryBadRequest {
+func (o *DeleteDirectoryBadRequest) WithPayload(payload *models.ErrorResponse) *DeleteDirectoryBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete directory bad request response
-func (o *DeleteDirectoryBadRequest) SetPayload(payload *DeleteDirectoryBadRequestBody) {
+func (o *DeleteDirectoryBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -91,7 +93,7 @@ type DeleteDirectoryUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *DeleteDirectoryUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewDeleteDirectoryUnauthorized creates DeleteDirectoryUnauthorized with default headers values
@@ -101,13 +103,13 @@ func NewDeleteDirectoryUnauthorized() *DeleteDirectoryUnauthorized {
 }
 
 // WithPayload adds the payload to the delete directory unauthorized response
-func (o *DeleteDirectoryUnauthorized) WithPayload(payload *DeleteDirectoryUnauthorizedBody) *DeleteDirectoryUnauthorized {
+func (o *DeleteDirectoryUnauthorized) WithPayload(payload *models.ErrorResponse) *DeleteDirectoryUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete directory unauthorized response
-func (o *DeleteDirectoryUnauthorized) SetPayload(payload *DeleteDirectoryUnauthorizedBody) {
+func (o *DeleteDirectoryUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -135,7 +137,7 @@ type DeleteDirectoryNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *DeleteDirectoryNotFoundBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewDeleteDirectoryNotFound creates DeleteDirectoryNotFound with default headers values
@@ -145,13 +147,13 @@ func NewDeleteDirectoryNotFound() *DeleteDirectoryNotFound {
 }
 
 // WithPayload adds the payload to the delete directory not found response
-func (o *DeleteDirectoryNotFound) WithPayload(payload *DeleteDirectoryNotFoundBody) *DeleteDirectoryNotFound {
+func (o *DeleteDirectoryNotFound) WithPayload(payload *models.ErrorResponse) *DeleteDirectoryNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete directory not found response
-func (o *DeleteDirectoryNotFound) SetPayload(payload *DeleteDirectoryNotFoundBody) {
+func (o *DeleteDirectoryNotFound) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -179,7 +181,7 @@ type DeleteDirectoryInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *DeleteDirectoryInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewDeleteDirectoryInternalServerError creates DeleteDirectoryInternalServerError with default headers values
@@ -189,13 +191,13 @@ func NewDeleteDirectoryInternalServerError() *DeleteDirectoryInternalServerError
 }
 
 // WithPayload adds the payload to the delete directory internal server error response
-func (o *DeleteDirectoryInternalServerError) WithPayload(payload *DeleteDirectoryInternalServerErrorBody) *DeleteDirectoryInternalServerError {
+func (o *DeleteDirectoryInternalServerError) WithPayload(payload *models.ErrorResponse) *DeleteDirectoryInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the delete directory internal server error response
-func (o *DeleteDirectoryInternalServerError) SetPayload(payload *DeleteDirectoryInternalServerErrorBody) {
+func (o *DeleteDirectoryInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

@@ -30,12 +30,12 @@ type GetIBAGateMntParams struct {
 	// HTTP Request Object
 	HTTPRequest *http.Request `json:"-"`
 
-	/*IBA Gate name
+	/*IBAGate name
 	  Required: true
 	  In: path
 	*/
 	GateName string
-	/*IBA Gate mnt
+	/*IBAGate mnt
 	  Required: true
 	  In: path
 	*/

@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // RegisterIBAServerOKCode is the HTTP code returned for type RegisterIBAServerOK
@@ -23,7 +25,7 @@ type RegisterIBAServerOK struct {
 	/*
 	  In: Body
 	*/
-	Payload *RegisterIBAServerOKBody `json:"body,omitempty"`
+	Payload *models.IBAServer `json:"body,omitempty"`
 }
 
 // NewRegisterIBAServerOK creates RegisterIBAServerOK with default headers values
@@ -33,13 +35,13 @@ func NewRegisterIBAServerOK() *RegisterIBAServerOK {
 }
 
 // WithPayload adds the payload to the register i b a server o k response
-func (o *RegisterIBAServerOK) WithPayload(payload *RegisterIBAServerOKBody) *RegisterIBAServerOK {
+func (o *RegisterIBAServerOK) WithPayload(payload *models.IBAServer) *RegisterIBAServerOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the register i b a server o k response
-func (o *RegisterIBAServerOK) SetPayload(payload *RegisterIBAServerOKBody) {
+func (o *RegisterIBAServerOK) SetPayload(payload *models.IBAServer) {
 	o.Payload = payload
 }
 
@@ -67,7 +69,7 @@ type RegisterIBAServerBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *RegisterIBAServerBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewRegisterIBAServerBadRequest creates RegisterIBAServerBadRequest with default headers values
@@ -77,13 +79,13 @@ func NewRegisterIBAServerBadRequest() *RegisterIBAServerBadRequest {
 }
 
 // WithPayload adds the payload to the register i b a server bad request response
-func (o *RegisterIBAServerBadRequest) WithPayload(payload *RegisterIBAServerBadRequestBody) *RegisterIBAServerBadRequest {
+func (o *RegisterIBAServerBadRequest) WithPayload(payload *models.ErrorResponse) *RegisterIBAServerBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the register i b a server bad request response
-func (o *RegisterIBAServerBadRequest) SetPayload(payload *RegisterIBAServerBadRequestBody) {
+func (o *RegisterIBAServerBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -111,7 +113,7 @@ type RegisterIBAServerUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *RegisterIBAServerUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewRegisterIBAServerUnauthorized creates RegisterIBAServerUnauthorized with default headers values
@@ -121,13 +123,13 @@ func NewRegisterIBAServerUnauthorized() *RegisterIBAServerUnauthorized {
 }
 
 // WithPayload adds the payload to the register i b a server unauthorized response
-func (o *RegisterIBAServerUnauthorized) WithPayload(payload *RegisterIBAServerUnauthorizedBody) *RegisterIBAServerUnauthorized {
+func (o *RegisterIBAServerUnauthorized) WithPayload(payload *models.ErrorResponse) *RegisterIBAServerUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the register i b a server unauthorized response
-func (o *RegisterIBAServerUnauthorized) SetPayload(payload *RegisterIBAServerUnauthorizedBody) {
+func (o *RegisterIBAServerUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -155,7 +157,7 @@ type RegisterIBAServerConflict struct {
 	/*
 	  In: Body
 	*/
-	Payload *RegisterIBAServerConflictBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewRegisterIBAServerConflict creates RegisterIBAServerConflict with default headers values
@@ -165,13 +167,13 @@ func NewRegisterIBAServerConflict() *RegisterIBAServerConflict {
 }
 
 // WithPayload adds the payload to the register i b a server conflict response
-func (o *RegisterIBAServerConflict) WithPayload(payload *RegisterIBAServerConflictBody) *RegisterIBAServerConflict {
+func (o *RegisterIBAServerConflict) WithPayload(payload *models.ErrorResponse) *RegisterIBAServerConflict {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the register i b a server conflict response
-func (o *RegisterIBAServerConflict) SetPayload(payload *RegisterIBAServerConflictBody) {
+func (o *RegisterIBAServerConflict) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // GetIBAServersOKCode is the HTTP code returned for type GetIBAServersOK
@@ -67,7 +69,7 @@ type GetIBAServersBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetIBAServersBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetIBAServersBadRequest creates GetIBAServersBadRequest with default headers values
@@ -77,13 +79,13 @@ func NewGetIBAServersBadRequest() *GetIBAServersBadRequest {
 }
 
 // WithPayload adds the payload to the get i b a servers bad request response
-func (o *GetIBAServersBadRequest) WithPayload(payload *GetIBAServersBadRequestBody) *GetIBAServersBadRequest {
+func (o *GetIBAServersBadRequest) WithPayload(payload *models.ErrorResponse) *GetIBAServersBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get i b a servers bad request response
-func (o *GetIBAServersBadRequest) SetPayload(payload *GetIBAServersBadRequestBody) {
+func (o *GetIBAServersBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -111,7 +113,7 @@ type GetIBAServersUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetIBAServersUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetIBAServersUnauthorized creates GetIBAServersUnauthorized with default headers values
@@ -121,13 +123,13 @@ func NewGetIBAServersUnauthorized() *GetIBAServersUnauthorized {
 }
 
 // WithPayload adds the payload to the get i b a servers unauthorized response
-func (o *GetIBAServersUnauthorized) WithPayload(payload *GetIBAServersUnauthorizedBody) *GetIBAServersUnauthorized {
+func (o *GetIBAServersUnauthorized) WithPayload(payload *models.ErrorResponse) *GetIBAServersUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get i b a servers unauthorized response
-func (o *GetIBAServersUnauthorized) SetPayload(payload *GetIBAServersUnauthorizedBody) {
+func (o *GetIBAServersUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -155,7 +157,7 @@ type GetIBAServersNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetIBAServersNotFoundBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetIBAServersNotFound creates GetIBAServersNotFound with default headers values
@@ -165,13 +167,13 @@ func NewGetIBAServersNotFound() *GetIBAServersNotFound {
 }
 
 // WithPayload adds the payload to the get i b a servers not found response
-func (o *GetIBAServersNotFound) WithPayload(payload *GetIBAServersNotFoundBody) *GetIBAServersNotFound {
+func (o *GetIBAServersNotFound) WithPayload(payload *models.ErrorResponse) *GetIBAServersNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get i b a servers not found response
-func (o *GetIBAServersNotFound) SetPayload(payload *GetIBAServersNotFoundBody) {
+func (o *GetIBAServersNotFound) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

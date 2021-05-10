@@ -3,18 +3,25 @@
 package restapi
 
 import (
+	"context"
 	"crypto/tls"
 	"net/http"
+	"os"
 
 	errors "github.com/go-openapi/errors"
 	runtime "github.com/go-openapi/runtime"
 	middleware "github.com/go-openapi/runtime/middleware"
 
+	"github.com/yetialex/meta_test/app"
 	"github.com/yetialex/meta_test/gen/swagger/restapi/operations"
 	"github.com/yetialex/meta_test/gen/swagger/restapi/operations/core"
 	"github.com/yetialex/meta_test/gen/swagger/restapi/operations/iba"
 	"github.com/yetialex/meta_test/gen/swagger/restapi/operations/signals"
 	"github.com/yetialex/meta_test/gen/swagger/restapi/operations/swagger"
+
+	"github.com/jackc/pgx/v4/pgxpool"
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 )
 
 //go:generate swagger generate server --target ../../swagger --name Meta --spec ../../../swagger-test/swagger.json
@@ -24,6 +31,44 @@ func configureFlags(api *operations.MetaAPI) {
 }
 
 func configureAPI(api *operations.MetaAPI) http.Handler {
+	atom := zap.NewAtomicLevel()
+
+	encoderCfg := zap.NewProductionEncoderConfig()
+	encoderCfg.EncodeTime = zapcore.ISO8601TimeEncoder
+
+	logger := zap.New(zapcore.NewCore(
+		zapcore.NewJSONEncoder(encoderCfg),
+		zapcore.Lock(os.Stdout),
+		atom,
+	))
+
+	config, err := app.NewConfig()
+	if err != nil {
+		logger.Fatal("", zap.Error(err))
+	}
+
+	err = atom.UnmarshalText([]byte(config.LoggingLevel))
+	if err != nil {
+		logger.Error(
+			"failed to set logging level, using fallback logging level instead",
+			zap.String("wanted", config.LoggingLevel),
+			zap.String("using", "info"),
+			zap.Error(err),
+		)
+	}
+
+	pool, err := pgxpool.Connect(context.Background(), config.DatabaseURL)
+	if err != nil {
+		logger.Fatal("Unable to connection to database", zap.Error(err))
+	}
+
+	meta, err := app.NewApp(logger, config, pool)
+	if err != nil {
+		logger.Fatal("", zap.Error(err))
+	}
+
+	meta.MigrateDB()
+
 	// configure the api here
 	api.ServeError = errors.ServeError
 
@@ -37,26 +82,28 @@ func configureAPI(api *operations.MetaAPI) http.Handler {
 
 	api.JSONProducer = runtime.JSONProducer()
 
-	if api.CoreCreateCoreDirectoryHandler == nil {
-		api.CoreCreateCoreDirectoryHandler = core.CreateCoreDirectoryHandlerFunc(func(params core.CreateCoreDirectoryParams) middleware.Responder {
-			return middleware.NotImplemented("operation core.CreateCoreDirectory has not yet been implemented")
-		})
-	}
-	if api.CoreCreateCoreNodeHandler == nil {
-		api.CoreCreateCoreNodeHandler = core.CreateCoreNodeHandlerFunc(func(params core.CreateCoreNodeParams) middleware.Responder {
+	api.SwaggerGetSwaggerJSONHandler = swagger.GetSwaggerJSONHandlerFunc(func(params swagger.GetSwaggerJSONParams) middleware.Responder {
+		return swagger.NewGetSwaggerJSONOK().WithPayload(FlatSwaggerJSON)
+	})
+
+	// directories
+	api.CoreCreateDirectoryHandler = core.CreateDirectoryHandlerFunc(meta.Handlers.Core.CreateDirectory)
+	api.CoreGetDirectoryHandler = core.GetDirectoryHandlerFunc(meta.Handlers.Core.GetDirectory)
+	//api.CoreGetDirectoriesHandler = core.GetDirectoriesHandlerFunc(meta.Handlers.Core.GetDirectories)
+	api.CoreDeleteDirectoryHandler = core.DeleteDirectoryHandlerFunc(meta.Handlers.Core.DeleteDirectory)
+
+	// not implemented
+	if api.CoreCreateNodeHandler == nil {
+		api.CoreCreateNodeHandler = core.CreateNodeHandlerFunc(func(params core.CreateNodeParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.CreateCoreNode has not yet been implemented")
 		})
 	}
-	if api.CoreCreateCoreSignalHandler == nil {
-		api.CoreCreateCoreSignalHandler = core.CreateCoreSignalHandlerFunc(func(params core.CreateCoreSignalParams) middleware.Responder {
+	if api.CoreCreateSignalHandler == nil {
+		api.CoreCreateSignalHandler = core.CreateSignalHandlerFunc(func(params core.CreateSignalParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.CreateCoreSignal has not yet been implemented")
 		})
 	}
-	if api.CoreDeleteDirectoryHandler == nil {
-		api.CoreDeleteDirectoryHandler = core.DeleteDirectoryHandlerFunc(func(params core.DeleteDirectoryParams) middleware.Responder {
-			return middleware.NotImplemented("operation core.DeleteDirectory has not yet been implemented")
-		})
-	}
+
 	if api.CoreDeleteNodeHandler == nil {
 		api.CoreDeleteNodeHandler = core.DeleteNodeHandlerFunc(func(params core.DeleteNodeParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.DeleteNode has not yet been implemented")
@@ -67,26 +114,18 @@ func configureAPI(api *operations.MetaAPI) http.Handler {
 			return middleware.NotImplemented("operation core.DeleteSignal has not yet been implemented")
 		})
 	}
-	if api.CoreGetCoreDirectoriesHandler == nil {
-		api.CoreGetCoreDirectoriesHandler = core.GetCoreDirectoriesHandlerFunc(func(params core.GetCoreDirectoriesParams) middleware.Responder {
-			return middleware.NotImplemented("operation core.GetCoreDirectories has not yet been implemented")
-		})
-	}
-	if api.CoreGetCoreNodesHandler == nil {
-		api.CoreGetCoreNodesHandler = core.GetCoreNodesHandlerFunc(func(params core.GetCoreNodesParams) middleware.Responder {
+
+	if api.CoreGetNodesHandler == nil {
+		api.CoreGetNodesHandler = core.GetNodesHandlerFunc(func(params core.GetNodesParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.GetCoreNodes has not yet been implemented")
 		})
 	}
-	if api.CoreGetCoreSignalsHandler == nil {
-		api.CoreGetCoreSignalsHandler = core.GetCoreSignalsHandlerFunc(func(params core.GetCoreSignalsParams) middleware.Responder {
+	if api.CoreGetSignalsHandler == nil {
+		api.CoreGetSignalsHandler = core.GetSignalsHandlerFunc(func(params core.GetSignalsParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.GetCoreSignals has not yet been implemented")
 		})
 	}
-	if api.CoreGetDirectoryHandler == nil {
-		api.CoreGetDirectoryHandler = core.GetDirectoryHandlerFunc(func(params core.GetDirectoryParams) middleware.Responder {
-			return middleware.NotImplemented("operation core.GetDirectory has not yet been implemented")
-		})
-	}
+
 	if api.IbaGetIBAGateByNameHandler == nil {
 		api.IbaGetIBAGateByNameHandler = iba.GetIBAGateByNameHandlerFunc(func(params iba.GetIBAGateByNameParams) middleware.Responder {
 			return middleware.NotImplemented("operation iba.GetIBAGateByName has not yet been implemented")
@@ -167,21 +206,17 @@ func configureAPI(api *operations.MetaAPI) http.Handler {
 			return middleware.NotImplemented("operation signals.GetSignalsValueTypes has not yet been implemented")
 		})
 	}
-	if api.SwaggerGetSwaggerJSONHandler == nil {
-		api.SwaggerGetSwaggerJSONHandler = swagger.GetSwaggerJSONHandlerFunc(func(params swagger.GetSwaggerJSONParams) middleware.Responder {
-			return middleware.NotImplemented("operation swagger.GetSwaggerJSON has not yet been implemented")
-		})
-	}
-	if api.IbaRegisterIBAGateHandler == nil {
-		api.IbaRegisterIBAGateHandler = iba.RegisterIBAGateHandlerFunc(func(params iba.RegisterIBAGateParams) middleware.Responder {
-			return middleware.NotImplemented("operation iba.RegisterIBAGate has not yet been implemented")
-		})
-	}
-	if api.IbaRegisterIBAGateMntHandler == nil {
-		api.IbaRegisterIBAGateMntHandler = iba.RegisterIBAGateMntHandlerFunc(func(params iba.RegisterIBAGateMntParams) middleware.Responder {
-			return middleware.NotImplemented("operation iba.RegisterIBAGateMnt has not yet been implemented")
-		})
-	}
+
+	//if api.IbaRegisterIBAGateHandler == nil {
+	//	api.IbaRegisterIBAGateHandler = iba.RegisterIBAGateHandlerFunc(func(params iba.RegisterIBAGateParams) middleware.Responder {
+	//		return middleware.NotImplemented("operation iba.RegisterIBAGate has not yet been implemented")
+	//	})
+	//}
+	//if api.IbaRegisterIBAGateMntHandler == nil {
+	//	api.IbaRegisterIBAGateMntHandler = iba.RegisterIBAGateMntHandlerFunc(func(params iba.RegisterIBAGateMntParams) middleware.Responder {
+	//		return middleware.NotImplemented("operation iba.RegisterIBAGateMnt has not yet been implemented")
+	//	})
+	//}
 	if api.IbaRegisterIBAServerHandler == nil {
 		api.IbaRegisterIBAServerHandler = iba.RegisterIBAServerHandlerFunc(func(params iba.RegisterIBAServerParams) middleware.Responder {
 			return middleware.NotImplemented("operation iba.RegisterIBAServer has not yet been implemented")
@@ -197,11 +232,11 @@ func configureAPI(api *operations.MetaAPI) http.Handler {
 			return middleware.NotImplemented("operation core.UpdateDirectory has not yet been implemented")
 		})
 	}
-	if api.IbaUpdateIBAGateMetadataHandler == nil {
-		api.IbaUpdateIBAGateMetadataHandler = iba.UpdateIBAGateMetadataHandlerFunc(func(params iba.UpdateIBAGateMetadataParams) middleware.Responder {
-			return middleware.NotImplemented("operation iba.UpdateIBAGateMetadata has not yet been implemented")
-		})
-	}
+	//if api.IbaUpdateIBAGateMetadataHandler == nil {
+	//	api.IbaUpdateIBAGateMetadataHandler = iba.UpdateIBAGateMetadataHandlerFunc(func(params iba.UpdateIBAGateMetadataParams) middleware.Responder {
+	//		return middleware.NotImplemented("operation iba.UpdateIBAGateMetadata has not yet been implemented")
+	//	})
+	//}
 	if api.IbaUpdateIBAGateMntHandler == nil {
 		api.IbaUpdateIBAGateMntHandler = iba.UpdateIBAGateMntHandlerFunc(func(params iba.UpdateIBAGateMntParams) middleware.Responder {
 			return middleware.NotImplemented("operation iba.UpdateIBAGateMnt has not yet been implemented")
@@ -220,8 +255,11 @@ func configureAPI(api *operations.MetaAPI) http.Handler {
 
 	api.PreServerShutdown = func() {}
 
-	api.ServerShutdown = func() {}
-
+	api.ServerShutdown = func() {
+		pool.Close()
+		meta.Close()
+		logger.Sync()
+	}
 	return setupGlobalMiddleware(api.Serve(setupMiddlewares))
 }
 

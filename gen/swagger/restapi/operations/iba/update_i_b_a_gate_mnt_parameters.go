@@ -39,12 +39,12 @@ type UpdateIBAGateMntParams struct {
 	  In: body
 	*/
 	Body UpdateIBAGateMntBody
-	/*IBA Gate name
+	/*IBAGate name
 	  Required: true
 	  In: path
 	*/
 	GateName string
-	/*IBA Gate mnt
+	/*IBAGate mnt
 	  Required: true
 	  In: path
 	*/

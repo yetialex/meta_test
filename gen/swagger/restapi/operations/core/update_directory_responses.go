@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // UpdateDirectoryOKCode is the HTTP code returned for type UpdateDirectoryOK
@@ -23,7 +25,7 @@ type UpdateDirectoryOK struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateDirectoryOKBody `json:"body,omitempty"`
+	Payload *models.DirectoryObject `json:"body,omitempty"`
 }
 
 // NewUpdateDirectoryOK creates UpdateDirectoryOK with default headers values
@@ -33,13 +35,13 @@ func NewUpdateDirectoryOK() *UpdateDirectoryOK {
 }
 
 // WithPayload adds the payload to the update directory o k response
-func (o *UpdateDirectoryOK) WithPayload(payload *UpdateDirectoryOKBody) *UpdateDirectoryOK {
+func (o *UpdateDirectoryOK) WithPayload(payload *models.DirectoryObject) *UpdateDirectoryOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update directory o k response
-func (o *UpdateDirectoryOK) SetPayload(payload *UpdateDirectoryOKBody) {
+func (o *UpdateDirectoryOK) SetPayload(payload *models.DirectoryObject) {
 	o.Payload = payload
 }
 
@@ -67,7 +69,7 @@ type UpdateDirectoryBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateDirectoryBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewUpdateDirectoryBadRequest creates UpdateDirectoryBadRequest with default headers values
@@ -77,13 +79,13 @@ func NewUpdateDirectoryBadRequest() *UpdateDirectoryBadRequest {
 }
 
 // WithPayload adds the payload to the update directory bad request response
-func (o *UpdateDirectoryBadRequest) WithPayload(payload *UpdateDirectoryBadRequestBody) *UpdateDirectoryBadRequest {
+func (o *UpdateDirectoryBadRequest) WithPayload(payload *models.ErrorResponse) *UpdateDirectoryBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update directory bad request response
-func (o *UpdateDirectoryBadRequest) SetPayload(payload *UpdateDirectoryBadRequestBody) {
+func (o *UpdateDirectoryBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -111,7 +113,7 @@ type UpdateDirectoryUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateDirectoryUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewUpdateDirectoryUnauthorized creates UpdateDirectoryUnauthorized with default headers values
@@ -121,13 +123,13 @@ func NewUpdateDirectoryUnauthorized() *UpdateDirectoryUnauthorized {
 }
 
 // WithPayload adds the payload to the update directory unauthorized response
-func (o *UpdateDirectoryUnauthorized) WithPayload(payload *UpdateDirectoryUnauthorizedBody) *UpdateDirectoryUnauthorized {
+func (o *UpdateDirectoryUnauthorized) WithPayload(payload *models.ErrorResponse) *UpdateDirectoryUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update directory unauthorized response
-func (o *UpdateDirectoryUnauthorized) SetPayload(payload *UpdateDirectoryUnauthorizedBody) {
+func (o *UpdateDirectoryUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -155,7 +157,7 @@ type UpdateDirectoryNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateDirectoryNotFoundBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewUpdateDirectoryNotFound creates UpdateDirectoryNotFound with default headers values
@@ -165,13 +167,13 @@ func NewUpdateDirectoryNotFound() *UpdateDirectoryNotFound {
 }
 
 // WithPayload adds the payload to the update directory not found response
-func (o *UpdateDirectoryNotFound) WithPayload(payload *UpdateDirectoryNotFoundBody) *UpdateDirectoryNotFound {
+func (o *UpdateDirectoryNotFound) WithPayload(payload *models.ErrorResponse) *UpdateDirectoryNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update directory not found response
-func (o *UpdateDirectoryNotFound) SetPayload(payload *UpdateDirectoryNotFoundBody) {
+func (o *UpdateDirectoryNotFound) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -199,7 +201,7 @@ type UpdateDirectoryInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateDirectoryInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewUpdateDirectoryInternalServerError creates UpdateDirectoryInternalServerError with default headers values
@@ -209,13 +211,13 @@ func NewUpdateDirectoryInternalServerError() *UpdateDirectoryInternalServerError
 }
 
 // WithPayload adds the payload to the update directory internal server error response
-func (o *UpdateDirectoryInternalServerError) WithPayload(payload *UpdateDirectoryInternalServerErrorBody) *UpdateDirectoryInternalServerError {
+func (o *UpdateDirectoryInternalServerError) WithPayload(payload *models.ErrorResponse) *UpdateDirectoryInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update directory internal server error response
-func (o *UpdateDirectoryInternalServerError) SetPayload(payload *UpdateDirectoryInternalServerErrorBody) {
+func (o *UpdateDirectoryInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

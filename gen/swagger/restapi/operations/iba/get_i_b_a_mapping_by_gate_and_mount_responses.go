@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // GetIBAMappingByGateAndMountOKCode is the HTTP code returned for type GetIBAMappingByGateAndMountOK
@@ -67,7 +69,7 @@ type GetIBAMappingByGateAndMountBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetIBAMappingByGateAndMountBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetIBAMappingByGateAndMountBadRequest creates GetIBAMappingByGateAndMountBadRequest with default headers values
@@ -77,13 +79,13 @@ func NewGetIBAMappingByGateAndMountBadRequest() *GetIBAMappingByGateAndMountBadR
 }
 
 // WithPayload adds the payload to the get i b a mapping by gate and mount bad request response
-func (o *GetIBAMappingByGateAndMountBadRequest) WithPayload(payload *GetIBAMappingByGateAndMountBadRequestBody) *GetIBAMappingByGateAndMountBadRequest {
+func (o *GetIBAMappingByGateAndMountBadRequest) WithPayload(payload *models.ErrorResponse) *GetIBAMappingByGateAndMountBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get i b a mapping by gate and mount bad request response
-func (o *GetIBAMappingByGateAndMountBadRequest) SetPayload(payload *GetIBAMappingByGateAndMountBadRequestBody) {
+func (o *GetIBAMappingByGateAndMountBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -111,7 +113,7 @@ type GetIBAMappingByGateAndMountUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetIBAMappingByGateAndMountUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetIBAMappingByGateAndMountUnauthorized creates GetIBAMappingByGateAndMountUnauthorized with default headers values
@@ -121,13 +123,13 @@ func NewGetIBAMappingByGateAndMountUnauthorized() *GetIBAMappingByGateAndMountUn
 }
 
 // WithPayload adds the payload to the get i b a mapping by gate and mount unauthorized response
-func (o *GetIBAMappingByGateAndMountUnauthorized) WithPayload(payload *GetIBAMappingByGateAndMountUnauthorizedBody) *GetIBAMappingByGateAndMountUnauthorized {
+func (o *GetIBAMappingByGateAndMountUnauthorized) WithPayload(payload *models.ErrorResponse) *GetIBAMappingByGateAndMountUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get i b a mapping by gate and mount unauthorized response
-func (o *GetIBAMappingByGateAndMountUnauthorized) SetPayload(payload *GetIBAMappingByGateAndMountUnauthorizedBody) {
+func (o *GetIBAMappingByGateAndMountUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -155,7 +157,7 @@ type GetIBAMappingByGateAndMountNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetIBAMappingByGateAndMountNotFoundBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetIBAMappingByGateAndMountNotFound creates GetIBAMappingByGateAndMountNotFound with default headers values
@@ -165,13 +167,13 @@ func NewGetIBAMappingByGateAndMountNotFound() *GetIBAMappingByGateAndMountNotFou
 }
 
 // WithPayload adds the payload to the get i b a mapping by gate and mount not found response
-func (o *GetIBAMappingByGateAndMountNotFound) WithPayload(payload *GetIBAMappingByGateAndMountNotFoundBody) *GetIBAMappingByGateAndMountNotFound {
+func (o *GetIBAMappingByGateAndMountNotFound) WithPayload(payload *models.ErrorResponse) *GetIBAMappingByGateAndMountNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get i b a mapping by gate and mount not found response
-func (o *GetIBAMappingByGateAndMountNotFound) SetPayload(payload *GetIBAMappingByGateAndMountNotFoundBody) {
+func (o *GetIBAMappingByGateAndMountNotFound) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -199,7 +201,7 @@ type GetIBAMappingByGateAndMountInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetIBAMappingByGateAndMountInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetIBAMappingByGateAndMountInternalServerError creates GetIBAMappingByGateAndMountInternalServerError with default headers values
@@ -209,13 +211,13 @@ func NewGetIBAMappingByGateAndMountInternalServerError() *GetIBAMappingByGateAnd
 }
 
 // WithPayload adds the payload to the get i b a mapping by gate and mount internal server error response
-func (o *GetIBAMappingByGateAndMountInternalServerError) WithPayload(payload *GetIBAMappingByGateAndMountInternalServerErrorBody) *GetIBAMappingByGateAndMountInternalServerError {
+func (o *GetIBAMappingByGateAndMountInternalServerError) WithPayload(payload *models.ErrorResponse) *GetIBAMappingByGateAndMountInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get i b a mapping by gate and mount internal server error response
-func (o *GetIBAMappingByGateAndMountInternalServerError) SetPayload(payload *GetIBAMappingByGateAndMountInternalServerErrorBody) {
+func (o *GetIBAMappingByGateAndMountInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // GetRootNodeOKCode is the HTTP code returned for type GetRootNodeOK
@@ -23,7 +25,7 @@ type GetRootNodeOK struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetRootNodeOKBody `json:"body,omitempty"`
+	Payload *models.NodeObject `json:"body,omitempty"`
 }
 
 // NewGetRootNodeOK creates GetRootNodeOK with default headers values
@@ -33,13 +35,13 @@ func NewGetRootNodeOK() *GetRootNodeOK {
 }
 
 // WithPayload adds the payload to the get root node o k response
-func (o *GetRootNodeOK) WithPayload(payload *GetRootNodeOKBody) *GetRootNodeOK {
+func (o *GetRootNodeOK) WithPayload(payload *models.NodeObject) *GetRootNodeOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get root node o k response
-func (o *GetRootNodeOK) SetPayload(payload *GetRootNodeOKBody) {
+func (o *GetRootNodeOK) SetPayload(payload *models.NodeObject) {
 	o.Payload = payload
 }
 
@@ -67,7 +69,7 @@ type GetRootNodeBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetRootNodeBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetRootNodeBadRequest creates GetRootNodeBadRequest with default headers values
@@ -77,13 +79,13 @@ func NewGetRootNodeBadRequest() *GetRootNodeBadRequest {
 }
 
 // WithPayload adds the payload to the get root node bad request response
-func (o *GetRootNodeBadRequest) WithPayload(payload *GetRootNodeBadRequestBody) *GetRootNodeBadRequest {
+func (o *GetRootNodeBadRequest) WithPayload(payload *models.ErrorResponse) *GetRootNodeBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get root node bad request response
-func (o *GetRootNodeBadRequest) SetPayload(payload *GetRootNodeBadRequestBody) {
+func (o *GetRootNodeBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -111,7 +113,7 @@ type GetRootNodeUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetRootNodeUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetRootNodeUnauthorized creates GetRootNodeUnauthorized with default headers values
@@ -121,13 +123,13 @@ func NewGetRootNodeUnauthorized() *GetRootNodeUnauthorized {
 }
 
 // WithPayload adds the payload to the get root node unauthorized response
-func (o *GetRootNodeUnauthorized) WithPayload(payload *GetRootNodeUnauthorizedBody) *GetRootNodeUnauthorized {
+func (o *GetRootNodeUnauthorized) WithPayload(payload *models.ErrorResponse) *GetRootNodeUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get root node unauthorized response
-func (o *GetRootNodeUnauthorized) SetPayload(payload *GetRootNodeUnauthorizedBody) {
+func (o *GetRootNodeUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -155,7 +157,7 @@ type GetRootNodeInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetRootNodeInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetRootNodeInternalServerError creates GetRootNodeInternalServerError with default headers values
@@ -165,13 +167,13 @@ func NewGetRootNodeInternalServerError() *GetRootNodeInternalServerError {
 }
 
 // WithPayload adds the payload to the get root node internal server error response
-func (o *GetRootNodeInternalServerError) WithPayload(payload *GetRootNodeInternalServerErrorBody) *GetRootNodeInternalServerError {
+func (o *GetRootNodeInternalServerError) WithPayload(payload *models.ErrorResponse) *GetRootNodeInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get root node internal server error response
-func (o *GetRootNodeInternalServerError) SetPayload(payload *GetRootNodeInternalServerErrorBody) {
+func (o *GetRootNodeInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

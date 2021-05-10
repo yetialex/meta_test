@@ -1,20 +1,26 @@
-BUILD_FOLDER := dist
-
-build: ## Build binary and docker images
-	docker build -t build.meta --force-rm -f build.Dockerfile .
-	mkdir -p $(CURDIR)/$(BUILD_FOLDER)
-	docker run -v $(CURDIR)/$(BUILD_FOLDER):/opt/mount --rm --entrypoint cp build.meta /src/app/dist/meta-server /opt/mount/meta-server
-	docker build -t meta --force-rm -f Dockerfile .
-
-run:
-	docker-compose up -d
+THIS_FILE := $(lastword $(MAKEFILE_LIST))
 
 #######################################################################
 # Codegen
 
 generate:
-	find ./gen/swagger -mindepth 1 ! -name "configure_meta.go" -name "meta-server" -delete || true && \
+	find ./gen/swagger -mindepth 1 ! -name "configure_meta.go" -delete || true && \
 		${GOPATH}/bin/swagger027 generate server -f ./swagger-test/swagger.json -A meta --target=./gen/swagger
+
+build-app:
+	go build -o bin/meta-app ./gen/swagger/cmd/meta-server
+
+build-app-linux:
+	GOOS=linux GOARCH=amd64 go build -o bin/meta-app ./gen/swagger/cmd/meta-server
+
+run-app:
+		LOGGING_LEVEL=debug \
+        DB_URL="postgres://postgres:secret@localhost/metaservice?sslmode=disable&pool_max_conns=10" \
+        PORT=${APP_PORT} \
+		./bin/meta-app
+
+#######################################################################
+# Docker
 
 NETWORK="meta"
 
@@ -52,31 +58,65 @@ docker-pull-golang:
 #######################################################################
 # Meta server
 APP_VERSION = 0.0.1
+APP_PORT = "8092"
+APP_HOST = "0.0.0.0"
 META_SERVER_NAME = "meta-server"
 META_SERVER_IMAGE_BASE=${META_SERVER_NAME}/web
 META_SERVER_IMAGE=${META_SERVER_IMAGE_BASE}:$(APP_VERSION)
 META_SERVER_IMAGE_LATEST=${META_SERVER_IMAGE_BASE}:latest
 
-docker-build-meta-server: docker-pull-golang
+docker-build-app: docker-pull-golang
 	docker build -t ${META_SERVER_IMAGE} -f ./docker/Dockerfile .
 
-docker-run-meta-server: docker-build-meta-server docker-remove-meta-server
+docker-run-app: docker-build-app docker-remove-app
 	docker run -d \
 		--net ${NETWORK} \
 		--name ${META_SERVER_NAME} \
+		-p ${APP_PORT}:${APP_PORT} \
+		-e PORT=${APP_PORT} \
+		-e HOST=${APP_HOST} \
 		-e LOGGING_LEVEL=debug \
+		-e DB_URL="postgres://postgres:secret@postgres/metaservice?sslmode=disable&pool_max_conns=10" \
 		${META_SERVER_IMAGE}
 
-docker-remove-meta-server:
+docker-remove-app:
 	docker rm -f ${META_SERVER_NAME} || true
 
 docker-run-all: \
 	docker-remove-all \
 	docker-create-network \
 	docker-run-postgres \
-	docker-run-meta-server
+	docker-run-app
 
 docker-remove-all: \
-	docker-remove-meta-server \
+	docker-remove-app \
 	docker-remove-postgres \
 	docker-remove-network
+
+#######################################################################
+# Tests
+
+tests-dep:
+	cd ./tests && \
+        python3 -m venv venv && \
+		. venv/bin/activate && \
+		pip install -r requirements.txt --upgrade && \
+    	deactivate
+
+tests-run:
+	cd ./tests && \
+		. venv/bin/activate && \
+		pytest -W ignore -vv && \
+		deactivate
+
+tests-sleep: tests-dep docker-run-all
+	sleep 5
+
+tests-run-app: tests-sleep
+	@$(MAKE) -f $(THIS_FILE) docker-run-app
+
+test-run-with-docker: tests-run-app
+	cd ./tests && \
+		. venv/bin/activate && \
+		pytest -W ignore -vv && \
+		deactivate

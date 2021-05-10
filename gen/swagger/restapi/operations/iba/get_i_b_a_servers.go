@@ -14,7 +14,8 @@ import (
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
-	"github.com/go-openapi/validate"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // GetIBAServersHandlerFunc turns a function with the right signature into a get i b a servers handler
@@ -61,97 +62,13 @@ func (o *GetIBAServers) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 
 }
 
-// GetIBAServersBadRequestBody get i b a servers bad request body
-//
-// swagger:model GetIBAServersBadRequestBody
-type GetIBAServersBadRequestBody struct {
-
-	// code
-	// Example: 300
-	Code int64 `json:"code,omitempty"`
-
-	// message
-	// Example: Something bad happens.
-	Message string `json:"message,omitempty"`
-}
-
-// Validate validates this get i b a servers bad request body
-func (o *GetIBAServersBadRequestBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this get i b a servers bad request body based on context it is used
-func (o *GetIBAServersBadRequestBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (o *GetIBAServersBadRequestBody) MarshalBinary() ([]byte, error) {
-	if o == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(o)
-}
-
-// UnmarshalBinary interface implementation
-func (o *GetIBAServersBadRequestBody) UnmarshalBinary(b []byte) error {
-	var res GetIBAServersBadRequestBody
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*o = res
-	return nil
-}
-
-// GetIBAServersNotFoundBody get i b a servers not found body
-//
-// swagger:model GetIBAServersNotFoundBody
-type GetIBAServersNotFoundBody struct {
-
-	// code
-	// Example: 300
-	Code int64 `json:"code,omitempty"`
-
-	// message
-	// Example: Something bad happens.
-	Message string `json:"message,omitempty"`
-}
-
-// Validate validates this get i b a servers not found body
-func (o *GetIBAServersNotFoundBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this get i b a servers not found body based on context it is used
-func (o *GetIBAServersNotFoundBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (o *GetIBAServersNotFoundBody) MarshalBinary() ([]byte, error) {
-	if o == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(o)
-}
-
-// UnmarshalBinary interface implementation
-func (o *GetIBAServersNotFoundBody) UnmarshalBinary(b []byte) error {
-	var res GetIBAServersNotFoundBody
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*o = res
-	return nil
-}
-
 // GetIBAServersOKBody get i b a servers o k body
 //
 // swagger:model GetIBAServersOKBody
 type GetIBAServersOKBody struct {
 
 	// items
-	Items []*GetIBAServersOKBodyItemsItems0 `json:"items"`
+	Items []*models.IBAServer `json:"items"`
 }
 
 // Validate validates this get i b a servers o k body
@@ -235,127 +152,6 @@ func (o *GetIBAServersOKBody) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (o *GetIBAServersOKBody) UnmarshalBinary(b []byte) error {
 	var res GetIBAServersOKBody
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*o = res
-	return nil
-}
-
-// GetIBAServersOKBodyItemsItems0 get i b a servers o k body items items0
-//
-// swagger:model GetIBAServersOKBodyItemsItems0
-type GetIBAServersOKBodyItemsItems0 struct {
-
-	// Комментарий
-	// Example: Some notes
-	Comment string `json:"comment,omitempty"`
-
-	// IBA сервер ID
-	// Example: 1
-	// Required: true
-	ID *int64 `json:"id"`
-
-	// Имя IBA Server
-	// Example: iba-server-name.nlmk
-	// Required: true
-	Name *string `json:"name"`
-}
-
-// Validate validates this get i b a servers o k body items items0
-func (o *GetIBAServersOKBodyItemsItems0) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := o.validateID(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := o.validateName(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (o *GetIBAServersOKBodyItemsItems0) validateID(formats strfmt.Registry) error {
-
-	if err := validate.Required("id", "body", o.ID); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (o *GetIBAServersOKBodyItemsItems0) validateName(formats strfmt.Registry) error {
-
-	if err := validate.Required("name", "body", o.Name); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ContextValidate validates this get i b a servers o k body items items0 based on context it is used
-func (o *GetIBAServersOKBodyItemsItems0) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (o *GetIBAServersOKBodyItemsItems0) MarshalBinary() ([]byte, error) {
-	if o == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(o)
-}
-
-// UnmarshalBinary interface implementation
-func (o *GetIBAServersOKBodyItemsItems0) UnmarshalBinary(b []byte) error {
-	var res GetIBAServersOKBodyItemsItems0
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*o = res
-	return nil
-}
-
-// GetIBAServersUnauthorizedBody get i b a servers unauthorized body
-//
-// swagger:model GetIBAServersUnauthorizedBody
-type GetIBAServersUnauthorizedBody struct {
-
-	// code
-	// Example: 300
-	Code int64 `json:"code,omitempty"`
-
-	// message
-	// Example: Something bad happens.
-	Message string `json:"message,omitempty"`
-}
-
-// Validate validates this get i b a servers unauthorized body
-func (o *GetIBAServersUnauthorizedBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this get i b a servers unauthorized body based on context it is used
-func (o *GetIBAServersUnauthorizedBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (o *GetIBAServersUnauthorizedBody) MarshalBinary() ([]byte, error) {
-	if o == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(o)
-}
-
-// UnmarshalBinary interface implementation
-func (o *GetIBAServersUnauthorizedBody) UnmarshalBinary(b []byte) error {
-	var res GetIBAServersUnauthorizedBody
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

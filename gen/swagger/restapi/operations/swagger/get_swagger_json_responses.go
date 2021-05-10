@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // GetSwaggerJSONOKCode is the HTTP code returned for type GetSwaggerJSONOK
@@ -65,7 +67,7 @@ type GetSwaggerJSONUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetSwaggerJSONUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetSwaggerJSONUnauthorized creates GetSwaggerJSONUnauthorized with default headers values
@@ -75,13 +77,13 @@ func NewGetSwaggerJSONUnauthorized() *GetSwaggerJSONUnauthorized {
 }
 
 // WithPayload adds the payload to the get swagger Json unauthorized response
-func (o *GetSwaggerJSONUnauthorized) WithPayload(payload *GetSwaggerJSONUnauthorizedBody) *GetSwaggerJSONUnauthorized {
+func (o *GetSwaggerJSONUnauthorized) WithPayload(payload *models.ErrorResponse) *GetSwaggerJSONUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get swagger Json unauthorized response
-func (o *GetSwaggerJSONUnauthorized) SetPayload(payload *GetSwaggerJSONUnauthorizedBody) {
+func (o *GetSwaggerJSONUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -109,7 +111,7 @@ type GetSwaggerJSONInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetSwaggerJSONInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetSwaggerJSONInternalServerError creates GetSwaggerJSONInternalServerError with default headers values
@@ -119,13 +121,13 @@ func NewGetSwaggerJSONInternalServerError() *GetSwaggerJSONInternalServerError {
 }
 
 // WithPayload adds the payload to the get swagger Json internal server error response
-func (o *GetSwaggerJSONInternalServerError) WithPayload(payload *GetSwaggerJSONInternalServerErrorBody) *GetSwaggerJSONInternalServerError {
+func (o *GetSwaggerJSONInternalServerError) WithPayload(payload *models.ErrorResponse) *GetSwaggerJSONInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get swagger Json internal server error response
-func (o *GetSwaggerJSONInternalServerError) SetPayload(payload *GetSwaggerJSONInternalServerErrorBody) {
+func (o *GetSwaggerJSONInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

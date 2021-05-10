@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // UpdateNodeOKCode is the HTTP code returned for type UpdateNodeOK
@@ -23,7 +25,7 @@ type UpdateNodeOK struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateNodeOKBody `json:"body,omitempty"`
+	Payload *models.NodeObject `json:"body,omitempty"`
 }
 
 // NewUpdateNodeOK creates UpdateNodeOK with default headers values
@@ -33,13 +35,13 @@ func NewUpdateNodeOK() *UpdateNodeOK {
 }
 
 // WithPayload adds the payload to the update node o k response
-func (o *UpdateNodeOK) WithPayload(payload *UpdateNodeOKBody) *UpdateNodeOK {
+func (o *UpdateNodeOK) WithPayload(payload *models.NodeObject) *UpdateNodeOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update node o k response
-func (o *UpdateNodeOK) SetPayload(payload *UpdateNodeOKBody) {
+func (o *UpdateNodeOK) SetPayload(payload *models.NodeObject) {
 	o.Payload = payload
 }
 
@@ -67,7 +69,7 @@ type UpdateNodeBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateNodeBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewUpdateNodeBadRequest creates UpdateNodeBadRequest with default headers values
@@ -77,13 +79,13 @@ func NewUpdateNodeBadRequest() *UpdateNodeBadRequest {
 }
 
 // WithPayload adds the payload to the update node bad request response
-func (o *UpdateNodeBadRequest) WithPayload(payload *UpdateNodeBadRequestBody) *UpdateNodeBadRequest {
+func (o *UpdateNodeBadRequest) WithPayload(payload *models.ErrorResponse) *UpdateNodeBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update node bad request response
-func (o *UpdateNodeBadRequest) SetPayload(payload *UpdateNodeBadRequestBody) {
+func (o *UpdateNodeBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -111,7 +113,7 @@ type UpdateNodeUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateNodeUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewUpdateNodeUnauthorized creates UpdateNodeUnauthorized with default headers values
@@ -121,13 +123,13 @@ func NewUpdateNodeUnauthorized() *UpdateNodeUnauthorized {
 }
 
 // WithPayload adds the payload to the update node unauthorized response
-func (o *UpdateNodeUnauthorized) WithPayload(payload *UpdateNodeUnauthorizedBody) *UpdateNodeUnauthorized {
+func (o *UpdateNodeUnauthorized) WithPayload(payload *models.ErrorResponse) *UpdateNodeUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update node unauthorized response
-func (o *UpdateNodeUnauthorized) SetPayload(payload *UpdateNodeUnauthorizedBody) {
+func (o *UpdateNodeUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -155,7 +157,7 @@ type UpdateNodeNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateNodeNotFoundBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewUpdateNodeNotFound creates UpdateNodeNotFound with default headers values
@@ -165,13 +167,13 @@ func NewUpdateNodeNotFound() *UpdateNodeNotFound {
 }
 
 // WithPayload adds the payload to the update node not found response
-func (o *UpdateNodeNotFound) WithPayload(payload *UpdateNodeNotFoundBody) *UpdateNodeNotFound {
+func (o *UpdateNodeNotFound) WithPayload(payload *models.ErrorResponse) *UpdateNodeNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update node not found response
-func (o *UpdateNodeNotFound) SetPayload(payload *UpdateNodeNotFoundBody) {
+func (o *UpdateNodeNotFound) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -199,7 +201,7 @@ type UpdateNodeInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateNodeInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewUpdateNodeInternalServerError creates UpdateNodeInternalServerError with default headers values
@@ -209,13 +211,13 @@ func NewUpdateNodeInternalServerError() *UpdateNodeInternalServerError {
 }
 
 // WithPayload adds the payload to the update node internal server error response
-func (o *UpdateNodeInternalServerError) WithPayload(payload *UpdateNodeInternalServerErrorBody) *UpdateNodeInternalServerError {
+func (o *UpdateNodeInternalServerError) WithPayload(payload *models.ErrorResponse) *UpdateNodeInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update node internal server error response
-func (o *UpdateNodeInternalServerError) SetPayload(payload *UpdateNodeInternalServerErrorBody) {
+func (o *UpdateNodeInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

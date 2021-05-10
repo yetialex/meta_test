@@ -25,7 +25,6 @@ func main() {
 
 	api := operations.NewMetaAPI(swaggerSpec)
 	server := restapi.NewServer(api)
-	server.EnabledListeners = []string{"unix", "http"}
 	defer server.Shutdown()
 
 	parser := flags.NewParser(server, flags.Default)

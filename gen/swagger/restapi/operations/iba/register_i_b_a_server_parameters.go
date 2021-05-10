@@ -14,6 +14,8 @@ import (
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/go-openapi/validate"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // NewRegisterIBAServerParams creates a new RegisterIBAServerParams object
@@ -37,7 +39,7 @@ type RegisterIBAServerParams struct {
 	  Required: true
 	  In: body
 	*/
-	Body RegisterIBAServerBody
+	Body *models.IBAServer
 }
 
 // BindRequest both binds and validates a request, it assumes that complex things implement a Validatable(strfmt.Registry) error interface
@@ -51,7 +53,7 @@ func (o *RegisterIBAServerParams) BindRequest(r *http.Request, route *middleware
 
 	if runtime.HasBody(r) {
 		defer r.Body.Close()
-		var body RegisterIBAServerBody
+		var body models.IBAServer
 		if err := route.Consumer.Consume(r.Body, &body); err != nil {
 			if err == io.EOF {
 				res = append(res, errors.Required("body", "body", ""))
@@ -70,7 +72,7 @@ func (o *RegisterIBAServerParams) BindRequest(r *http.Request, route *middleware
 			}
 
 			if len(res) == 0 {
-				o.Body = body
+				o.Body = &body
 			}
 		}
 	} else {

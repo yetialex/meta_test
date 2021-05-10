@@ -16,6 +16,8 @@ import (
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
 	"github.com/go-openapi/validate"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // NewUpdateNodeParams creates a new UpdateNodeParams object
@@ -39,7 +41,7 @@ type UpdateNodeParams struct {
 	  Required: true
 	  In: body
 	*/
-	Body UpdateNodeBody
+	Body *models.UpdateNode
 	/*Datetime as ISO 8601, for example 2018-03-20T09:12:28.123
 	  In: query
 	*/
@@ -64,7 +66,7 @@ func (o *UpdateNodeParams) BindRequest(r *http.Request, route *middleware.Matche
 
 	if runtime.HasBody(r) {
 		defer r.Body.Close()
-		var body UpdateNodeBody
+		var body models.UpdateNode
 		if err := route.Consumer.Consume(r.Body, &body); err != nil {
 			if err == io.EOF {
 				res = append(res, errors.Required("body", "body", ""))
@@ -83,7 +85,7 @@ func (o *UpdateNodeParams) BindRequest(r *http.Request, route *middleware.Matche
 			}
 
 			if len(res) == 0 {
-				o.Body = body
+				o.Body = &body
 			}
 		}
 	} else {

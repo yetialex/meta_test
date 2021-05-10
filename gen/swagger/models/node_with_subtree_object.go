@@ -48,10 +48,10 @@ type NodeWithSubtreeObject struct {
 	// Required: true
 	Name *string `json:"name"`
 
-	// prev id
+	// parent id
 	// Example: 0
 	// Required: true
-	PrevID *int64 `json:"prev_id"`
+	ParentID *int64 `json:"parent_id"`
 
 	// signals
 	Signals *SignalWithSubtreeObject `json:"signals,omitempty"`
@@ -91,7 +91,7 @@ func (m *NodeWithSubtreeObject) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validatePrevID(formats); err != nil {
+	if err := m.validateParentID(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -185,9 +185,9 @@ func (m *NodeWithSubtreeObject) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *NodeWithSubtreeObject) validatePrevID(formats strfmt.Registry) error {
+func (m *NodeWithSubtreeObject) validateParentID(formats strfmt.Registry) error {
 
-	if err := validate.Required("prev_id", "body", m.PrevID); err != nil {
+	if err := validate.Required("parent_id", "body", m.ParentID); err != nil {
 		return err
 	}
 

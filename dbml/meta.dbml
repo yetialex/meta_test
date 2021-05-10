@@ -1,0 +1,163 @@
+//// -- LEVEL 1
+//// -- Tables and References
+
+Table Signals {
+  id bigint [pk, increment]
+  name text
+  description text
+  parent_id bigint [ref: > Signals.id]
+  unit text
+  value_type_id bigint [ref: - value_types.id]
+  class_id bigint [ref: - signal_classes.id]
+  external_id text [note: 'ключ сигнала во внешней системе']
+  created_at timestamp
+  updated_at timestamp
+  acl text [note: 'acl']
+
+  note: "метаданные о сигналах"
+
+  indexes {
+      external_id [unique]
+  }
+}
+
+Table Signals_history {
+  id bigint
+  name text
+  description text
+  parent_id bigint [ref: > Signals_history.id]
+  unit text
+  value_type_id bigint [ref: - value_types.id]
+  class_id bigint [ref: - signal_classes.id]
+  external_id text [note: 'ключ сигнала во внешней системе']
+  created_at timestamp
+  updated_at timestamp
+  acl text [note: 'acl']
+
+  note: "метаданные о сигналах"
+}
+
+Table signal_classes {
+  id bigint [pk, increment]
+  name text [note: 'analog, discrete, virtual']
+}
+
+Table value_types {
+  id bigint [pk, increment]
+  name text [note: 'Тип данных сигнала: boolean,integer,real,double,undefined']
+}
+
+Table Nodes {
+  id bigint [pk, increment]
+  name text
+  parent_id bigint [ref: > Nodes.id]
+  description text
+  comment text
+  meta text
+  full_name text [note: 'root/sub/leaf/node, заполнять при редактировании узла автоматически']
+  signal_id bigint [ref: - Signals.id]
+  directory_id bigint [ref: - Directories.id]
+  created_at timestamp
+  updated_at timestamp
+  acl text [note: 'acl']
+
+  note: "логическая топология"
+}
+
+Table Nodes_history {
+  id bigint [pk, increment]
+  name text
+  parent_id bigint [ref: > Nodes_history.id]
+  description text
+  comment text
+  meta text
+  full_name text [note: 'root/sub/leaf/node, заполнять при редактировании узла автоматически']
+  signal_id bigint [ref: - Signals.id]
+  directory_id bigint [ref: - Directories.id]
+  created_at timestamp
+  updated_at timestamp
+  acl text [note: 'acl']
+
+  note: "логическая топология"
+}
+
+Table Directories {
+  id bigint [pk, increment]
+  name text
+  description text
+  created_at timestamp
+  updated_at timestamp
+  acl text [note: 'acl']
+
+  note:"справочниках логической топологии"
+}
+
+Table sap_functional_locations
+{
+    tplnr text [pk, note: "Номер ТМ"]
+    zex text [not null, note: "Цех"]
+    zex_ktext text [not null, note: "Наименование цеха"]
+    pltxt text [not null, note: "Наименование ТМ"]
+    fltyp text [not null, note: "Тип"]
+    eqart text [not null, note: "Тип объекта"]
+    eartx text [not null, note: "Наименование типа объекта"]
+    serge text [note: "Серийный номер изготовителя"]
+    invnr text [note: "Инвентарный номер"]
+    kostl text [note: "МВЗ"]
+    stort text [note: "Местоположение"]
+    anlnr text [note: "Основное средство"]
+    anlun_sub text [note: "Субномеросн.средства"]
+    arbpl text [note: "Отв.раб.место"]
+    rfr_ladle int [note: "Номер ковша"]
+    erdat text [not null, note: "Дата cоздания"]
+    aedat text [note: "Дата зменения"]
+    zz_tm_rfid text [note: "ID метки"]
+    zz_tm_tag text  [note: "Обозначение метки"]
+    objnr text  [not null, note: "Номер объекта"]
+    status_object text [not null, note: "Статус объекта"]
+    status text [not null, note: "Статус"]
+    timestamp text [not null, note: "Дата загрузки"]
+    beber text [note: "Произв Участок"]
+    swerk text [note: "Завод расположения"]
+    iwerk text [note: "Завод планирующий"]
+    tplma text [note: "Вышестоящее ТМ"]
+
+    note:"Справочник ТехМест"
+}
+
+// todo: связь со справочником SAP
+Table iba_servers {
+    id bigint [pk, increment]
+    name text [not null, note: "имя сервера"]
+    // [note: "производство/дзо"]
+    zex text [note: "цех", ref: - sap_functional_locations.zex]
+    stort text [note: "место устанкови", ref: - sap_functional_locations.stort]
+    // [note: "участок сбора данных"]
+    comment text [note: "заметки"]
+
+    note: "Реестр IBA серверов"
+}
+
+Table iba_rt_topics {
+    iba_server_id bigint
+    topic text [unique]
+    comment text [note: "заметки"]
+
+    note: "Реестр топиков с RT данными"
+}
+
+Table iba_gates {
+    id text
+    comment text [note: "заметки"]
+
+    note: "Реестр экспортеров Dat файлов в S3"
+}
+
+Table iba_batch_links {
+    iba_server_id bigint [ref: < iba_servers.id]
+    gate_id text [note: "", ref: < iba_gates.id]
+    mnt text [note: "имя папки шары"]
+
+    comment text [note: "заметки"]
+}
+

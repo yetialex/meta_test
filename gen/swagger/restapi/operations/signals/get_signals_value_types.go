@@ -6,12 +6,9 @@ package signals
 // Editing this file might prove futile when you re-run the generate command
 
 import (
-	"context"
 	"net/http"
 
 	"github.com/go-openapi/runtime/middleware"
-	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
 )
 
 // GetSignalsValueTypesHandlerFunc turns a function with the right signature into a get signals value types handler
@@ -56,130 +53,4 @@ func (o *GetSignalsValueTypes) ServeHTTP(rw http.ResponseWriter, r *http.Request
 	res := o.Handler.Handle(Params) // actually handle the request
 	o.Context.Respond(rw, r, route.Produces, route, res)
 
-}
-
-// GetSignalsValueTypesBadRequestBody get signals value types bad request body
-//
-// swagger:model GetSignalsValueTypesBadRequestBody
-type GetSignalsValueTypesBadRequestBody struct {
-
-	// code
-	// Example: 300
-	Code int64 `json:"code,omitempty"`
-
-	// message
-	// Example: Something bad happens.
-	Message string `json:"message,omitempty"`
-}
-
-// Validate validates this get signals value types bad request body
-func (o *GetSignalsValueTypesBadRequestBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this get signals value types bad request body based on context it is used
-func (o *GetSignalsValueTypesBadRequestBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (o *GetSignalsValueTypesBadRequestBody) MarshalBinary() ([]byte, error) {
-	if o == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(o)
-}
-
-// UnmarshalBinary interface implementation
-func (o *GetSignalsValueTypesBadRequestBody) UnmarshalBinary(b []byte) error {
-	var res GetSignalsValueTypesBadRequestBody
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*o = res
-	return nil
-}
-
-// GetSignalsValueTypesInternalServerErrorBody get signals value types internal server error body
-//
-// swagger:model GetSignalsValueTypesInternalServerErrorBody
-type GetSignalsValueTypesInternalServerErrorBody struct {
-
-	// code
-	// Example: 300
-	Code int64 `json:"code,omitempty"`
-
-	// message
-	// Example: Something bad happens.
-	Message string `json:"message,omitempty"`
-}
-
-// Validate validates this get signals value types internal server error body
-func (o *GetSignalsValueTypesInternalServerErrorBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this get signals value types internal server error body based on context it is used
-func (o *GetSignalsValueTypesInternalServerErrorBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (o *GetSignalsValueTypesInternalServerErrorBody) MarshalBinary() ([]byte, error) {
-	if o == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(o)
-}
-
-// UnmarshalBinary interface implementation
-func (o *GetSignalsValueTypesInternalServerErrorBody) UnmarshalBinary(b []byte) error {
-	var res GetSignalsValueTypesInternalServerErrorBody
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*o = res
-	return nil
-}
-
-// GetSignalsValueTypesUnauthorizedBody get signals value types unauthorized body
-//
-// swagger:model GetSignalsValueTypesUnauthorizedBody
-type GetSignalsValueTypesUnauthorizedBody struct {
-
-	// code
-	// Example: 300
-	Code int64 `json:"code,omitempty"`
-
-	// message
-	// Example: Something bad happens.
-	Message string `json:"message,omitempty"`
-}
-
-// Validate validates this get signals value types unauthorized body
-func (o *GetSignalsValueTypesUnauthorizedBody) Validate(formats strfmt.Registry) error {
-	return nil
-}
-
-// ContextValidate validates this get signals value types unauthorized body based on context it is used
-func (o *GetSignalsValueTypesUnauthorizedBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (o *GetSignalsValueTypesUnauthorizedBody) MarshalBinary() ([]byte, error) {
-	if o == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(o)
-}
-
-// UnmarshalBinary interface implementation
-func (o *GetSignalsValueTypesUnauthorizedBody) UnmarshalBinary(b []byte) error {
-	var res GetSignalsValueTypesUnauthorizedBody
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*o = res
-	return nil
 }

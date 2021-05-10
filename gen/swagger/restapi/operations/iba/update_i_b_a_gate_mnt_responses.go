@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // UpdateIBAGateMntOKCode is the HTTP code returned for type UpdateIBAGateMntOK
@@ -23,7 +25,7 @@ type UpdateIBAGateMntOK struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateIBAGateMntOKBody `json:"body,omitempty"`
+	Payload *models.IBAGateMnt `json:"body,omitempty"`
 }
 
 // NewUpdateIBAGateMntOK creates UpdateIBAGateMntOK with default headers values
@@ -33,13 +35,13 @@ func NewUpdateIBAGateMntOK() *UpdateIBAGateMntOK {
 }
 
 // WithPayload adds the payload to the update i b a gate mnt o k response
-func (o *UpdateIBAGateMntOK) WithPayload(payload *UpdateIBAGateMntOKBody) *UpdateIBAGateMntOK {
+func (o *UpdateIBAGateMntOK) WithPayload(payload *models.IBAGateMnt) *UpdateIBAGateMntOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update i b a gate mnt o k response
-func (o *UpdateIBAGateMntOK) SetPayload(payload *UpdateIBAGateMntOKBody) {
+func (o *UpdateIBAGateMntOK) SetPayload(payload *models.IBAGateMnt) {
 	o.Payload = payload
 }
 
@@ -67,7 +69,7 @@ type UpdateIBAGateMntBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateIBAGateMntBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewUpdateIBAGateMntBadRequest creates UpdateIBAGateMntBadRequest with default headers values
@@ -77,13 +79,13 @@ func NewUpdateIBAGateMntBadRequest() *UpdateIBAGateMntBadRequest {
 }
 
 // WithPayload adds the payload to the update i b a gate mnt bad request response
-func (o *UpdateIBAGateMntBadRequest) WithPayload(payload *UpdateIBAGateMntBadRequestBody) *UpdateIBAGateMntBadRequest {
+func (o *UpdateIBAGateMntBadRequest) WithPayload(payload *models.ErrorResponse) *UpdateIBAGateMntBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update i b a gate mnt bad request response
-func (o *UpdateIBAGateMntBadRequest) SetPayload(payload *UpdateIBAGateMntBadRequestBody) {
+func (o *UpdateIBAGateMntBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -111,7 +113,7 @@ type UpdateIBAGateMntUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateIBAGateMntUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewUpdateIBAGateMntUnauthorized creates UpdateIBAGateMntUnauthorized with default headers values
@@ -121,13 +123,13 @@ func NewUpdateIBAGateMntUnauthorized() *UpdateIBAGateMntUnauthorized {
 }
 
 // WithPayload adds the payload to the update i b a gate mnt unauthorized response
-func (o *UpdateIBAGateMntUnauthorized) WithPayload(payload *UpdateIBAGateMntUnauthorizedBody) *UpdateIBAGateMntUnauthorized {
+func (o *UpdateIBAGateMntUnauthorized) WithPayload(payload *models.ErrorResponse) *UpdateIBAGateMntUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update i b a gate mnt unauthorized response
-func (o *UpdateIBAGateMntUnauthorized) SetPayload(payload *UpdateIBAGateMntUnauthorizedBody) {
+func (o *UpdateIBAGateMntUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -155,7 +157,7 @@ type UpdateIBAGateMntNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *UpdateIBAGateMntNotFoundBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewUpdateIBAGateMntNotFound creates UpdateIBAGateMntNotFound with default headers values
@@ -165,13 +167,13 @@ func NewUpdateIBAGateMntNotFound() *UpdateIBAGateMntNotFound {
 }
 
 // WithPayload adds the payload to the update i b a gate mnt not found response
-func (o *UpdateIBAGateMntNotFound) WithPayload(payload *UpdateIBAGateMntNotFoundBody) *UpdateIBAGateMntNotFound {
+func (o *UpdateIBAGateMntNotFound) WithPayload(payload *models.ErrorResponse) *UpdateIBAGateMntNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the update i b a gate mnt not found response
-func (o *UpdateIBAGateMntNotFound) SetPayload(payload *UpdateIBAGateMntNotFoundBody) {
+func (o *UpdateIBAGateMntNotFound) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 

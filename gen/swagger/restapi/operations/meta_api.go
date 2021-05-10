@@ -47,14 +47,17 @@ func NewMetaAPI(spec *loads.Document) *MetaAPI {
 
 		JSONProducer: runtime.JSONProducer(),
 
-		CoreCreateCoreDirectoryHandler: core.CreateCoreDirectoryHandlerFunc(func(params core.CreateCoreDirectoryParams) middleware.Responder {
-			return middleware.NotImplemented("operation core.CreateCoreDirectory has not yet been implemented")
+		CoreCreateDirectoryHandler: core.CreateDirectoryHandlerFunc(func(params core.CreateDirectoryParams) middleware.Responder {
+			return middleware.NotImplemented("operation core.CreateDirectory has not yet been implemented")
 		}),
-		CoreCreateCoreNodeHandler: core.CreateCoreNodeHandlerFunc(func(params core.CreateCoreNodeParams) middleware.Responder {
-			return middleware.NotImplemented("operation core.CreateCoreNode has not yet been implemented")
+		IbaCreateIBAGateHandler: iba.CreateIBAGateHandlerFunc(func(params iba.CreateIBAGateParams) middleware.Responder {
+			return middleware.NotImplemented("operation iba.CreateIBAGate has not yet been implemented")
 		}),
-		CoreCreateCoreSignalHandler: core.CreateCoreSignalHandlerFunc(func(params core.CreateCoreSignalParams) middleware.Responder {
-			return middleware.NotImplemented("operation core.CreateCoreSignal has not yet been implemented")
+		CoreCreateNodeHandler: core.CreateNodeHandlerFunc(func(params core.CreateNodeParams) middleware.Responder {
+			return middleware.NotImplemented("operation core.CreateNode has not yet been implemented")
+		}),
+		CoreCreateSignalHandler: core.CreateSignalHandlerFunc(func(params core.CreateSignalParams) middleware.Responder {
+			return middleware.NotImplemented("operation core.CreateSignal has not yet been implemented")
 		}),
 		CoreDeleteDirectoryHandler: core.DeleteDirectoryHandlerFunc(func(params core.DeleteDirectoryParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.DeleteDirectory has not yet been implemented")
@@ -65,14 +68,8 @@ func NewMetaAPI(spec *loads.Document) *MetaAPI {
 		CoreDeleteSignalHandler: core.DeleteSignalHandlerFunc(func(params core.DeleteSignalParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.DeleteSignal has not yet been implemented")
 		}),
-		CoreGetCoreDirectoriesHandler: core.GetCoreDirectoriesHandlerFunc(func(params core.GetCoreDirectoriesParams) middleware.Responder {
-			return middleware.NotImplemented("operation core.GetCoreDirectories has not yet been implemented")
-		}),
-		CoreGetCoreNodesHandler: core.GetCoreNodesHandlerFunc(func(params core.GetCoreNodesParams) middleware.Responder {
-			return middleware.NotImplemented("operation core.GetCoreNodes has not yet been implemented")
-		}),
-		CoreGetCoreSignalsHandler: core.GetCoreSignalsHandlerFunc(func(params core.GetCoreSignalsParams) middleware.Responder {
-			return middleware.NotImplemented("operation core.GetCoreSignals has not yet been implemented")
+		CoreGetDirectoriesHandler: core.GetDirectoriesHandlerFunc(func(params core.GetDirectoriesParams) middleware.Responder {
+			return middleware.NotImplemented("operation core.GetDirectories has not yet been implemented")
 		}),
 		CoreGetDirectoryHandler: core.GetDirectoryHandlerFunc(func(params core.GetDirectoryParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.GetDirectory has not yet been implemented")
@@ -110,6 +107,9 @@ func NewMetaAPI(spec *loads.Document) *MetaAPI {
 		CoreGetNodeChildrenHandler: core.GetNodeChildrenHandlerFunc(func(params core.GetNodeChildrenParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.GetNodeChildren has not yet been implemented")
 		}),
+		CoreGetNodesHandler: core.GetNodesHandlerFunc(func(params core.GetNodesParams) middleware.Responder {
+			return middleware.NotImplemented("operation core.GetNodes has not yet been implemented")
+		}),
 		CoreGetNodesTreeWithSignalsHandler: core.GetNodesTreeWithSignalsHandlerFunc(func(params core.GetNodesTreeWithSignalsParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.GetNodesTreeWithSignals has not yet been implemented")
 		}),
@@ -118,6 +118,9 @@ func NewMetaAPI(spec *loads.Document) *MetaAPI {
 		}),
 		CoreGetSignalHandler: core.GetSignalHandlerFunc(func(params core.GetSignalParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.GetSignal has not yet been implemented")
+		}),
+		CoreGetSignalsHandler: core.GetSignalsHandlerFunc(func(params core.GetSignalsParams) middleware.Responder {
+			return middleware.NotImplemented("operation core.GetSignals has not yet been implemented")
 		}),
 		SignalsGetSignalsClassesHandler: signals.GetSignalsClassesHandlerFunc(func(params signals.GetSignalsClassesParams) middleware.Responder {
 			return middleware.NotImplemented("operation signals.GetSignalsClasses has not yet been implemented")
@@ -128,12 +131,6 @@ func NewMetaAPI(spec *loads.Document) *MetaAPI {
 		SwaggerGetSwaggerJSONHandler: swagger.GetSwaggerJSONHandlerFunc(func(params swagger.GetSwaggerJSONParams) middleware.Responder {
 			return middleware.NotImplemented("operation swagger.GetSwaggerJSON has not yet been implemented")
 		}),
-		IbaRegisterIBAGateHandler: iba.RegisterIBAGateHandlerFunc(func(params iba.RegisterIBAGateParams) middleware.Responder {
-			return middleware.NotImplemented("operation iba.RegisterIBAGate has not yet been implemented")
-		}),
-		IbaRegisterIBAGateMntHandler: iba.RegisterIBAGateMntHandlerFunc(func(params iba.RegisterIBAGateMntParams) middleware.Responder {
-			return middleware.NotImplemented("operation iba.RegisterIBAGateMnt has not yet been implemented")
-		}),
 		IbaRegisterIBAServerHandler: iba.RegisterIBAServerHandlerFunc(func(params iba.RegisterIBAServerParams) middleware.Responder {
 			return middleware.NotImplemented("operation iba.RegisterIBAServer has not yet been implemented")
 		}),
@@ -142,9 +139,6 @@ func NewMetaAPI(spec *loads.Document) *MetaAPI {
 		}),
 		CoreUpdateDirectoryHandler: core.UpdateDirectoryHandlerFunc(func(params core.UpdateDirectoryParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.UpdateDirectory has not yet been implemented")
-		}),
-		IbaUpdateIBAGateMetadataHandler: iba.UpdateIBAGateMetadataHandlerFunc(func(params iba.UpdateIBAGateMetadataParams) middleware.Responder {
-			return middleware.NotImplemented("operation iba.UpdateIBAGateMetadata has not yet been implemented")
 		}),
 		IbaUpdateIBAGateMntHandler: iba.UpdateIBAGateMntHandlerFunc(func(params iba.UpdateIBAGateMntParams) middleware.Responder {
 			return middleware.NotImplemented("operation iba.UpdateIBAGateMnt has not yet been implemented")
@@ -191,24 +185,22 @@ type MetaAPI struct {
 	//   - application/json
 	JSONProducer runtime.Producer
 
-	// CoreCreateCoreDirectoryHandler sets the operation handler for the create core directory operation
-	CoreCreateCoreDirectoryHandler core.CreateCoreDirectoryHandler
-	// CoreCreateCoreNodeHandler sets the operation handler for the create core node operation
-	CoreCreateCoreNodeHandler core.CreateCoreNodeHandler
-	// CoreCreateCoreSignalHandler sets the operation handler for the create core signal operation
-	CoreCreateCoreSignalHandler core.CreateCoreSignalHandler
+	// CoreCreateDirectoryHandler sets the operation handler for the create directory operation
+	CoreCreateDirectoryHandler core.CreateDirectoryHandler
+	// IbaCreateIBAGateHandler sets the operation handler for the create i b a gate operation
+	IbaCreateIBAGateHandler iba.CreateIBAGateHandler
+	// CoreCreateNodeHandler sets the operation handler for the create node operation
+	CoreCreateNodeHandler core.CreateNodeHandler
+	// CoreCreateSignalHandler sets the operation handler for the create signal operation
+	CoreCreateSignalHandler core.CreateSignalHandler
 	// CoreDeleteDirectoryHandler sets the operation handler for the delete directory operation
 	CoreDeleteDirectoryHandler core.DeleteDirectoryHandler
 	// CoreDeleteNodeHandler sets the operation handler for the delete node operation
 	CoreDeleteNodeHandler core.DeleteNodeHandler
 	// CoreDeleteSignalHandler sets the operation handler for the delete signal operation
 	CoreDeleteSignalHandler core.DeleteSignalHandler
-	// CoreGetCoreDirectoriesHandler sets the operation handler for the get core directories operation
-	CoreGetCoreDirectoriesHandler core.GetCoreDirectoriesHandler
-	// CoreGetCoreNodesHandler sets the operation handler for the get core nodes operation
-	CoreGetCoreNodesHandler core.GetCoreNodesHandler
-	// CoreGetCoreSignalsHandler sets the operation handler for the get core signals operation
-	CoreGetCoreSignalsHandler core.GetCoreSignalsHandler
+	// CoreGetDirectoriesHandler sets the operation handler for the get directories operation
+	CoreGetDirectoriesHandler core.GetDirectoriesHandler
 	// CoreGetDirectoryHandler sets the operation handler for the get directory operation
 	CoreGetDirectoryHandler core.GetDirectoryHandler
 	// IbaGetIBAGateByNameHandler sets the operation handler for the get i b a gate by name operation
@@ -233,30 +225,28 @@ type MetaAPI struct {
 	CoreGetNodeHandler core.GetNodeHandler
 	// CoreGetNodeChildrenHandler sets the operation handler for the get node children operation
 	CoreGetNodeChildrenHandler core.GetNodeChildrenHandler
+	// CoreGetNodesHandler sets the operation handler for the get nodes operation
+	CoreGetNodesHandler core.GetNodesHandler
 	// CoreGetNodesTreeWithSignalsHandler sets the operation handler for the get nodes tree with signals operation
 	CoreGetNodesTreeWithSignalsHandler core.GetNodesTreeWithSignalsHandler
 	// CoreGetRootNodeHandler sets the operation handler for the get root node operation
 	CoreGetRootNodeHandler core.GetRootNodeHandler
 	// CoreGetSignalHandler sets the operation handler for the get signal operation
 	CoreGetSignalHandler core.GetSignalHandler
+	// CoreGetSignalsHandler sets the operation handler for the get signals operation
+	CoreGetSignalsHandler core.GetSignalsHandler
 	// SignalsGetSignalsClassesHandler sets the operation handler for the get signals classes operation
 	SignalsGetSignalsClassesHandler signals.GetSignalsClassesHandler
 	// SignalsGetSignalsValueTypesHandler sets the operation handler for the get signals value types operation
 	SignalsGetSignalsValueTypesHandler signals.GetSignalsValueTypesHandler
 	// SwaggerGetSwaggerJSONHandler sets the operation handler for the get swagger JSON operation
 	SwaggerGetSwaggerJSONHandler swagger.GetSwaggerJSONHandler
-	// IbaRegisterIBAGateHandler sets the operation handler for the register i b a gate operation
-	IbaRegisterIBAGateHandler iba.RegisterIBAGateHandler
-	// IbaRegisterIBAGateMntHandler sets the operation handler for the register i b a gate mnt operation
-	IbaRegisterIBAGateMntHandler iba.RegisterIBAGateMntHandler
 	// IbaRegisterIBAServerHandler sets the operation handler for the register i b a server operation
 	IbaRegisterIBAServerHandler iba.RegisterIBAServerHandler
 	// IbaRegisterSignalHandler sets the operation handler for the register signal operation
 	IbaRegisterSignalHandler iba.RegisterSignalHandler
 	// CoreUpdateDirectoryHandler sets the operation handler for the update directory operation
 	CoreUpdateDirectoryHandler core.UpdateDirectoryHandler
-	// IbaUpdateIBAGateMetadataHandler sets the operation handler for the update i b a gate metadata operation
-	IbaUpdateIBAGateMetadataHandler iba.UpdateIBAGateMetadataHandler
 	// IbaUpdateIBAGateMntHandler sets the operation handler for the update i b a gate mnt operation
 	IbaUpdateIBAGateMntHandler iba.UpdateIBAGateMntHandler
 	// CoreUpdateNodeHandler sets the operation handler for the update node operation
@@ -340,14 +330,17 @@ func (o *MetaAPI) Validate() error {
 		unregistered = append(unregistered, "JSONProducer")
 	}
 
-	if o.CoreCreateCoreDirectoryHandler == nil {
-		unregistered = append(unregistered, "core.CreateCoreDirectoryHandler")
+	if o.CoreCreateDirectoryHandler == nil {
+		unregistered = append(unregistered, "core.CreateDirectoryHandler")
 	}
-	if o.CoreCreateCoreNodeHandler == nil {
-		unregistered = append(unregistered, "core.CreateCoreNodeHandler")
+	if o.IbaCreateIBAGateHandler == nil {
+		unregistered = append(unregistered, "iba.CreateIBAGateHandler")
 	}
-	if o.CoreCreateCoreSignalHandler == nil {
-		unregistered = append(unregistered, "core.CreateCoreSignalHandler")
+	if o.CoreCreateNodeHandler == nil {
+		unregistered = append(unregistered, "core.CreateNodeHandler")
+	}
+	if o.CoreCreateSignalHandler == nil {
+		unregistered = append(unregistered, "core.CreateSignalHandler")
 	}
 	if o.CoreDeleteDirectoryHandler == nil {
 		unregistered = append(unregistered, "core.DeleteDirectoryHandler")
@@ -358,14 +351,8 @@ func (o *MetaAPI) Validate() error {
 	if o.CoreDeleteSignalHandler == nil {
 		unregistered = append(unregistered, "core.DeleteSignalHandler")
 	}
-	if o.CoreGetCoreDirectoriesHandler == nil {
-		unregistered = append(unregistered, "core.GetCoreDirectoriesHandler")
-	}
-	if o.CoreGetCoreNodesHandler == nil {
-		unregistered = append(unregistered, "core.GetCoreNodesHandler")
-	}
-	if o.CoreGetCoreSignalsHandler == nil {
-		unregistered = append(unregistered, "core.GetCoreSignalsHandler")
+	if o.CoreGetDirectoriesHandler == nil {
+		unregistered = append(unregistered, "core.GetDirectoriesHandler")
 	}
 	if o.CoreGetDirectoryHandler == nil {
 		unregistered = append(unregistered, "core.GetDirectoryHandler")
@@ -403,6 +390,9 @@ func (o *MetaAPI) Validate() error {
 	if o.CoreGetNodeChildrenHandler == nil {
 		unregistered = append(unregistered, "core.GetNodeChildrenHandler")
 	}
+	if o.CoreGetNodesHandler == nil {
+		unregistered = append(unregistered, "core.GetNodesHandler")
+	}
 	if o.CoreGetNodesTreeWithSignalsHandler == nil {
 		unregistered = append(unregistered, "core.GetNodesTreeWithSignalsHandler")
 	}
@@ -411,6 +401,9 @@ func (o *MetaAPI) Validate() error {
 	}
 	if o.CoreGetSignalHandler == nil {
 		unregistered = append(unregistered, "core.GetSignalHandler")
+	}
+	if o.CoreGetSignalsHandler == nil {
+		unregistered = append(unregistered, "core.GetSignalsHandler")
 	}
 	if o.SignalsGetSignalsClassesHandler == nil {
 		unregistered = append(unregistered, "signals.GetSignalsClassesHandler")
@@ -421,12 +414,6 @@ func (o *MetaAPI) Validate() error {
 	if o.SwaggerGetSwaggerJSONHandler == nil {
 		unregistered = append(unregistered, "swagger.GetSwaggerJSONHandler")
 	}
-	if o.IbaRegisterIBAGateHandler == nil {
-		unregistered = append(unregistered, "iba.RegisterIBAGateHandler")
-	}
-	if o.IbaRegisterIBAGateMntHandler == nil {
-		unregistered = append(unregistered, "iba.RegisterIBAGateMntHandler")
-	}
 	if o.IbaRegisterIBAServerHandler == nil {
 		unregistered = append(unregistered, "iba.RegisterIBAServerHandler")
 	}
@@ -435,9 +422,6 @@ func (o *MetaAPI) Validate() error {
 	}
 	if o.CoreUpdateDirectoryHandler == nil {
 		unregistered = append(unregistered, "core.UpdateDirectoryHandler")
-	}
-	if o.IbaUpdateIBAGateMetadataHandler == nil {
-		unregistered = append(unregistered, "iba.UpdateIBAGateMetadataHandler")
 	}
 	if o.IbaUpdateIBAGateMntHandler == nil {
 		unregistered = append(unregistered, "iba.UpdateIBAGateMntHandler")
@@ -539,15 +523,19 @@ func (o *MetaAPI) initHandlerCache() {
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}
-	o.handlers["PUT"]["/core/directories"] = core.NewCreateCoreDirectory(o.context, o.CoreCreateCoreDirectoryHandler)
+	o.handlers["PUT"]["/core/directories"] = core.NewCreateDirectory(o.context, o.CoreCreateDirectoryHandler)
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}
-	o.handlers["PUT"]["/core/nodes"] = core.NewCreateCoreNode(o.context, o.CoreCreateCoreNodeHandler)
+	o.handlers["PUT"]["/ibas/gates/${gate_name}"] = iba.NewCreateIBAGate(o.context, o.IbaCreateIBAGateHandler)
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}
-	o.handlers["PUT"]["/core/signals"] = core.NewCreateCoreSignal(o.context, o.CoreCreateCoreSignalHandler)
+	o.handlers["PUT"]["/core/nodes"] = core.NewCreateNode(o.context, o.CoreCreateNodeHandler)
+	if o.handlers["PUT"] == nil {
+		o.handlers["PUT"] = make(map[string]http.Handler)
+	}
+	o.handlers["PUT"]["/core/signals"] = core.NewCreateSignal(o.context, o.CoreCreateSignalHandler)
 	if o.handlers["DELETE"] == nil {
 		o.handlers["DELETE"] = make(map[string]http.Handler)
 	}
@@ -563,15 +551,7 @@ func (o *MetaAPI) initHandlerCache() {
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
-	o.handlers["GET"]["/core/directories"] = core.NewGetCoreDirectories(o.context, o.CoreGetCoreDirectoriesHandler)
-	if o.handlers["GET"] == nil {
-		o.handlers["GET"] = make(map[string]http.Handler)
-	}
-	o.handlers["GET"]["/core/nodes"] = core.NewGetCoreNodes(o.context, o.CoreGetCoreNodesHandler)
-	if o.handlers["GET"] == nil {
-		o.handlers["GET"] = make(map[string]http.Handler)
-	}
-	o.handlers["GET"]["/core/signals"] = core.NewGetCoreSignals(o.context, o.CoreGetCoreSignalsHandler)
+	o.handlers["GET"]["/core/directories"] = core.NewGetDirectories(o.context, o.CoreGetDirectoriesHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
@@ -623,6 +603,10 @@ func (o *MetaAPI) initHandlerCache() {
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
+	o.handlers["GET"]["/core/nodes"] = core.NewGetNodes(o.context, o.CoreGetNodesHandler)
+	if o.handlers["GET"] == nil {
+		o.handlers["GET"] = make(map[string]http.Handler)
+	}
 	o.handlers["GET"]["/core/nodes/tree"] = core.NewGetNodesTreeWithSignals(o.context, o.CoreGetNodesTreeWithSignalsHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
@@ -632,6 +616,10 @@ func (o *MetaAPI) initHandlerCache() {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
 	o.handlers["GET"]["/core/signals/{signal_id}"] = core.NewGetSignal(o.context, o.CoreGetSignalHandler)
+	if o.handlers["GET"] == nil {
+		o.handlers["GET"] = make(map[string]http.Handler)
+	}
+	o.handlers["GET"]["/core/signals"] = core.NewGetSignals(o.context, o.CoreGetSignalsHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
@@ -647,14 +635,6 @@ func (o *MetaAPI) initHandlerCache() {
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}
-	o.handlers["PUT"]["/ibas/gates"] = iba.NewRegisterIBAGate(o.context, o.IbaRegisterIBAGateHandler)
-	if o.handlers["PUT"] == nil {
-		o.handlers["PUT"] = make(map[string]http.Handler)
-	}
-	o.handlers["PUT"]["/ibas/gates/${gate_name}/mnts"] = iba.NewRegisterIBAGateMnt(o.context, o.IbaRegisterIBAGateMntHandler)
-	if o.handlers["PUT"] == nil {
-		o.handlers["PUT"] = make(map[string]http.Handler)
-	}
 	o.handlers["PUT"]["/ibas/servers"] = iba.NewRegisterIBAServer(o.context, o.IbaRegisterIBAServerHandler)
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)
@@ -664,14 +644,10 @@ func (o *MetaAPI) initHandlerCache() {
 		o.handlers["PATCH"] = make(map[string]http.Handler)
 	}
 	o.handlers["PATCH"]["/core/directories/{directory_id}"] = core.NewUpdateDirectory(o.context, o.CoreUpdateDirectoryHandler)
-	if o.handlers["PATCH"] == nil {
-		o.handlers["PATCH"] = make(map[string]http.Handler)
+	if o.handlers["PUT"] == nil {
+		o.handlers["PUT"] = make(map[string]http.Handler)
 	}
-	o.handlers["PATCH"]["/ibas/gates/${gate_name}"] = iba.NewUpdateIBAGateMetadata(o.context, o.IbaUpdateIBAGateMetadataHandler)
-	if o.handlers["PATCH"] == nil {
-		o.handlers["PATCH"] = make(map[string]http.Handler)
-	}
-	o.handlers["PATCH"]["/ibas/gates/${gate_name}/mnts/${mnt}"] = iba.NewUpdateIBAGateMnt(o.context, o.IbaUpdateIBAGateMntHandler)
+	o.handlers["PUT"]["/ibas/gates/${gate_name}/mnts/${mnt}"] = iba.NewUpdateIBAGateMnt(o.context, o.IbaUpdateIBAGateMntHandler)
 	if o.handlers["PATCH"] == nil {
 		o.handlers["PATCH"] = make(map[string]http.Handler)
 	}

@@ -9,6 +9,8 @@ import (
 	"net/http"
 
 	"github.com/go-openapi/runtime"
+
+	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // GetSignalOKCode is the HTTP code returned for type GetSignalOK
@@ -23,7 +25,7 @@ type GetSignalOK struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetSignalOKBody `json:"body,omitempty"`
+	Payload *models.SignalObject `json:"body,omitempty"`
 }
 
 // NewGetSignalOK creates GetSignalOK with default headers values
@@ -33,13 +35,13 @@ func NewGetSignalOK() *GetSignalOK {
 }
 
 // WithPayload adds the payload to the get signal o k response
-func (o *GetSignalOK) WithPayload(payload *GetSignalOKBody) *GetSignalOK {
+func (o *GetSignalOK) WithPayload(payload *models.SignalObject) *GetSignalOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get signal o k response
-func (o *GetSignalOK) SetPayload(payload *GetSignalOKBody) {
+func (o *GetSignalOK) SetPayload(payload *models.SignalObject) {
 	o.Payload = payload
 }
 
@@ -67,7 +69,7 @@ type GetSignalBadRequest struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetSignalBadRequestBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetSignalBadRequest creates GetSignalBadRequest with default headers values
@@ -77,13 +79,13 @@ func NewGetSignalBadRequest() *GetSignalBadRequest {
 }
 
 // WithPayload adds the payload to the get signal bad request response
-func (o *GetSignalBadRequest) WithPayload(payload *GetSignalBadRequestBody) *GetSignalBadRequest {
+func (o *GetSignalBadRequest) WithPayload(payload *models.ErrorResponse) *GetSignalBadRequest {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get signal bad request response
-func (o *GetSignalBadRequest) SetPayload(payload *GetSignalBadRequestBody) {
+func (o *GetSignalBadRequest) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -111,7 +113,7 @@ type GetSignalUnauthorized struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetSignalUnauthorizedBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetSignalUnauthorized creates GetSignalUnauthorized with default headers values
@@ -121,13 +123,13 @@ func NewGetSignalUnauthorized() *GetSignalUnauthorized {
 }
 
 // WithPayload adds the payload to the get signal unauthorized response
-func (o *GetSignalUnauthorized) WithPayload(payload *GetSignalUnauthorizedBody) *GetSignalUnauthorized {
+func (o *GetSignalUnauthorized) WithPayload(payload *models.ErrorResponse) *GetSignalUnauthorized {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get signal unauthorized response
-func (o *GetSignalUnauthorized) SetPayload(payload *GetSignalUnauthorizedBody) {
+func (o *GetSignalUnauthorized) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -155,7 +157,7 @@ type GetSignalNotFound struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetSignalNotFoundBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetSignalNotFound creates GetSignalNotFound with default headers values
@@ -165,13 +167,13 @@ func NewGetSignalNotFound() *GetSignalNotFound {
 }
 
 // WithPayload adds the payload to the get signal not found response
-func (o *GetSignalNotFound) WithPayload(payload *GetSignalNotFoundBody) *GetSignalNotFound {
+func (o *GetSignalNotFound) WithPayload(payload *models.ErrorResponse) *GetSignalNotFound {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get signal not found response
-func (o *GetSignalNotFound) SetPayload(payload *GetSignalNotFoundBody) {
+func (o *GetSignalNotFound) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
@@ -199,7 +201,7 @@ type GetSignalInternalServerError struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetSignalInternalServerErrorBody `json:"body,omitempty"`
+	Payload *models.ErrorResponse `json:"body,omitempty"`
 }
 
 // NewGetSignalInternalServerError creates GetSignalInternalServerError with default headers values
@@ -209,13 +211,13 @@ func NewGetSignalInternalServerError() *GetSignalInternalServerError {
 }
 
 // WithPayload adds the payload to the get signal internal server error response
-func (o *GetSignalInternalServerError) WithPayload(payload *GetSignalInternalServerErrorBody) *GetSignalInternalServerError {
+func (o *GetSignalInternalServerError) WithPayload(payload *models.ErrorResponse) *GetSignalInternalServerError {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get signal internal server error response
-func (o *GetSignalInternalServerError) SetPayload(payload *GetSignalInternalServerErrorBody) {
+func (o *GetSignalInternalServerError) SetPayload(payload *models.ErrorResponse) {
 	o.Payload = payload
 }
 
