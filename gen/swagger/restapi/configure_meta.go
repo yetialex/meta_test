@@ -90,6 +90,7 @@ func configureAPI(api *operations.MetaAPI) http.Handler {
 	api.CoreCreateDirectoryHandler = core.CreateDirectoryHandlerFunc(meta.Handlers.Core.CreateDirectory)
 	api.CoreGetDirectoryHandler = core.GetDirectoryHandlerFunc(meta.Handlers.Core.GetDirectory)
 	//api.CoreGetDirectoriesHandler = core.GetDirectoriesHandlerFunc(meta.Handlers.Core.GetDirectories)
+	api.CoreUpdateDirectoryHandler = core.UpdateDirectoryHandlerFunc(meta.Handlers.Core.UpdateDirectory)
 	api.CoreDeleteDirectoryHandler = core.DeleteDirectoryHandlerFunc(meta.Handlers.Core.DeleteDirectory)
 
 	// not implemented
@@ -227,11 +228,7 @@ func configureAPI(api *operations.MetaAPI) http.Handler {
 			return middleware.NotImplemented("operation iba.RegisterSignal has not yet been implemented")
 		})
 	}
-	if api.CoreUpdateDirectoryHandler == nil {
-		api.CoreUpdateDirectoryHandler = core.UpdateDirectoryHandlerFunc(func(params core.UpdateDirectoryParams) middleware.Responder {
-			return middleware.NotImplemented("operation core.UpdateDirectory has not yet been implemented")
-		})
-	}
+
 	//if api.IbaUpdateIBAGateMetadataHandler == nil {
 	//	api.IbaUpdateIBAGateMetadataHandler = iba.UpdateIBAGateMetadataHandlerFunc(func(params iba.UpdateIBAGateMetadataParams) middleware.Responder {
 	//		return middleware.NotImplemented("operation iba.UpdateIBAGateMetadata has not yet been implemented")
