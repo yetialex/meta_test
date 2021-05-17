@@ -40,7 +40,7 @@ func (o *GetIBAGateByNameURL) SetBasePath(bp string) {
 func (o *GetIBAGateByNameURL) Build() (*url.URL, error) {
 	var _result url.URL
 
-	var _path = "/ibas/gates/${gate_name}"
+	var _path = "/ibas/gates/{gate_name}"
 
 	gateName := o.GateName
 	if gateName != "" {

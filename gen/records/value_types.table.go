@@ -5,7 +5,7 @@ package records
 // ValueType is generated type for table 'value_types'
 type ValueType struct {
 	ID int64 `db:"id" json:"id" mapstructure:"id"`
-	// Тип данных сигнала: boolean,integer,real,double,undefined
+	// Имя типа сигнала
 	Name string `db:"name" json:"name" mapstructure:"name"`
 }
 

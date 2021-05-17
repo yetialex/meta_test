@@ -21,7 +21,11 @@ type IBAGate struct {
 
 	// Комментарий
 	// Example: Some notes
-	Comment string `json:"comment,omitempty"`
+	Comment *string `json:"comment,omitempty"`
+
+	// IBA Gate ID
+	// Example: 1
+	ID *int64 `json:"id,omitempty"`
 
 	// Имя IBA Gate
 	// Example: p3apr3-pda-vc.p3.ia.nlmk

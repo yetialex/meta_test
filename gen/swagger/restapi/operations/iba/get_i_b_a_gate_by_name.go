@@ -6,15 +6,9 @@ package iba
 // Editing this file might prove futile when you re-run the generate command
 
 import (
-	"context"
 	"net/http"
 
-	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime/middleware"
-	"github.com/go-openapi/strfmt"
-	"github.com/go-openapi/swag"
-
-	"github.com/yetialex/meta_test/gen/swagger/models"
 )
 
 // GetIBAGateByNameHandlerFunc turns a function with the right signature into a get i b a gate by name handler
@@ -35,9 +29,9 @@ func NewGetIBAGateByName(ctx *middleware.Context, handler GetIBAGateByNameHandle
 	return &GetIBAGateByName{Context: ctx, Handler: handler}
 }
 
-/* GetIBAGateByName swagger:route GET /ibas/gates/${gate_name} iba getIBAGateByName
+/* GetIBAGateByName swagger:route GET /ibas/gates/{gate_name} iba getIBAGateByName
 
-Get Gate
+Get IBA Gate by name
 
 */
 type GetIBAGateByName struct {
@@ -59,90 +53,4 @@ func (o *GetIBAGateByName) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 	res := o.Handler.Handle(Params) // actually handle the request
 	o.Context.Respond(rw, r, route.Produces, route, res)
 
-}
-
-// GetIBAGateByNameOKBody get i b a gate by name o k body
-//
-// swagger:model GetIBAGateByNameOKBody
-type GetIBAGateByNameOKBody struct {
-
-	// items
-	Items *models.IBAGate `json:"items,omitempty"`
-}
-
-// Validate validates this get i b a gate by name o k body
-func (o *GetIBAGateByNameOKBody) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := o.validateItems(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (o *GetIBAGateByNameOKBody) validateItems(formats strfmt.Registry) error {
-	if swag.IsZero(o.Items) { // not required
-		return nil
-	}
-
-	if o.Items != nil {
-		if err := o.Items.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("getIBAGateByNameOK" + "." + "items")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// ContextValidate validate this get i b a gate by name o k body based on the context it is used
-func (o *GetIBAGateByNameOKBody) ContextValidate(ctx context.Context, formats strfmt.Registry) error {
-	var res []error
-
-	if err := o.contextValidateItems(ctx, formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (o *GetIBAGateByNameOKBody) contextValidateItems(ctx context.Context, formats strfmt.Registry) error {
-
-	if o.Items != nil {
-		if err := o.Items.ContextValidate(ctx, formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("getIBAGateByNameOK" + "." + "items")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (o *GetIBAGateByNameOKBody) MarshalBinary() ([]byte, error) {
-	if o == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(o)
-}
-
-// UnmarshalBinary interface implementation
-func (o *GetIBAGateByNameOKBody) UnmarshalBinary(b []byte) error {
-	var res GetIBAGateByNameOKBody
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*o = res
-	return nil
 }

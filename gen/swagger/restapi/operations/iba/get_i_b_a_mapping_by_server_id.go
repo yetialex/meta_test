@@ -36,7 +36,7 @@ func NewGetIBAMappingByServerID(ctx *middleware.Context, handler GetIBAMappingBy
 	return &GetIBAMappingByServerID{Context: ctx, Handler: handler}
 }
 
-/* GetIBAMappingByServerID swagger:route GET /ibas/servers/${iba_server_id}/signals/mapping iba getIBAMappingByServerId
+/* GetIBAMappingByServerID swagger:route GET /ibas/servers/{iba_server_id}/signals/mapping iba getIBAMappingByServerId
 
 Return IBA signal mapping by server ID
 

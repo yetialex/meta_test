@@ -40,7 +40,7 @@ func (o *GetIBAMappingByTopicNameURL) SetBasePath(bp string) {
 func (o *GetIBAMappingByTopicNameURL) Build() (*url.URL, error) {
 	var _result url.URL
 
-	var _path = "/ibas/topics/${topic_name}/mapping"
+	var _path = "/ibas/topics/{topic_name}/mapping"
 
 	topicName := o.TopicName
 	if topicName != "" {

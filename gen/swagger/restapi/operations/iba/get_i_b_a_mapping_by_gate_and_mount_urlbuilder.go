@@ -41,7 +41,7 @@ func (o *GetIBAMappingByGateAndMountURL) SetBasePath(bp string) {
 func (o *GetIBAMappingByGateAndMountURL) Build() (*url.URL, error) {
 	var _result url.URL
 
-	var _path = "/ibas/gates/${gate_name}/mnts/${mnt}/signals/mapping"
+	var _path = "/ibas/gates/{gate_name}/mnts/{mnt}/signals/mapping"
 
 	gateName := o.GateName
 	if gateName != "" {

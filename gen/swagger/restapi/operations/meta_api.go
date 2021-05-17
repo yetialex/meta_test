@@ -50,17 +50,26 @@ func NewMetaAPI(spec *loads.Document) *MetaAPI {
 		CoreCreateDirectoryHandler: core.CreateDirectoryHandlerFunc(func(params core.CreateDirectoryParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.CreateDirectory has not yet been implemented")
 		}),
-		IbaCreateIBAGateHandler: iba.CreateIBAGateHandlerFunc(func(params iba.CreateIBAGateParams) middleware.Responder {
-			return middleware.NotImplemented("operation iba.CreateIBAGate has not yet been implemented")
-		}),
 		CoreCreateNodeHandler: core.CreateNodeHandlerFunc(func(params core.CreateNodeParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.CreateNode has not yet been implemented")
+		}),
+		IbaCreateOrUpdateGateSourceByGateNameAndMntHandler: iba.CreateOrUpdateGateSourceByGateNameAndMntHandlerFunc(func(params iba.CreateOrUpdateGateSourceByGateNameAndMntParams) middleware.Responder {
+			return middleware.NotImplemented("operation iba.CreateOrUpdateGateSourceByGateNameAndMnt has not yet been implemented")
+		}),
+		IbaCreateOrUpdateIBAGateHandler: iba.CreateOrUpdateIBAGateHandlerFunc(func(params iba.CreateOrUpdateIBAGateParams) middleware.Responder {
+			return middleware.NotImplemented("operation iba.CreateOrUpdateIBAGate has not yet been implemented")
 		}),
 		CoreCreateSignalHandler: core.CreateSignalHandlerFunc(func(params core.CreateSignalParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.CreateSignal has not yet been implemented")
 		}),
 		CoreDeleteDirectoryHandler: core.DeleteDirectoryHandlerFunc(func(params core.DeleteDirectoryParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.DeleteDirectory has not yet been implemented")
+		}),
+		IbaDeleteGateSourceByGateNameAndMntHandler: iba.DeleteGateSourceByGateNameAndMntHandlerFunc(func(params iba.DeleteGateSourceByGateNameAndMntParams) middleware.Responder {
+			return middleware.NotImplemented("operation iba.DeleteGateSourceByGateNameAndMnt has not yet been implemented")
+		}),
+		IbaDeleteIBAGateByNameHandler: iba.DeleteIBAGateByNameHandlerFunc(func(params iba.DeleteIBAGateByNameParams) middleware.Responder {
+			return middleware.NotImplemented("operation iba.DeleteIBAGateByName has not yet been implemented")
 		}),
 		CoreDeleteNodeHandler: core.DeleteNodeHandlerFunc(func(params core.DeleteNodeParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.DeleteNode has not yet been implemented")
@@ -74,14 +83,11 @@ func NewMetaAPI(spec *loads.Document) *MetaAPI {
 		CoreGetDirectoryHandler: core.GetDirectoryHandlerFunc(func(params core.GetDirectoryParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.GetDirectory has not yet been implemented")
 		}),
+		IbaGetGateSourceByGateNameAndMntHandler: iba.GetGateSourceByGateNameAndMntHandlerFunc(func(params iba.GetGateSourceByGateNameAndMntParams) middleware.Responder {
+			return middleware.NotImplemented("operation iba.GetGateSourceByGateNameAndMnt has not yet been implemented")
+		}),
 		IbaGetIBAGateByNameHandler: iba.GetIBAGateByNameHandlerFunc(func(params iba.GetIBAGateByNameParams) middleware.Responder {
 			return middleware.NotImplemented("operation iba.GetIBAGateByName has not yet been implemented")
-		}),
-		IbaGetIBAGateMntHandler: iba.GetIBAGateMntHandlerFunc(func(params iba.GetIBAGateMntParams) middleware.Responder {
-			return middleware.NotImplemented("operation iba.GetIBAGateMnt has not yet been implemented")
-		}),
-		IbaGetIBAGateMntsHandler: iba.GetIBAGateMntsHandlerFunc(func(params iba.GetIBAGateMntsParams) middleware.Responder {
-			return middleware.NotImplemented("operation iba.GetIBAGateMnts has not yet been implemented")
 		}),
 		IbaGetIBAGatesHandler: iba.GetIBAGatesHandlerFunc(func(params iba.GetIBAGatesParams) middleware.Responder {
 			return middleware.NotImplemented("operation iba.GetIBAGates has not yet been implemented")
@@ -100,6 +106,9 @@ func NewMetaAPI(spec *loads.Document) *MetaAPI {
 		}),
 		IbaGetIBAServersHandler: iba.GetIBAServersHandlerFunc(func(params iba.GetIBAServersParams) middleware.Responder {
 			return middleware.NotImplemented("operation iba.GetIBAServers has not yet been implemented")
+		}),
+		IbaGetIBASourcesAndMntsByGateHandler: iba.GetIBASourcesAndMntsByGateHandlerFunc(func(params iba.GetIBASourcesAndMntsByGateParams) middleware.Responder {
+			return middleware.NotImplemented("operation iba.GetIBASourcesAndMntsByGate has not yet been implemented")
 		}),
 		CoreGetNodeHandler: core.GetNodeHandlerFunc(func(params core.GetNodeParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.GetNode has not yet been implemented")
@@ -139,9 +148,6 @@ func NewMetaAPI(spec *loads.Document) *MetaAPI {
 		}),
 		CoreUpdateDirectoryHandler: core.UpdateDirectoryHandlerFunc(func(params core.UpdateDirectoryParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.UpdateDirectory has not yet been implemented")
-		}),
-		IbaUpdateIBAGateMntHandler: iba.UpdateIBAGateMntHandlerFunc(func(params iba.UpdateIBAGateMntParams) middleware.Responder {
-			return middleware.NotImplemented("operation iba.UpdateIBAGateMnt has not yet been implemented")
 		}),
 		CoreUpdateNodeHandler: core.UpdateNodeHandlerFunc(func(params core.UpdateNodeParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.UpdateNode has not yet been implemented")
@@ -187,14 +193,20 @@ type MetaAPI struct {
 
 	// CoreCreateDirectoryHandler sets the operation handler for the create directory operation
 	CoreCreateDirectoryHandler core.CreateDirectoryHandler
-	// IbaCreateIBAGateHandler sets the operation handler for the create i b a gate operation
-	IbaCreateIBAGateHandler iba.CreateIBAGateHandler
 	// CoreCreateNodeHandler sets the operation handler for the create node operation
 	CoreCreateNodeHandler core.CreateNodeHandler
+	// IbaCreateOrUpdateGateSourceByGateNameAndMntHandler sets the operation handler for the create or update gate source by gate name and mnt operation
+	IbaCreateOrUpdateGateSourceByGateNameAndMntHandler iba.CreateOrUpdateGateSourceByGateNameAndMntHandler
+	// IbaCreateOrUpdateIBAGateHandler sets the operation handler for the create or update i b a gate operation
+	IbaCreateOrUpdateIBAGateHandler iba.CreateOrUpdateIBAGateHandler
 	// CoreCreateSignalHandler sets the operation handler for the create signal operation
 	CoreCreateSignalHandler core.CreateSignalHandler
 	// CoreDeleteDirectoryHandler sets the operation handler for the delete directory operation
 	CoreDeleteDirectoryHandler core.DeleteDirectoryHandler
+	// IbaDeleteGateSourceByGateNameAndMntHandler sets the operation handler for the delete gate source by gate name and mnt operation
+	IbaDeleteGateSourceByGateNameAndMntHandler iba.DeleteGateSourceByGateNameAndMntHandler
+	// IbaDeleteIBAGateByNameHandler sets the operation handler for the delete i b a gate by name operation
+	IbaDeleteIBAGateByNameHandler iba.DeleteIBAGateByNameHandler
 	// CoreDeleteNodeHandler sets the operation handler for the delete node operation
 	CoreDeleteNodeHandler core.DeleteNodeHandler
 	// CoreDeleteSignalHandler sets the operation handler for the delete signal operation
@@ -203,12 +215,10 @@ type MetaAPI struct {
 	CoreGetDirectoriesHandler core.GetDirectoriesHandler
 	// CoreGetDirectoryHandler sets the operation handler for the get directory operation
 	CoreGetDirectoryHandler core.GetDirectoryHandler
+	// IbaGetGateSourceByGateNameAndMntHandler sets the operation handler for the get gate source by gate name and mnt operation
+	IbaGetGateSourceByGateNameAndMntHandler iba.GetGateSourceByGateNameAndMntHandler
 	// IbaGetIBAGateByNameHandler sets the operation handler for the get i b a gate by name operation
 	IbaGetIBAGateByNameHandler iba.GetIBAGateByNameHandler
-	// IbaGetIBAGateMntHandler sets the operation handler for the get i b a gate mnt operation
-	IbaGetIBAGateMntHandler iba.GetIBAGateMntHandler
-	// IbaGetIBAGateMntsHandler sets the operation handler for the get i b a gate mnts operation
-	IbaGetIBAGateMntsHandler iba.GetIBAGateMntsHandler
 	// IbaGetIBAGatesHandler sets the operation handler for the get i b a gates operation
 	IbaGetIBAGatesHandler iba.GetIBAGatesHandler
 	// IbaGetIBAMappingByGateAndMountHandler sets the operation handler for the get i b a mapping by gate and mount operation
@@ -221,6 +231,8 @@ type MetaAPI struct {
 	IbaGetIBAServerHandler iba.GetIBAServerHandler
 	// IbaGetIBAServersHandler sets the operation handler for the get i b a servers operation
 	IbaGetIBAServersHandler iba.GetIBAServersHandler
+	// IbaGetIBASourcesAndMntsByGateHandler sets the operation handler for the get i b a sources and mnts by gate operation
+	IbaGetIBASourcesAndMntsByGateHandler iba.GetIBASourcesAndMntsByGateHandler
 	// CoreGetNodeHandler sets the operation handler for the get node operation
 	CoreGetNodeHandler core.GetNodeHandler
 	// CoreGetNodeChildrenHandler sets the operation handler for the get node children operation
@@ -247,8 +259,6 @@ type MetaAPI struct {
 	IbaRegisterSignalHandler iba.RegisterSignalHandler
 	// CoreUpdateDirectoryHandler sets the operation handler for the update directory operation
 	CoreUpdateDirectoryHandler core.UpdateDirectoryHandler
-	// IbaUpdateIBAGateMntHandler sets the operation handler for the update i b a gate mnt operation
-	IbaUpdateIBAGateMntHandler iba.UpdateIBAGateMntHandler
 	// CoreUpdateNodeHandler sets the operation handler for the update node operation
 	CoreUpdateNodeHandler core.UpdateNodeHandler
 	// CoreUpdateSignalHandler sets the operation handler for the update signal operation
@@ -333,17 +343,26 @@ func (o *MetaAPI) Validate() error {
 	if o.CoreCreateDirectoryHandler == nil {
 		unregistered = append(unregistered, "core.CreateDirectoryHandler")
 	}
-	if o.IbaCreateIBAGateHandler == nil {
-		unregistered = append(unregistered, "iba.CreateIBAGateHandler")
-	}
 	if o.CoreCreateNodeHandler == nil {
 		unregistered = append(unregistered, "core.CreateNodeHandler")
+	}
+	if o.IbaCreateOrUpdateGateSourceByGateNameAndMntHandler == nil {
+		unregistered = append(unregistered, "iba.CreateOrUpdateGateSourceByGateNameAndMntHandler")
+	}
+	if o.IbaCreateOrUpdateIBAGateHandler == nil {
+		unregistered = append(unregistered, "iba.CreateOrUpdateIBAGateHandler")
 	}
 	if o.CoreCreateSignalHandler == nil {
 		unregistered = append(unregistered, "core.CreateSignalHandler")
 	}
 	if o.CoreDeleteDirectoryHandler == nil {
 		unregistered = append(unregistered, "core.DeleteDirectoryHandler")
+	}
+	if o.IbaDeleteGateSourceByGateNameAndMntHandler == nil {
+		unregistered = append(unregistered, "iba.DeleteGateSourceByGateNameAndMntHandler")
+	}
+	if o.IbaDeleteIBAGateByNameHandler == nil {
+		unregistered = append(unregistered, "iba.DeleteIBAGateByNameHandler")
 	}
 	if o.CoreDeleteNodeHandler == nil {
 		unregistered = append(unregistered, "core.DeleteNodeHandler")
@@ -357,14 +376,11 @@ func (o *MetaAPI) Validate() error {
 	if o.CoreGetDirectoryHandler == nil {
 		unregistered = append(unregistered, "core.GetDirectoryHandler")
 	}
+	if o.IbaGetGateSourceByGateNameAndMntHandler == nil {
+		unregistered = append(unregistered, "iba.GetGateSourceByGateNameAndMntHandler")
+	}
 	if o.IbaGetIBAGateByNameHandler == nil {
 		unregistered = append(unregistered, "iba.GetIBAGateByNameHandler")
-	}
-	if o.IbaGetIBAGateMntHandler == nil {
-		unregistered = append(unregistered, "iba.GetIBAGateMntHandler")
-	}
-	if o.IbaGetIBAGateMntsHandler == nil {
-		unregistered = append(unregistered, "iba.GetIBAGateMntsHandler")
 	}
 	if o.IbaGetIBAGatesHandler == nil {
 		unregistered = append(unregistered, "iba.GetIBAGatesHandler")
@@ -383,6 +399,9 @@ func (o *MetaAPI) Validate() error {
 	}
 	if o.IbaGetIBAServersHandler == nil {
 		unregistered = append(unregistered, "iba.GetIBAServersHandler")
+	}
+	if o.IbaGetIBASourcesAndMntsByGateHandler == nil {
+		unregistered = append(unregistered, "iba.GetIBASourcesAndMntsByGateHandler")
 	}
 	if o.CoreGetNodeHandler == nil {
 		unregistered = append(unregistered, "core.GetNodeHandler")
@@ -422,9 +441,6 @@ func (o *MetaAPI) Validate() error {
 	}
 	if o.CoreUpdateDirectoryHandler == nil {
 		unregistered = append(unregistered, "core.UpdateDirectoryHandler")
-	}
-	if o.IbaUpdateIBAGateMntHandler == nil {
-		unregistered = append(unregistered, "iba.UpdateIBAGateMntHandler")
 	}
 	if o.CoreUpdateNodeHandler == nil {
 		unregistered = append(unregistered, "core.UpdateNodeHandler")
@@ -527,11 +543,15 @@ func (o *MetaAPI) initHandlerCache() {
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}
-	o.handlers["PUT"]["/ibas/gates/${gate_name}"] = iba.NewCreateIBAGate(o.context, o.IbaCreateIBAGateHandler)
+	o.handlers["PUT"]["/core/nodes"] = core.NewCreateNode(o.context, o.CoreCreateNodeHandler)
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}
-	o.handlers["PUT"]["/core/nodes"] = core.NewCreateNode(o.context, o.CoreCreateNodeHandler)
+	o.handlers["PUT"]["/ibas/gates/{gate_name}/mnts/{mnt}"] = iba.NewCreateOrUpdateGateSourceByGateNameAndMnt(o.context, o.IbaCreateOrUpdateGateSourceByGateNameAndMntHandler)
+	if o.handlers["PUT"] == nil {
+		o.handlers["PUT"] = make(map[string]http.Handler)
+	}
+	o.handlers["PUT"]["/ibas/gates"] = iba.NewCreateOrUpdateIBAGate(o.context, o.IbaCreateOrUpdateIBAGateHandler)
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}
@@ -540,6 +560,14 @@ func (o *MetaAPI) initHandlerCache() {
 		o.handlers["DELETE"] = make(map[string]http.Handler)
 	}
 	o.handlers["DELETE"]["/core/directories/{directory_id}"] = core.NewDeleteDirectory(o.context, o.CoreDeleteDirectoryHandler)
+	if o.handlers["DELETE"] == nil {
+		o.handlers["DELETE"] = make(map[string]http.Handler)
+	}
+	o.handlers["DELETE"]["/ibas/gates/{gate_name}/mnts/{mnt}"] = iba.NewDeleteGateSourceByGateNameAndMnt(o.context, o.IbaDeleteGateSourceByGateNameAndMntHandler)
+	if o.handlers["DELETE"] == nil {
+		o.handlers["DELETE"] = make(map[string]http.Handler)
+	}
+	o.handlers["DELETE"]["/ibas/gates/{gate_name}"] = iba.NewDeleteIBAGateByName(o.context, o.IbaDeleteIBAGateByNameHandler)
 	if o.handlers["DELETE"] == nil {
 		o.handlers["DELETE"] = make(map[string]http.Handler)
 	}
@@ -559,15 +587,11 @@ func (o *MetaAPI) initHandlerCache() {
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
-	o.handlers["GET"]["/ibas/gates/${gate_name}"] = iba.NewGetIBAGateByName(o.context, o.IbaGetIBAGateByNameHandler)
+	o.handlers["GET"]["/ibas/gates/{gate_name}/mnts/{mnt}"] = iba.NewGetGateSourceByGateNameAndMnt(o.context, o.IbaGetGateSourceByGateNameAndMntHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
-	o.handlers["GET"]["/ibas/gates/${gate_name}/mnts/${mnt}"] = iba.NewGetIBAGateMnt(o.context, o.IbaGetIBAGateMntHandler)
-	if o.handlers["GET"] == nil {
-		o.handlers["GET"] = make(map[string]http.Handler)
-	}
-	o.handlers["GET"]["/ibas/gates/${gate_name}/mnts"] = iba.NewGetIBAGateMnts(o.context, o.IbaGetIBAGateMntsHandler)
+	o.handlers["GET"]["/ibas/gates/{gate_name}"] = iba.NewGetIBAGateByName(o.context, o.IbaGetIBAGateByNameHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
@@ -575,23 +599,27 @@ func (o *MetaAPI) initHandlerCache() {
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
-	o.handlers["GET"]["/ibas/gates/${gate_name}/mnts/${mnt}/signals/mapping"] = iba.NewGetIBAMappingByGateAndMount(o.context, o.IbaGetIBAMappingByGateAndMountHandler)
+	o.handlers["GET"]["/ibas/gates/{gate_name}/mnts/{mnt}/signals/mapping"] = iba.NewGetIBAMappingByGateAndMount(o.context, o.IbaGetIBAMappingByGateAndMountHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
-	o.handlers["GET"]["/ibas/servers/${iba_server_id}/signals/mapping"] = iba.NewGetIBAMappingByServerID(o.context, o.IbaGetIBAMappingByServerIDHandler)
+	o.handlers["GET"]["/ibas/servers/{iba_server_id}/signals/mapping"] = iba.NewGetIBAMappingByServerID(o.context, o.IbaGetIBAMappingByServerIDHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
-	o.handlers["GET"]["/ibas/topics/${topic_name}/mapping"] = iba.NewGetIBAMappingByTopicName(o.context, o.IbaGetIBAMappingByTopicNameHandler)
+	o.handlers["GET"]["/ibas/topics/{topic_name}/mapping"] = iba.NewGetIBAMappingByTopicName(o.context, o.IbaGetIBAMappingByTopicNameHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
-	o.handlers["GET"]["/ibas/servers/${iba_server_id}"] = iba.NewGetIBAServer(o.context, o.IbaGetIBAServerHandler)
+	o.handlers["GET"]["/ibas/servers/{iba_server_id}"] = iba.NewGetIBAServer(o.context, o.IbaGetIBAServerHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
 	o.handlers["GET"]["/ibas/servers"] = iba.NewGetIBAServers(o.context, o.IbaGetIBAServersHandler)
+	if o.handlers["GET"] == nil {
+		o.handlers["GET"] = make(map[string]http.Handler)
+	}
+	o.handlers["GET"]["/ibas/gates/{gate_name}/mnts"] = iba.NewGetIBASourcesAndMntsByGate(o.context, o.IbaGetIBASourcesAndMntsByGateHandler)
 	if o.handlers["GET"] == nil {
 		o.handlers["GET"] = make(map[string]http.Handler)
 	}
@@ -639,15 +667,11 @@ func (o *MetaAPI) initHandlerCache() {
 	if o.handlers["PUT"] == nil {
 		o.handlers["PUT"] = make(map[string]http.Handler)
 	}
-	o.handlers["PUT"]["/ibas/servers/${iba_server_id}/signals"] = iba.NewRegisterSignal(o.context, o.IbaRegisterSignalHandler)
+	o.handlers["PUT"]["/ibas/servers/{iba_server_id}/signals"] = iba.NewRegisterSignal(o.context, o.IbaRegisterSignalHandler)
 	if o.handlers["PATCH"] == nil {
 		o.handlers["PATCH"] = make(map[string]http.Handler)
 	}
 	o.handlers["PATCH"]["/core/directories/{directory_id}"] = core.NewUpdateDirectory(o.context, o.CoreUpdateDirectoryHandler)
-	if o.handlers["PUT"] == nil {
-		o.handlers["PUT"] = make(map[string]http.Handler)
-	}
-	o.handlers["PUT"]["/ibas/gates/${gate_name}/mnts/${mnt}"] = iba.NewUpdateIBAGateMnt(o.context, o.IbaUpdateIBAGateMntHandler)
 	if o.handlers["PATCH"] == nil {
 		o.handlers["PATCH"] = make(map[string]http.Handler)
 	}

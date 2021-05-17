@@ -93,6 +93,17 @@ func configureAPI(api *operations.MetaAPI) http.Handler {
 	api.CoreUpdateDirectoryHandler = core.UpdateDirectoryHandlerFunc(meta.Handlers.Core.UpdateDirectory)
 	api.CoreDeleteDirectoryHandler = core.DeleteDirectoryHandlerFunc(meta.Handlers.Core.DeleteDirectory)
 
+	// iba
+	// sources
+	api.IbaGetGateSourceByGateNameAndMntHandler = iba.GetGateSourceByGateNameAndMntHandlerFunc(meta.Handlers.Iba.GetGateSourceByGateNameAndMnt)
+	api.IbaCreateOrUpdateGateSourceByGateNameAndMntHandler = iba.CreateOrUpdateGateSourceByGateNameAndMntHandlerFunc(meta.Handlers.Iba.CreateOrUpdateGateSourceByGateNameAndMnt)
+	api.IbaDeleteGateSourceByGateNameAndMntHandler = iba.DeleteGateSourceByGateNameAndMntHandlerFunc(meta.Handlers.Iba.DeleteGateSourceByGateNameAndMnt)
+
+	// gates
+	api.IbaGetIBAGateByNameHandler = iba.GetIBAGateByNameHandlerFunc(meta.Handlers.Iba.GetGateByName)
+	api.IbaCreateOrUpdateIBAGateHandler = iba.CreateOrUpdateIBAGateHandlerFunc(meta.Handlers.Iba.CreateOrUpdateGate)
+	api.IbaDeleteIBAGateByNameHandler = iba.DeleteIBAGateByNameHandlerFunc(meta.Handlers.Iba.DeleteGateByName)
+
 	// not implemented
 	if api.CoreCreateNodeHandler == nil {
 		api.CoreCreateNodeHandler = core.CreateNodeHandlerFunc(func(params core.CreateNodeParams) middleware.Responder {
@@ -127,21 +138,12 @@ func configureAPI(api *operations.MetaAPI) http.Handler {
 		})
 	}
 
-	if api.IbaGetIBAGateByNameHandler == nil {
-		api.IbaGetIBAGateByNameHandler = iba.GetIBAGateByNameHandlerFunc(func(params iba.GetIBAGateByNameParams) middleware.Responder {
-			return middleware.NotImplemented("operation iba.GetIBAGateByName has not yet been implemented")
-		})
-	}
-	if api.IbaGetIBAGateMntHandler == nil {
-		api.IbaGetIBAGateMntHandler = iba.GetIBAGateMntHandlerFunc(func(params iba.GetIBAGateMntParams) middleware.Responder {
-			return middleware.NotImplemented("operation iba.GetIBAGateMnt has not yet been implemented")
-		})
-	}
-	if api.IbaGetIBAGateMntsHandler == nil {
-		api.IbaGetIBAGateMntsHandler = iba.GetIBAGateMntsHandlerFunc(func(params iba.GetIBAGateMntsParams) middleware.Responder {
-			return middleware.NotImplemented("operation iba.GetIBAGateMnts has not yet been implemented")
-		})
-	}
+	//if api.IbaGetIBAGateMntHandler == nil {
+	//	api.IbaGetIBAGateMntHandler = iba.GetIBAGateMntHandlerFunc(func(params iba.GetIBAGateMntParams) middleware.Responder {
+	//		return middleware.NotImplemented("operation iba.GetIBAGateMnt has not yet been implemented")
+	//	})
+	//}
+
 	if api.IbaGetIBAGatesHandler == nil {
 		api.IbaGetIBAGatesHandler = iba.GetIBAGatesHandlerFunc(func(params iba.GetIBAGatesParams) middleware.Responder {
 			return middleware.NotImplemented("operation iba.GetIBAGates has not yet been implemented")
@@ -234,11 +236,11 @@ func configureAPI(api *operations.MetaAPI) http.Handler {
 	//		return middleware.NotImplemented("operation iba.UpdateIBAGateMetadata has not yet been implemented")
 	//	})
 	//}
-	if api.IbaUpdateIBAGateMntHandler == nil {
-		api.IbaUpdateIBAGateMntHandler = iba.UpdateIBAGateMntHandlerFunc(func(params iba.UpdateIBAGateMntParams) middleware.Responder {
-			return middleware.NotImplemented("operation iba.UpdateIBAGateMnt has not yet been implemented")
-		})
-	}
+	//if api.IbaUpdateIBAGateMntHandler == nil {
+	//	api.IbaUpdateIBAGateMntHandler = iba.UpdateIBAGateMntHandlerFunc(func(params iba.UpdateIBAGateMntParams) middleware.Responder {
+	//		return middleware.NotImplemented("operation iba.UpdateIBAGateMnt has not yet been implemented")
+	//	})
+	//}
 	if api.CoreUpdateNodeHandler == nil {
 		api.CoreUpdateNodeHandler = core.UpdateNodeHandlerFunc(func(params core.UpdateNodeParams) middleware.Responder {
 			return middleware.NotImplemented("operation core.UpdateNode has not yet been implemented")

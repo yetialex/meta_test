@@ -1227,49 +1227,6 @@ func init() {
             }
           }
         }
-      }
-    },
-    "/ibas/gates/${gate_name}": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Get Gate",
-        "operationId": "getIBAGateByName",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "$ref": "#/definitions/iBAGate"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "$ref": "#/definitions/errorResponse"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/errorResponse"
-            }
-          },
-          "404": {
-            "description": "IBA Gate not found",
-            "schema": {
-              "$ref": "#/definitions/errorResponse"
-            }
-          }
-        }
       },
       "put": {
         "consumes": [
@@ -1282,7 +1239,7 @@ func init() {
           "iba"
         ],
         "summary": "Create or update Gate",
-        "operationId": "createIBAGate",
+        "operationId": "createOrUpdateIBAGate",
         "parameters": [
           {
             "description": "IBA Gate Meta object",
@@ -1290,12 +1247,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "comment": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/iBAGate"
             }
           }
         ],
@@ -1325,6 +1277,83 @@ func init() {
             }
           }
         }
+      }
+    },
+    "/ibas/gates/{gate_name}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Get IBA Gate by name",
+        "operationId": "getIBAGateByName",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/iBAGate"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "IBA Gate not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Delete IBA Gate by name",
+        "operationId": "deleteIBAGateByName",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
       },
       "parameters": [
         {
@@ -1336,7 +1365,7 @@ func init() {
         }
       ]
     },
-    "/ibas/gates/${gate_name}/mnts": {
+    "/ibas/gates/{gate_name}/mnts": {
       "get": {
         "produces": [
           "application/json"
@@ -1344,8 +1373,8 @@ func init() {
         "tags": [
           "iba"
         ],
-        "summary": "Get all mnt for IBA Gates",
-        "operationId": "getIBAGateMnts",
+        "summary": "Get all sources and mnts for IBA Gate",
+        "operationId": "getIBASourcesAndMntsByGate",
         "responses": {
           "200": {
             "description": "OK",
@@ -1355,7 +1384,7 @@ func init() {
                 "items": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/iBAGateMnt"
+                    "$ref": "#/definitions/iBAGateSource"
                   }
                 }
               }
@@ -1391,7 +1420,7 @@ func init() {
         }
       ]
     },
-    "/ibas/gates/${gate_name}/mnts/${mnt}": {
+    "/ibas/gates/{gate_name}/mnts/{mnt}": {
       "get": {
         "produces": [
           "application/json"
@@ -1399,18 +1428,13 @@ func init() {
         "tags": [
           "iba"
         ],
-        "summary": "Get mnt for IBAGate",
-        "operationId": "getIBAGateMnt",
+        "summary": "Get source by IBA Gate name and mnt",
+        "operationId": "getGateSourceByGateNameAndMnt",
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "$ref": "#/definitions/iBAGateMnt"
-                }
-              }
+              "$ref": "#/definitions/iBAGateSource"
             }
           },
           "400": {
@@ -1443,8 +1467,8 @@ func init() {
         "tags": [
           "iba"
         ],
-        "summary": "Create or Update Mnt Gate",
-        "operationId": "updateIBAGateMnt",
+        "summary": "Create or Update Gate Source by IBA Gate name and mnt",
+        "operationId": "createOrUpdateGateSourceByGateNameAndMnt",
         "parameters": [
           {
             "description": "IBA GateMeta object.",
@@ -1457,8 +1481,8 @@ func init() {
                 "comment": {
                   "type": "string"
                 },
-                "iba_server_id": {
-                  "type": "integer"
+                "name": {
+                  "type": "string"
                 }
               }
             }
@@ -1468,7 +1492,7 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/iBAGateMnt"
+              "$ref": "#/definitions/iBAGateSource"
             }
           },
           "400": {
@@ -1491,24 +1515,63 @@ func init() {
           }
         }
       },
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Delete Gate Source by GateNameAndMnt",
+        "operationId": "deleteGateSourceByGateNameAndMnt",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
       "parameters": [
         {
           "type": "string",
-          "description": "IBAGate name",
+          "description": "IBA Gate name",
           "name": "gate_name",
           "in": "path",
           "required": true
         },
         {
           "type": "string",
-          "description": "IBAGate mnt",
+          "description": "IBA Gate mnt",
           "name": "mnt",
           "in": "path",
           "required": true
         }
       ]
     },
-    "/ibas/gates/${gate_name}/mnts/${mnt}/signals/mapping": {
+    "/ibas/gates/{gate_name}/mnts/{mnt}/signals/mapping": {
       "get": {
         "produces": [
           "application/json"
@@ -1680,7 +1743,7 @@ func init() {
         }
       }
     },
-    "/ibas/servers/${iba_server_id}": {
+    "/ibas/servers/{iba_server_id}": {
       "get": {
         "produces": [
           "application/json"
@@ -1727,7 +1790,7 @@ func init() {
         }
       ]
     },
-    "/ibas/servers/${iba_server_id}/signals": {
+    "/ibas/servers/{iba_server_id}/signals": {
       "put": {
         "consumes": [
           "application/json"
@@ -1820,7 +1883,7 @@ func init() {
         }
       ]
     },
-    "/ibas/servers/${iba_server_id}/signals/mapping": {
+    "/ibas/servers/{iba_server_id}/signals/mapping": {
       "get": {
         "produces": [
           "application/json"
@@ -1881,7 +1944,7 @@ func init() {
         }
       ]
     },
-    "/ibas/topics/${topic_name}/mapping": {
+    "/ibas/topics/{topic_name}/mapping": {
       "get": {
         "produces": [
           "application/json"
@@ -2157,7 +2220,14 @@ func init() {
         "comment": {
           "description": "Комментарий",
           "type": "string",
+          "x-nullable": true,
           "example": "Some notes"
+        },
+        "id": {
+          "description": "IBA Gate ID",
+          "type": "integer",
+          "x-nullable": true,
+          "example": 1
         },
         "name": {
           "description": "Имя IBA Gate",
@@ -2166,11 +2236,12 @@ func init() {
         }
       }
     },
-    "iBAGateMnt": {
+    "iBAGateSource": {
       "type": "object",
       "required": [
         "mnt",
-        "iba_server_id"
+        "iba_source_id",
+        "iba_gate_id"
       ],
       "properties": {
         "comment": {
@@ -2178,8 +2249,13 @@ func init() {
           "type": "string",
           "example": "Some notes"
         },
-        "iba_server_id": {
-          "description": "IBA сервер ID",
+        "iba_gate_id": {
+          "description": "gate ID",
+          "type": "integer",
+          "example": 1
+        },
+        "iba_source_id": {
+          "description": "ID источника данных",
           "type": "integer",
           "example": 1
         },
@@ -3833,49 +3909,6 @@ func init() {
             }
           }
         }
-      }
-    },
-    "/ibas/gates/${gate_name}": {
-      "get": {
-        "produces": [
-          "application/json"
-        ],
-        "tags": [
-          "iba"
-        ],
-        "summary": "Get Gate",
-        "operationId": "getIBAGateByName",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "$ref": "#/definitions/iBAGate"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad params supplied",
-            "schema": {
-              "$ref": "#/definitions/errorResponse"
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "$ref": "#/definitions/errorResponse"
-            }
-          },
-          "404": {
-            "description": "IBA Gate not found",
-            "schema": {
-              "$ref": "#/definitions/errorResponse"
-            }
-          }
-        }
       },
       "put": {
         "consumes": [
@@ -3888,7 +3921,7 @@ func init() {
           "iba"
         ],
         "summary": "Create or update Gate",
-        "operationId": "createIBAGate",
+        "operationId": "createOrUpdateIBAGate",
         "parameters": [
           {
             "description": "IBA Gate Meta object",
@@ -3896,12 +3929,7 @@ func init() {
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "comment": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/iBAGate"
             }
           }
         ],
@@ -3931,6 +3959,83 @@ func init() {
             }
           }
         }
+      }
+    },
+    "/ibas/gates/{gate_name}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Get IBA Gate by name",
+        "operationId": "getIBAGateByName",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/iBAGate"
+            }
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "IBA Gate not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Delete IBA Gate by name",
+        "operationId": "deleteIBAGateByName",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
       },
       "parameters": [
         {
@@ -3942,7 +4047,7 @@ func init() {
         }
       ]
     },
-    "/ibas/gates/${gate_name}/mnts": {
+    "/ibas/gates/{gate_name}/mnts": {
       "get": {
         "produces": [
           "application/json"
@@ -3950,8 +4055,8 @@ func init() {
         "tags": [
           "iba"
         ],
-        "summary": "Get all mnt for IBA Gates",
-        "operationId": "getIBAGateMnts",
+        "summary": "Get all sources and mnts for IBA Gate",
+        "operationId": "getIBASourcesAndMntsByGate",
         "responses": {
           "200": {
             "description": "OK",
@@ -3961,7 +4066,7 @@ func init() {
                 "items": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/definitions/iBAGateMnt"
+                    "$ref": "#/definitions/iBAGateSource"
                   }
                 }
               }
@@ -3997,7 +4102,7 @@ func init() {
         }
       ]
     },
-    "/ibas/gates/${gate_name}/mnts/${mnt}": {
+    "/ibas/gates/{gate_name}/mnts/{mnt}": {
       "get": {
         "produces": [
           "application/json"
@@ -4005,18 +4110,13 @@ func init() {
         "tags": [
           "iba"
         ],
-        "summary": "Get mnt for IBAGate",
-        "operationId": "getIBAGateMnt",
+        "summary": "Get source by IBA Gate name and mnt",
+        "operationId": "getGateSourceByGateNameAndMnt",
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "properties": {
-                "items": {
-                  "$ref": "#/definitions/iBAGateMnt"
-                }
-              }
+              "$ref": "#/definitions/iBAGateSource"
             }
           },
           "400": {
@@ -4049,8 +4149,8 @@ func init() {
         "tags": [
           "iba"
         ],
-        "summary": "Create or Update Mnt Gate",
-        "operationId": "updateIBAGateMnt",
+        "summary": "Create or Update Gate Source by IBA Gate name and mnt",
+        "operationId": "createOrUpdateGateSourceByGateNameAndMnt",
         "parameters": [
           {
             "description": "IBA GateMeta object.",
@@ -4063,8 +4163,8 @@ func init() {
                 "comment": {
                   "type": "string"
                 },
-                "iba_server_id": {
-                  "type": "integer"
+                "name": {
+                  "type": "string"
                 }
               }
             }
@@ -4074,7 +4174,7 @@ func init() {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/iBAGateMnt"
+              "$ref": "#/definitions/iBAGateSource"
             }
           },
           "400": {
@@ -4097,24 +4197,63 @@ func init() {
           }
         }
       },
+      "delete": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "iba"
+        ],
+        "summary": "Delete Gate Source by GateNameAndMnt",
+        "operationId": "deleteGateSourceByGateNameAndMnt",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad params supplied",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "schema": {
+              "$ref": "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
       "parameters": [
         {
           "type": "string",
-          "description": "IBAGate name",
+          "description": "IBA Gate name",
           "name": "gate_name",
           "in": "path",
           "required": true
         },
         {
           "type": "string",
-          "description": "IBAGate mnt",
+          "description": "IBA Gate mnt",
           "name": "mnt",
           "in": "path",
           "required": true
         }
       ]
     },
-    "/ibas/gates/${gate_name}/mnts/${mnt}/signals/mapping": {
+    "/ibas/gates/{gate_name}/mnts/{mnt}/signals/mapping": {
       "get": {
         "produces": [
           "application/json"
@@ -4286,7 +4425,7 @@ func init() {
         }
       }
     },
-    "/ibas/servers/${iba_server_id}": {
+    "/ibas/servers/{iba_server_id}": {
       "get": {
         "produces": [
           "application/json"
@@ -4333,7 +4472,7 @@ func init() {
         }
       ]
     },
-    "/ibas/servers/${iba_server_id}/signals": {
+    "/ibas/servers/{iba_server_id}/signals": {
       "put": {
         "consumes": [
           "application/json"
@@ -4426,7 +4565,7 @@ func init() {
         }
       ]
     },
-    "/ibas/servers/${iba_server_id}/signals/mapping": {
+    "/ibas/servers/{iba_server_id}/signals/mapping": {
       "get": {
         "produces": [
           "application/json"
@@ -4487,7 +4626,7 @@ func init() {
         }
       ]
     },
-    "/ibas/topics/${topic_name}/mapping": {
+    "/ibas/topics/{topic_name}/mapping": {
       "get": {
         "produces": [
           "application/json"
@@ -4763,7 +4902,14 @@ func init() {
         "comment": {
           "description": "Комментарий",
           "type": "string",
+          "x-nullable": true,
           "example": "Some notes"
+        },
+        "id": {
+          "description": "IBA Gate ID",
+          "type": "integer",
+          "x-nullable": true,
+          "example": 1
         },
         "name": {
           "description": "Имя IBA Gate",
@@ -4772,11 +4918,12 @@ func init() {
         }
       }
     },
-    "iBAGateMnt": {
+    "iBAGateSource": {
       "type": "object",
       "required": [
         "mnt",
-        "iba_server_id"
+        "iba_source_id",
+        "iba_gate_id"
       ],
       "properties": {
         "comment": {
@@ -4784,8 +4931,13 @@ func init() {
           "type": "string",
           "example": "Some notes"
         },
-        "iba_server_id": {
-          "description": "IBA сервер ID",
+        "iba_gate_id": {
+          "description": "gate ID",
+          "type": "integer",
+          "example": 1
+        },
+        "iba_source_id": {
+          "description": "ID источника данных",
           "type": "integer",
           "example": 1
         },

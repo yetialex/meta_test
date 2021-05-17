@@ -36,7 +36,7 @@ func NewGetIBAMappingByGateAndMount(ctx *middleware.Context, handler GetIBAMappi
 	return &GetIBAMappingByGateAndMount{Context: ctx, Handler: handler}
 }
 
-/* GetIBAMappingByGateAndMount swagger:route GET /ibas/gates/${gate_name}/mnts/${mnt}/signals/mapping iba getIBAMappingByGateAndMount
+/* GetIBAMappingByGateAndMount swagger:route GET /ibas/gates/{gate_name}/mnts/{mnt}/signals/mapping iba getIBAMappingByGateAndMount
 
 Return IBA signal mapping by gate and mountpoint
 

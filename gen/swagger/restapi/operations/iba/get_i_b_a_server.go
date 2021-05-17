@@ -29,7 +29,7 @@ func NewGetIBAServer(ctx *middleware.Context, handler GetIBAServerHandler) *GetI
 	return &GetIBAServer{Context: ctx, Handler: handler}
 }
 
-/* GetIBAServer swagger:route GET /ibas/servers/${iba_server_id} iba getIBAServer
+/* GetIBAServer swagger:route GET /ibas/servers/{iba_server_id} iba getIBAServer
 
 Get IBA Server by id
 

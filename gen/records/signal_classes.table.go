@@ -5,7 +5,7 @@ package records
 // SignalClass is generated type for table 'signal_classes'
 type SignalClass struct {
 	ID int64 `db:"id" json:"id" mapstructure:"id"`
-	// analog, discrete, virtual
+	// Имя класса
 	Name string `db:"name" json:"name" mapstructure:"name"`
 }
 

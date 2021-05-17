@@ -42,7 +42,7 @@ func (o *GetIBAServerURL) SetBasePath(bp string) {
 func (o *GetIBAServerURL) Build() (*url.URL, error) {
 	var _result url.URL
 
-	var _path = "/ibas/servers/${iba_server_id}"
+	var _path = "/ibas/servers/{iba_server_id}"
 
 	ibaServerID := swag.FormatInt64(o.IbaServerID)
 	if ibaServerID != "" {

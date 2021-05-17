@@ -42,7 +42,7 @@ func (o *RegisterSignalURL) SetBasePath(bp string) {
 func (o *RegisterSignalURL) Build() (*url.URL, error) {
 	var _result url.URL
 
-	var _path = "/ibas/servers/${iba_server_id}/signals"
+	var _path = "/ibas/servers/{iba_server_id}/signals"
 
 	ibaServerID := swag.FormatInt64(o.IbaServerID)
 	if ibaServerID != "" {

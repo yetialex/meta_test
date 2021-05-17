@@ -35,7 +35,7 @@ func NewRegisterSignal(ctx *middleware.Context, handler RegisterSignalHandler) *
 	return &RegisterSignal{Context: ctx, Handler: handler}
 }
 
-/* RegisterSignal swagger:route PUT /ibas/servers/${iba_server_id}/signals iba registerSignal
+/* RegisterSignal swagger:route PUT /ibas/servers/{iba_server_id}/signals iba registerSignal
 
 Register new signal for IBA Server(batch mode)
 

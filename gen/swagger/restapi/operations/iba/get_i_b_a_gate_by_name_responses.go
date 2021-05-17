@@ -25,7 +25,7 @@ type GetIBAGateByNameOK struct {
 	/*
 	  In: Body
 	*/
-	Payload *GetIBAGateByNameOKBody `json:"body,omitempty"`
+	Payload *models.IBAGate `json:"body,omitempty"`
 }
 
 // NewGetIBAGateByNameOK creates GetIBAGateByNameOK with default headers values
@@ -35,13 +35,13 @@ func NewGetIBAGateByNameOK() *GetIBAGateByNameOK {
 }
 
 // WithPayload adds the payload to the get i b a gate by name o k response
-func (o *GetIBAGateByNameOK) WithPayload(payload *GetIBAGateByNameOKBody) *GetIBAGateByNameOK {
+func (o *GetIBAGateByNameOK) WithPayload(payload *models.IBAGate) *GetIBAGateByNameOK {
 	o.Payload = payload
 	return o
 }
 
 // SetPayload sets the payload to the get i b a gate by name o k response
-func (o *GetIBAGateByNameOK) SetPayload(payload *GetIBAGateByNameOKBody) {
+func (o *GetIBAGateByNameOK) SetPayload(payload *models.IBAGate) {
 	o.Payload = payload
 }
 

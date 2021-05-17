@@ -2,16 +2,23 @@
 // Supported by duythinht@2020
 package records
 
+import (
+	"database/sql"
+)
+
 // IbaGate is generated type for table 'iba_gates'
 type IbaGate struct {
-	ID string `db:"id" json:"id" mapstructure:"id"`
+	ID int64 `db:"id" json:"id" mapstructure:"id"`
+	// gate_id
+	Name string `db:"name" json:"name" mapstructure:"name"`
 	// заметки
-	Comment string `db:"comment" json:"comment" mapstructure:"comment"`
+	Comment sql.NullString `db:"comment" json:"comment" mapstructure:"comment"`
 }
 
 // table 'iba_gates' columns list struct
 type __tbl_iba_gates_columns struct {
 	ID      string
+	Name    string
 	Comment string
 }
 
@@ -26,13 +33,14 @@ var _tbl_iba_gates = __tbl_iba_gates{
 	Columns: __tbl_iba_gates_columns{
 		Comment: "comment",
 		ID:      "id",
+		Name:    "name",
 	},
 	Name: "iba_gates",
 }
 
 // GetColumns return list columns name for table 'iba_gates'
 func (*__tbl_iba_gates) GetColumns() []string {
-	return []string{"id", "comment"}
+	return []string{"id", "name", "comment"}
 }
 
 // T return metadata info for table 'iba_gates'

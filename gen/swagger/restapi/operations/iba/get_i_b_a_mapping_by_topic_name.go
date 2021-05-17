@@ -36,7 +36,7 @@ func NewGetIBAMappingByTopicName(ctx *middleware.Context, handler GetIBAMappingB
 	return &GetIBAMappingByTopicName{Context: ctx, Handler: handler}
 }
 
-/* GetIBAMappingByTopicName swagger:route GET /ibas/topics/${topic_name}/mapping iba getIBAMappingByTopicName
+/* GetIBAMappingByTopicName swagger:route GET /ibas/topics/{topic_name}/mapping iba getIBAMappingByTopicName
 
 Return IBA signal mapping by topic name
 

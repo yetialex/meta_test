@@ -1,0 +1,168 @@
+Project metadata_service {
+  database_type: 'PostgreSQL'
+  Note: 'Metadata Service Database'
+}
+
+Table signals {
+  id bigint [pk, increment]
+  value_type_id int [ref: - value_types.id]
+  class_id int [ref: - signal_classes.id]
+  status_id int [default: 0, ref: > signals_statuses.id]
+  sources_id bigint [ref: > sources.id]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  acl text [note: 'acl']
+
+  note: "реестр сигналов"
+}
+
+Table signals_statuses {
+  id int [pk]
+  name text [not null, unique, note: 'Имя статуса']
+
+  note: "Статус сигнала "
+}
+
+
+// REST Create operatin on sources
+// not allowed.
+Table sources {
+  id bigint [pk, increment]
+  parent_id bigint [ref: > sources.id]
+  name text [unique, not null, note: 'Имя источника']
+  //external_id text [note: 'ключ сигнала во внешней системе']
+  source_classes_id int [not null, ref: > source_classes.id]
+  comment text
+
+  note: 'Источники данных (серевера IBA или системы)'
+}
+
+Table source_classes {
+  id int [pk]
+  name text [unique, note: "Example: iba, iba_rt, zifra_adp"]
+  comment text
+
+  note: 'Классы источников'
+}
+
+Table signal_classes {
+  id int [pk]
+  name text [not null, unique, note: 'Имя класса']
+
+  note: 'Классы сигналов: analog, discrete, virtual'
+}
+
+Table value_types {
+  id int [pk]
+  name text [not null, unique, note: 'Имя типа сигнала']
+
+  note: 'Тип данных сигнала: boolean,integer,real,double'
+}
+
+Table nodes {
+  id bigint [pk, increment]
+  parent_id bigint [ref: > nodes.id]
+  description text
+  comment text
+  meta text
+  full_name text [note: 'root/sub/leaf/node, заполнять при редактировании узла автоматически']
+  directory_id int [ref: > directories.id]
+  signal_id bigint [ref: - signals.id]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  acl text [note: 'acl']
+
+  note: "логическая топология"
+}
+
+Table directories {
+  id int [pk]
+  name text [not null, unique, note: 'Имя справочника']
+  description text
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: `now()`]
+  acl text [note: 'acl']
+
+  note:"Справочники логических топологий"
+}
+
+Table sap_functional_locations
+{
+    tplnr text [pk, note: "Номер ТМ"]
+    zex text [not null, note: "Цех"]
+    zex_ktext text [not null, note: "Наименование цеха"]
+    pltxt text [not null, note: "Наименование ТМ"]
+    fltyp text [not null, note: "Тип"]
+    eqart text [not null, note: "Тип объекта"]
+    eartx text [not null, note: "Наименование типа объекта"]
+    serge text [note: "Серийный номер изготовителя"]
+    invnr text [note: "Инвентарный номер"]
+    kostl text [note: "МВЗ"]
+    stort text [note: "Местоположение"]
+    anlnr text [note: "Основное средство"]
+    anlun_sub text [note: "Субномеросн.средства"]
+    arbpl text [note: "Отв.раб.место"]
+    rfr_ladle int [note: "Номер ковша"]
+    erdat text [not null, note: "Дата cоздания"]
+    aedat text [note: "Дата зменения"]
+    zz_tm_rfid text [note: "ID метки"]
+    zz_tm_tag text  [note: "Обозначение метки"]
+    objnr text  [not null, note: "Номер объекта"]
+    status_object text [not null, note: "Статус объекта"]
+    status text [not null, note: "Статус"]
+    timestamp text [not null, note: "Дата загрузки"]
+    beber text [note: "Произв Участок"]
+    swerk text [note: "Завод расположения"]
+    iwerk text [note: "Завод планирующий"]
+    tplma text [note: "Вышестоящее ТМ"]
+
+    note:"Справочник ТехМест"
+
+}
+
+Table iba_rt_topics {
+    iba_server_id bigint
+    topic text [not null, unique]
+    comment text [note: "заметки"]
+
+    note: "Реестр топиков с RT данными"
+}
+
+Table iba_gates {
+    id bigint [pk, increment]
+    name text [unique,not null, note: "gate_id"]
+    comment text [note: "заметки"]
+
+    note: "Реестр экспортеров Dat файлов в S3"
+}
+
+Table iba_gates_sources {
+    source_id bigint [not null, ref: > sources.id]
+    gate_id bigint [not null, note: "", ref: > iba_gates.id]
+    mnt text [not null, note: "имя папки шары"]
+
+    comment text [note: "заметки"]
+
+    indexes {
+      (gate_id, mnt) [unique]
+    }
+}
+
+// insert into directoryid(id,name,description) values
+//   (0,"sap_tm", "справочник техмест"),
+//   (1,"iba_metadata", "метаданные от IBA серверов");
+
+// TableGroup iba {
+//  iba_servers
+//  iba_rt_topics
+//  iba_gates
+//  iba_batch_links
+// }
+
+// Replace before generate: acl json [note: ''] -> acl text [note: 'acl']
+// Replace before generate: `bigserial` -> `bigint`
+
+// Replace after: ACL string  -> ACL map[string]interface{}
+// Replace after: CreatedAt   int -> CreatedAt   strfmt.DateTime
+// Replace after: UpdatedAt   int -> UpdatedAt   strfmt.DateTime
+// Replace after: ID int -> ID int64
